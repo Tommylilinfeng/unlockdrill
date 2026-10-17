@@ -89,3 +89,5 @@ The original sample question is “If 3x + 4 = 19, what is x?” Answer: 5. It i
 ## Approval record
 
 On October 17, the team confirmed: “Approve design and logo; we checked them on a phone.” This records approval of the current implemented direction, not completion of the separate Shortcuts integration test.
+
+**Follow-up team decision, October 17:** The team considers the open-U logo suitable for the initial design and may iterate on it later. This is approval for the initial direction; intermediate reference and keep/kill feedback remains undocumented.

@@ -26,7 +26,7 @@ The [product repository](https://github.com/Tommylilinfeng/unlockdrill) now cont
 
 > UnlockDrill is for someone who wants to follow through on studying even when a full session feels too big.
 
-Identity copy is newly written, not a customer quote. The current evidence concerns SAT preparation. The earlier adult, multi-exam scope is documented in [the synthesis](https://github.com/oturaN13570/columbia-startup-studio-fall-2026/blob/codex/hw4-fixes-5ppl/teams/5-ppl/hw4-synthesis-brand-position/synthesis_comparison.md); exact interview ages are largely unreported. The product repo currently limits signup/data collection to adults 18+, and includes a GRE variant. These SAT interviews and the Reddit corpus do not validate adult-only demand or the GRE extension.
+Identity copy is newly written, not a customer quote. The current evidence concerns SAT preparation. The earlier adult, multi-exam scope is documented in [the synthesis](https://github.com/oturaN13570/columbia-startup-studio-fall-2026/blob/codex/hw4-fixes-5ppl/teams/5-ppl/hw4-synthesis-brand-position/synthesis_comparison.md); exact interview ages are largely unreported. The team selected SAT students generally as the initial launch audience on October 17. The product currently restricts signup/data collection to adults 18+; revisiting that restriction is outstanding implementation work, not a change made by this document. The GRE variant remains exploratory and is not validated by this SAT research.
 
 ## Canonical Language
 
@@ -117,7 +117,7 @@ The expanded corpus also contains counterexamples: removing devices or using sho
 
 ## Persona feedback incorporated
 
-The [simulated reviews](https://github.com/oturaN13570/columbia-startup-studio-fall-2026/blob/codex/hw4-fixes-5ppl/teams/5-ppl/hw4-synthesis-brand-position/personas/README.md) prompted explicit skip/frequency language, a concrete mechanism rather than a claim to stop scrolling, and topic-specific feedback. These are role simulations, not human validation. The installed product-repo personas now need a fresh run against this revised version; the older notes remain dated records, not new test results.
+The [simulated reviews](https://github.com/oturaN13570/columbia-startup-studio-fall-2026/blob/codex/hw4-fixes-5ppl/teams/5-ppl/hw4-synthesis-brand-position/personas/README.md) prompted explicit skip/frequency language, a concrete mechanism rather than a claim to stop scrolling, and topic-specific feedback. These are role simulations, not human validation. On October 17, all three installed personas reviewed the revised document using Claude Code with Sonnet. Each approved with no must-fix items. Maya emphasized setup and skip clarity, Jordan emphasized Shortcuts limitations and retained-use testing, and Casey emphasized useful feedback without required logging. The review notes record which suggestions were adopted or deferred; these remain synthetic judgments, not human validation.
 
 ## Suggested landing-page copy
 
@@ -128,3 +128,7 @@ The [simulated reviews](https://github.com/oturaN13570/columbia-startup-studio-f
 **Primary action:** Try a sample question.
 
 **Supporting line:** A small start for the days a full study session feels too big.
+
+**Setup clarification:** App-opening prompts require you to set up an iPhone Shortcuts automation. Real-device testing is still in progress; you can try a sample question without that setup.
+
+**Practice clarification:** Skip or pause when you need to. No manual mistake logging is required; any future error journal should remain optional.

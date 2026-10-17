@@ -1,0 +1,14 @@
+```json
+{
+  "verdict": "approve",
+  "score": 8,
+  "understanding": "This is a brand positioning document (not the live product) for UnlockDrill, an opt-in shortcut that surfaces one short SAT question at a chosen app-opening moment, with skip/pause/frequency controls, a short explanation, and a visible end, explicitly framed as a supplement to longer study rather than a replacement. The doc is careful to flag what is interview-sourced, inferred, or still untested (e.g., real-device automation in issue #3, score-outcome claims), and the 'Language to Avoid' section rules out guaranteed-score and addiction-cure claims.",
+  "must_fix": [],
+  "nice_to_have": [
+    "State explicitly in the landing-page copy (not just internal objection handling) that no manual logging or error journal is required yet, since that's one of my strongest red lines and right now the reassurance only lives in the objection-handling table.",
+    "Give a concrete bound on explanation length (e.g., 'under 30 seconds') so 'short explanation' isn't just an adjective I have to trust.",
+    "The I08 objection row says similar-question testing happens 'before expanding into an error journal' — worth confirming that an error journal, if ever added, stays optional rather than becoming required logging."
+  ],
+  "evidence": ["I08", "I10", "Q05"]
+}
+```
