@@ -1,9 +1,9 @@
 # STYLE_GUIDE.md — UnlockDrill
 
 **Team:** 5 PPL
-**Status:** The team approved the implemented answer-sheet direction and existing open-U logo on October 17 and reported checking the page and logo on a phone. Device/browser details were not supplied; this is a team-reported visual check, not an automation or accessibility test.
+**Status:** The team approved the answer-sheet page and selected Drill Buddy as the new logo on October 17. Production SVG assets and favicon variants are included. The previous phone check concerned the old logo; a fresh check of Drill Buddy is still needed.
 
-**Reference implementation:** [Current product tokens](https://github.com/Tommylilinfeng/unlockdrill/blob/4597dd391ed123b949c890589c5bb37750d7bcab/src/styles/tokens.css) and [logo component](https://github.com/Tommylilinfeng/unlockdrill/blob/4597dd391ed123b949c890589c5bb37750d7bcab/src/components/Logo.tsx). Earlier [direction A](https://github.com/oturaN13570/columbia-startup-studio-fall-2026/blob/codex/hw4-fixes-5ppl/teams/5-ppl/hw4-synthesis-brand-position/design-exploration/direction-a.html) is an exploration, not the final visual specification.
+**Reference implementation:** [Current product tokens](https://github.com/Tommylilinfeng/unlockdrill/blob/4597dd391ed123b949c890589c5bb37750d7bcab/src/styles/tokens.css) and [updated logo assets in product PR #21](https://github.com/Tommylilinfeng/unlockdrill/pull/21). Earlier [direction A](https://github.com/oturaN13570/columbia-startup-studio-fall-2026/blob/codex/hw4-fixes-5ppl/teams/5-ppl/hw4-synthesis-brand-position/design-exploration/direction-a.html) is an exploration, not the final visual specification.
 
 ## Color
 
@@ -23,7 +23,7 @@ One saturated accent per control. Graphite on near-white paper; white on forest 
 
 - Headings: Atkinson Hyperlegible Next with Atkinson Hyperlegible, Arial, Helvetica, and sans-serif fallbacks; H1 46 px at widths of 820 px and up, 34 px below.
 - Body: the same font stack, 17 px; text measure 64ch.
-- The product header pairs the mark with live text. Supplied SVG lockups retain their original font treatment; outline text before exporting fixed production artwork if portability is needed.
+- The product header pairs the mark with live text. Supplied SVG lockups use Arial/Helvetica fallback text; outline text before exporting fixed production artwork if portability is needed.
 
 ## Space and layout
 
@@ -72,22 +72,23 @@ No endless practice feed, guilt-based messages, forced celebration, hidden skip 
 
 ## Logo
 
-- Mark: an open U with an upward arrow; a small first step rather than a locked gate.
-- Directions considered: twelve rough marks appear on page 15 of the report, including question tile, doorway, open book, and monograms. The team approved the open-U direction on October 17.
-- Files: [logo/](https://github.com/oturaN13570/columbia-startup-studio-fall-2026/blob/codex/hw4-fixes-5ppl/teams/5-ppl/hw4-synthesis-brand-position/logo), including light/dark marks, black/white versions, horizontal lockups, stacked mark, square avatar, PNG favicons at 16, 32, 48, 180, 192, and 512 px, and ICO.
-- Lockup: match the visible mark height to the capital-letter height, with approximately half a cap-height gap.
-- Clear space: at least one quarter of the mark height.
-- Colors: forest on light, white on dark, black/white one-color variants. No gradients, rotation, or stretched geometry.
-- Minimum: 16 px favicon supplied; the team reports a phone page/logo check, but separate 16 px legibility measurements were not recorded.
+- Selected mark: **Drill Buddy**, a friendly answer-card mascot with a rounded U-shaped outline, smiling face, three answer bubbles, and small golden rays. The team selected concept B on October 17, replacing the earlier open-U direction.
+- References: the team supplied Duolingo, Khan Academy, and Forest images. See [reference images and exploration](https://github.com/oturaN13570/columbia-startup-studio-fall-2026/blob/codex/hw4-fixes-5ppl/teams/5-ppl/hw4-synthesis-brand-position/design-exploration/logo-round-2/README.md). These are inspiration references, not reused product artwork or endorsements.
+- Files: [logo/](https://github.com/oturaN13570/columbia-startup-studio-fall-2026/blob/codex/hw4-fixes-5ppl/teams/5-ppl/hw4-synthesis-brand-position/logo/): editable color, dark-background, black/white marks; horizontal lockups; stacked version; square avatar; favicons at 16, 32, 48, 180, 192, and 512 px; ICO. The product PR synchronizes these assets.
+- Palette: forest #21664C, mint #86B59B, white face, graphite #262B2E, and decorative golden rays #F5C451. Use the white one-color version on dark backgrounds.
+- Header: use the compact mark beside live product text, with a clear gap. Exported lockups use Arial/Helvetica fallback text; the app retains its Atkinson typography. SVG text remains editable and may vary with installed fonts.
+- Clear space: at least one quarter of the visible mark width. Do not stretch, rotate, add glow, or add gradients.
+- Minimum: use `mark-small.svg` or the simplified 16/32 px favicons below 48 px; these omit the rays and answer bubbles. Use the full mark at 48 px or larger.
+- Check: [rendered production sheet](https://github.com/oturaN13570/columbia-startup-studio-fall-2026/blob/codex/hw4-fixes-5ppl/teams/5-ppl/hw4-synthesis-brand-position/design-exploration/logo-round-2/production-check.png) inspected at actual favicon sizes. A fresh physical-phone check of Drill Buddy remains outstanding; the earlier phone check concerned the old logo.
 
 ## Exploration and feedback record
 
-See [five HTML directions](https://github.com/oturaN13570/columbia-startup-studio-fall-2026/blob/codex/hw4-fixes-5ppl/teams/5-ppl/hw4-synthesis-brand-position/design-exploration/README.md). Proposed references are Duolingo for approachability, Khan Academy for educational clarity, and Forest for a calm focus metaphor. These remain reference suggestions, not a reconstructed team feedback history. The approved product direction uses fillable answer bubbles, forest-green print, graphite text, and a cool near-white page. Keep/kill notes from intermediate rounds were not supplied.
+The [five HTML page directions](https://github.com/oturaN13570/columbia-startup-studio-fall-2026/blob/codex/hw4-fixes-5ppl/teams/5-ppl/hw4-synthesis-brand-position/design-exploration/README.md) record the first page round. The team approved the implemented answer-sheet page with fillable bubbles, forest-green print, graphite text, and a cool near-white background. Intermediate page keep/kill comments were not supplied and are not reconstructed here.
 
-The original sample question is “If 3x + 4 = 19, what is x?” Answer: 5. It is not an official SAT item.
+For the new logo round, the team supplied three references, viewed A (Sprout U), B (Drill Buddy), and C (Small Win), and selected B. Production refinement retained the selected mascot and removed generated glow; the small-size version reduces detail. Detailed team reasons for rejecting A/C were not supplied.
+
+The sample question is “If 3x + 4 = 19, what is x?” Answer: 5. It is not an official SAT item.
 
 ## Approval record
 
-On October 17, the team confirmed: “Approve design and logo; we checked them on a phone.” This records approval of the current implemented direction, not completion of the separate Shortcuts integration test.
-
-**Follow-up team decision, October 17:** The team considers the open-U logo suitable for the initial design and may iterate on it later. This is approval for the initial direction; intermediate reference and keep/kill feedback remains undocumented.
+On October 17, the team approved the implemented page and old open-U logo and reported a phone check. Later that day, after seeing the new logo exploration, the team said “use second one,” selecting Drill Buddy. That selection supersedes the old logo approval. It does not constitute a new phone check or a Shortcuts integration test.
