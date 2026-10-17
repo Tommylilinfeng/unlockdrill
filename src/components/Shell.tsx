@@ -5,20 +5,20 @@ import { Lockup } from './Logo';
 export function Shell({ children }: { children: ReactNode }) {
   return (
     <>
-      <header className="site-header">
-        <div className="container">
+      <header className="masthead">
+        <div className="wrap">
           <Lockup />
-          <nav aria-label="Primary">
-            <Link to="/setup">Set up</Link>
-            <Link to="/q?demo=1">Try a question</Link>
+          <nav aria-label="Main">
+            <Link to="/setup">Set it up</Link>
+            <a href={`${import.meta.env.BASE_URL}#waitlist`}>Waitlist</a>
           </nav>
         </div>
       </header>
-      <main id="main">{children}</main>
-      <footer className="site-footer">
-        <div className="container stack">
-          <p>UnlockDrill is a student project from Columbia's Startup Studio. It is not affiliated with or endorsed by the College Board, ETS, or any test maker. Practice counts are not a promise of score improvement.</p>
-          <p><Link to="/privacy">Privacy</Link> · <Link to="/settings">Your settings</Link> · For adults 18 and over.</p>
+      <main>{children}</main>
+      <footer className="colophon">
+        <div className="wrap">
+          <p>Made by 5 PPL in Columbia's Startup Studio. Not affiliated with the College Board or ETS. For adults 18 and over.</p>
+          <p><Link to="/privacy">Privacy</Link>&emsp;<Link to="/settings">Your settings</Link></p>
         </div>
       </footer>
     </>

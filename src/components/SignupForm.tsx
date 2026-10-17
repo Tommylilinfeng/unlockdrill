@@ -3,25 +3,20 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { submitSignup, isValidEmail } from '../lib/signup';
 import { track } from '../lib/analytics';
 
-interface Props {
-  /** Slug of the value prop this form sits under; reported with the signup so pages can be compared. */
-  variant: string;
-  cta?: string;
-  idSuffix?: string;
-}
+interface Props { variant: string; label?: string }
 
-export function SignupForm({ variant, cta = 'Get early access', idSuffix = '' }: Props) {
+export function SignupForm({ variant, label = 'Your email' }: Props) {
   const [email, setEmail] = useState('');
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const nav = useNavigate();
   const loc = useLocation();
-  const id = `email-${variant}${idSuffix}`;
+  const id = `email-${variant}`;
 
   async function onSubmit(e: FormEvent) {
     e.preventDefault();
     setError(null);
-    if (!isValidEmail(email)) { setError('Please enter a valid email address.'); return; }
+    if (!isValidEmail(email)) { setError('Enter an email address like name@example.com.'); return; }
     setBusy(true);
     track('signup_submit', { variant });
     const res = await submitSignup({ email, page: loc.pathname, variant });
@@ -31,20 +26,16 @@ export function SignupForm({ variant, cta = 'Get early access', idSuffix = '' }:
   }
 
   return (
-    <form onSubmit={onSubmit} className="card stack" noValidate aria-describedby={`${id}-help`}>
-      <div className="field">
-        <label htmlFor={id}>Email</label>
+    <form onSubmit={onSubmit} className="signup" noValidate>
+      <label htmlFor={id}>{label}</label>
+      <div className="row">
         <input id={id} type="email" inputMode="email" autoComplete="email" required
-          value={email} onChange={e => setEmail(e.target.value)} placeholder="you@example.com"
-          aria-invalid={error ? true : undefined} />
+          value={email} onChange={e => setEmail(e.target.value)} placeholder="name@example.com"
+          aria-invalid={error ? true : undefined} aria-describedby={`${id}-note`} />
+        <button className="btn" type="submit" disabled={busy}>{busy ? 'Joining…' : 'Join the waitlist'}</button>
       </div>
-      {error && <p className="error" role="alert">{error}</p>}
-      <div className="btn-row">
-        <button className="btn" type="submit" disabled={busy}>{busy ? 'Saving…' : cta}</button>
-      </div>
-      <p id={`${id}-help`} className="small muted" style={{ margin: 0 }}>
-        One email when the first version is ready. No newsletter, no sharing. Adults 18 and over only.
-      </p>
+      {error && <p className="err" role="alert">{error}</p>}
+      <p id={`${id}-note`} className="note small quiet">We'll email you once, when it's ready. 18 and over only.</p>
     </form>
   );
 }

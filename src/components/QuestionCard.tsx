@@ -1,20 +1,28 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, type ReactNode } from 'react';
 import type { Question } from '../lib/questions';
 
 interface Props {
   question: Question;
-  /** Called once when the user commits an answer. */
   onAnswered?: (correct: boolean, msToAnswer: number) => void;
-  /** Rendered under the explanation after answering (e.g. "Back to Instagram"). */
-  after?: React.ReactNode;
-  compact?: boolean;
+  /** Shown under the explanation once answered. */
+  after?: ReactNode;
+  /** Large prompt, for the homepage hero. */
+  hero?: boolean;
+  headingLevel?: 'h1' | 'h2' | 'p';
 }
 
-export function QuestionCard({ question, onAnswered, after, compact = false }: Props) {
+/** Keep short math expressions on one line: "3x + 4 = 19" should never break at an operator. */
+function keepMathTogether(text: string): string {
+  return text.replace(/ ([+\-−×÷=<>≤≥]) /g, '\u00a0$1\u00a0');
+}
+
+/** One question rendered as a row of answer-sheet bubbles. Picking a bubble fills it in. */
+export function QuestionCard({ question, onAnswered, after, hero = false, headingLevel = 'p' }: Props) {
   const [picked, setPicked] = useState<string | null>(null);
-  const start = useRef<number>(Date.now());
+  const start = useRef(Date.now());
   const answered = picked !== null;
   const correct = picked === question.answer;
+  const Prompt = headingLevel;
 
   useEffect(() => { setPicked(null); start.current = Date.now(); }, [question.id]);
 
@@ -26,28 +34,35 @@ export function QuestionCard({ question, onAnswered, after, compact = false }: P
 
   return (
     <div>
-      <p className="eyebrow">{question.section} · {question.topic}</p>
-      <p className={compact ? 'q-prompt' : 'q-prompt'} style={compact ? { fontSize: 19 } : undefined}>{question.prompt}</p>
-      <ul className="choices" role="group" aria-label="Answer choices">
+      <p className="sheet-topic">{question.section}: {question.topic.toLowerCase()}</p>
+      <Prompt className={`sheet-prompt${hero ? ' hero' : ''}`}>{keepMathTogether(question.prompt)}</Prompt>
+      <ul className="bubbles" aria-label="Answer choices">
         {question.choices.map(c => {
-          const cls = ['choice'];
-          if (answered && c.key === question.answer) cls.push('correct');
-          if (answered && c.key === picked && !correct) cls.push('wrong');
+          let state = '';
+          if (answered) {
+            if (c.key === question.answer) state = 'right';
+            else if (c.key === picked) state = 'wrong';
+            else state = 'dim';
+          }
           return (
             <li key={c.key}>
-              <button type="button" className={cls.join(' ')} onClick={() => choose(c.key)} disabled={answered}
-                aria-pressed={picked === c.key}>
-                <span className="key" aria-hidden="true">{c.key}</span>
-                <span>{c.text}{answered && c.key === question.answer ? ' ✓' : ''}</span>
+              <button type="button" className={`bubble-row ${state}`} onClick={() => choose(c.key)}
+                disabled={answered} aria-pressed={picked === c.key}>
+                <span className="bubble" aria-hidden="true">{c.key}</span>
+                <span className="text">
+                  {c.text}
+                  {answered && c.key === question.answer && <span className="sr-only"> (correct answer)</span>}
+                  {answered && c.key === picked && !correct && <span className="sr-only"> (your answer)</span>}
+                </span>
               </button>
             </li>
           );
         })}
       </ul>
       {answered && (
-        <div aria-live="polite">
-          <p className={`verdict ${correct ? 'correct' : 'wrong'}`}>{correct ? 'Correct.' : `Not quite. The answer is ${question.answer}.`}</p>
-          <div className="explain"><p style={{ margin: 0 }}>{question.explanation}</p></div>
+        <div className="verdict-wrap" aria-live="polite">
+          <p className={`verdict ${correct ? 'right' : 'wrong'}`}>{correct ? 'Right.' : `It's ${question.answer}.`}</p>
+          <p className="why">{question.explanation}</p>
           {after}
         </div>
       )}

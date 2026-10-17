@@ -5,6 +5,8 @@
 
 **Reference implementation:** [Direction A HTML](design-exploration/direction-a.html), a static concept, not a working phone integration.
 
+> **v2 for the product site (October 17, 2026).** The site moved from direction A to an answer-sheet motif: choices are drawn as fillable bubbles, forest #21664C stays as the brand and "print" color, the page background is a cool near-white (#FCFCFA) instead of warm paper, ink is graphite (#262B2E), and the typeface is Atkinson Hyperlegible Next (Braille Institute, designed for legibility) instead of Arial. Removed: all-caps eyebrow labels, card grids, arrows in button text. Tokens live in `src/styles/tokens.css`. The logo is unchanged.
+
 ## Color
 
 | Token | Hex | Job |

@@ -15,7 +15,7 @@ import { useTitle } from '../lib/useTitle';
  * - ?demo=1 ignores frequency/pause so the flow can be shown on any device.
  */
 export default function Question() {
-  useTitle(`One ${EXAM.itemNoun} · UnlockDrill`);
+  useTitle(`One ${EXAM.itemNoun}: UnlockDrill`);
   const [params] = useSearchParams();
   const demo = params.get('demo') === '1';
   const [settings, setSettings] = useState(loadSettings);
@@ -59,43 +59,41 @@ export default function Question() {
   }
 
   if (redirecting) {
-    return <div className="q-shell"><div className="q-body"><p className="muted">Not this time. Sending you to {appLabel}…</p><button className="btn secondary" onClick={back}>Open {appLabel}</button></div></div>;
+    return <div className="q-shell"><div className="q-main"><p className="quiet">No question this time. Opening {appLabel}…</p><p style={{ marginTop: 16 }}><button className="link-btn" onClick={back}>Open {appLabel}</button></p></div></div>;
   }
 
   if (!question) {
     return (
-      <div className="q-shell"><div className="q-body stack">
+      <div className="q-shell"><div className="q-main">
         <h1>{isPaused(settings) ? 'UnlockDrill is paused.' : 'No question this time.'}</h1>
-        <p className="muted">{isPaused(settings) ? 'Prompts resume when the pause ends.' : 'Your frequency setting skipped this open.'}</p>
-        <div className="btn-row"><button className="btn" onClick={back}>Open {appLabel}</button><Link className="btn quiet" to="/settings">Settings</Link></div>
+        <p className="quiet" style={{ marginTop: 10 }}>{isPaused(settings) ? 'Questions start again when the pause ends.' : 'Your how-often setting skipped this one.'}</p>
+        <div className="actions" style={{ marginTop: 22 }}><button className="btn" onClick={back}>Open {appLabel}</button><Link to="/settings">Settings</Link></div>
       </div></div>
     );
   }
 
   return (
     <div className="q-shell">
-      <div className="q-top">
+      <div className="q-bar">
         <Link to="/" className="lockup" style={{ fontSize: 16 }}><img src={`${import.meta.env.BASE_URL}logo/mark-green.svg`} alt="" width={22} height={22} />UnlockDrill</Link>
-        <button type="button" className="btn quiet" onClick={skip}>Skip →</button>
+        <button type="button" className="link-btn" onClick={skip}>Skip</button>
       </div>
-      <div className="q-body">
-        {demo && <p className="small muted">Demo mode: frequency and pause are ignored.</p>}
+      <div className="q-main">
+        {demo && <p className="small quiet" style={{ marginBottom: 18 }}>Preview. On your phone this opens when you open {appLabel}.</p>}
         <QuestionCard
           question={question}
           onAnswered={(correct, ms) => { setDone(true); logPractice('answered', { app, questionId: question.id, correct, msToAnswer: ms }); }}
           after={
-            <div className="q-actions">
+            <div className="q-after">
               <button type="button" className="btn" onClick={back}>Back to {appLabel}</button>
-              <Link className="btn secondary" to={`/q?app=${app ?? ''}&demo=1`} reloadDocument>One more</Link>
+              <Link className="link-btn" style={{ textAlign: 'center', display: 'grid', placeItems: 'center' }} to={`/q?app=${app ?? ''}&demo=1`} reloadDocument>Do another one</Link>
             </div>
           }
         />
         {!done && (
-          <div className="q-actions" aria-label="Pause options">
-            <div className="btn-row" style={{ justifyContent: 'center' }}>
-              <button type="button" className="btn quiet" onClick={() => pause(60)}>Pause for an hour</button>
-              <button type="button" className="btn quiet" onClick={() => pause(24 * 60)}>Pause for today</button>
-            </div>
+          <div className="q-pause" aria-label="Pause">
+            <button type="button" className="link-btn" onClick={() => pause(60)}>Pause for an hour</button>
+            <button type="button" className="link-btn" onClick={() => pause(24 * 60)}>Pause until tomorrow</button>
           </div>
         )}
       </div>
