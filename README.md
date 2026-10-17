@@ -6,6 +6,8 @@ Built by team **5 PPL** (Linfeng Li, Yicheng Ying, Cody Wang, Arjun Joshi, Kusha
 
 **Live:** https://tommylilinfeng.github.io/unlockdrill/ (GitHub Pages, deployed from `main` by [the workflow](.github/workflows/pages.yml)).
 
+**Team tracker:** [Midterm tracker, issue #20](https://github.com/Tommylilinfeng/unlockdrill/issues/20). Every open task is an issue; check there before starting something.
+
 ## How the integration works
 
 There is no App Store app and no Screen Time entitlement. The iPhone's built-in **Shortcuts** app can run an automation when another app opens ("When Instagram is opened → Open URL"). On iOS 17 and later that runs without a confirmation tap. The URL is this site's `/q?app=instagram`, which shows one question, then hands control back to the app through its URL scheme (`instagram://`). The guided setup lives at `/setup`.
@@ -73,8 +75,8 @@ docs/                   brand_position.md, style_guide.md
 .claude/agents/         persona judges (Maya, Jordan, Casey)
 ```
 
-## Status (October 17, 2026)
+## Status
 
-Working: homepage, three landing pages, signup → thank-you, question flow with skip/pause/frequency, Shortcuts setup guide, GA/Supabase wiring behind env vars, GitHub Pages deploy.
+Working: homepage, three landing pages, waitlist signup with a thank-you page, the question screen with skip, pause, and how-often settings, the Shortcuts setup guide, analytics and database code behind repository variables, GitHub Pages deploy.
 
-Not done: custom domain, GA property, Supabase project (all need an account or payment), Android, welcome email, error journal. The Shortcuts automation has been reasoned from Apple's documented behavior and still needs a real-iPhone test before we claim compatibility.
+Open work, including what needs an account, a phone, or a payment, is tracked in [issues](https://github.com/Tommylilinfeng/unlockdrill/issues). The biggest unknown is [#3](https://github.com/Tommylilinfeng/unlockdrill/issues/3): the Shortcuts automation has not been tested on a real iPhone yet.
