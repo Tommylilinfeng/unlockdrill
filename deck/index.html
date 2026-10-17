@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>UnlockDrill — Midterm</title>
+<style>
+  :root { --ink:#182e29; --faint:#52645e; --paper:#f7f6f0; --accent:#21664c; --tint:#ddeee4; --gold:#efcb74; }
+  html,body { margin:0; height:100%; background:#111; font-family: Arial, Helvetica, sans-serif; color: var(--ink); }
+  .slide { display:none; position:fixed; inset:0; background:var(--paper); padding:6vh 7vw; box-sizing:border-box; }
+  .slide.active { display:flex; flex-direction:column; justify-content:center; }
+  h1 { font-size:5.5vw; margin:0 0 2vh; line-height:1.05; }
+  h2 { font-size:4vw; margin:0 0 3vh; line-height:1.1; }
+  p, li { font-size:2.2vw; line-height:1.4; max-width:60ch; }
+  .eyebrow { color:var(--accent); font-weight:700; letter-spacing:.06em; text-transform:uppercase; font-size:1.4vw; margin-bottom:1.5vh; }
+  .cols { display:grid; grid-template-columns:1fr 1fr; gap:4vw; align-items:start; }
+  .card { background:#fff; border:1px solid #d6dcd8; border-radius:12px; padding:2.5vh 2vw; }
+  .tint { background:var(--tint); border-color:transparent; }
+  .team { display:grid; grid-template-columns:repeat(5,1fr); gap:2vw; }
+  .team .avatar { width:100%; aspect-ratio:1; border-radius:50%; background:var(--tint); display:grid; place-items:center; color:var(--faint); font-size:1.2vw; }
+  .foot { position:fixed; bottom:2vh; right:3vw; color:var(--faint); font-size:1.2vw; }
+  .mark { height:5vh; vertical-align:middle; margin-right:1vw; }
+  .notes { display:none; }
+  blockquote { margin:0; padding-left:1.5vw; border-left:.4vw solid var(--accent); font-size:2.4vw; }
+  code { background:var(--tint); padding:.2em .4em; border-radius:4px; }
+</style>
+</head>
+<body>
+
+<section class="slide active">
+  <p class="eyebrow">Columbia Startup Studio · Midterm · October 23, 2026</p>
+  <h1><img class="mark" src="../public/logo/mark-green.svg" alt="">UnlockDrill</h1>
+  <p style="font-size:3vw">One practice question before you scroll.</p>
+  <p class="notes">Title: company name and one-liner. 10 seconds.</p>
+</section>
+
+<section class="slide">
+  <p class="eyebrow">Team · 5 PPL</p>
+  <h2>Five people, one bad idea that got good</h2>
+  <div class="team">
+    <div><div class="avatar">headshot</div><p><strong>Linfeng Li</strong><br>product, build</p></div>
+    <div><div class="avatar">headshot</div><p><strong>Yicheng Ying</strong><br>questions, interviews</p></div>
+    <div><div class="avatar">headshot</div><p><strong>Cody Wang</strong><br>traffic, community</p></div>
+    <div><div class="avatar">headshot</div><p><strong>Arjun Joshi</strong><br>brand, pages</p></div>
+    <div><div class="avatar">headshot</div><p><strong>Kushaan Vardhan</strong><br>analytics, email</p></div>
+  </div>
+  <p class="notes">Everyone presents a section. Rubric red flag: one person did everything.</p>
+</section>
+
+<section class="slide">
+  <p class="eyebrow">Problem</p>
+  <h2>They meant to study. They opened Instagram.</h2>
+  <div class="cols">
+    <div>
+      <blockquote>“The hardest part is just sitting down to start. Once I pick up my phone, hours are gone.”<br><small>I03</small></blockquote>
+      <br>
+      <blockquote>“Screen Time doesn’t do anything for me. I just tap ignore and keep scrolling.”<br><small>I04</small></blockquote>
+    </div>
+    <div class="card tint">
+      <p><strong>Who:</strong> adults preparing for a standardized test who study in the gaps of a normal week.</p>
+      <p><strong>How we know:</strong> 12 interviews, 5 Reddit threads (round 2 in progress), and the thing every blocker user told us: the lock gets ignored.</p>
+      <p><strong>The moment that changed us:</strong> I04. We dropped the lock and kept the question.</p>
+    </div>
+  </div>
+  <p class="notes">Name the audience the same way every teammate does. Name the moment a user changed the direction.</p>
+</section>
+
+<section class="slide">
+  <p class="eyebrow">Solution</p>
+  <h2>Meet them at the open. One question. Skip is always there.</h2>
+  <div class="cols">
+    <div class="card">
+      <p><strong>Position:</strong> not a blocker. An opt-in offer at the moment the thumb already goes.</p>
+      <p><strong>How:</strong> the iPhone’s own Shortcuts automation: when Instagram opens, open UnlockDrill. No app store, no Screen Time permission.</p>
+      <p><strong>Then:</strong> one question, one-line why, back to Instagram. Pause and frequency are the user’s.</p>
+    </div>
+    <div class="card tint">
+      <p><strong>Cut:</strong> accounts, streaks, feeds, score promises.</p>
+      <p><strong>Faked for now:</strong> welcome email by hand; question review by hand.</p>
+      <p><strong>Real:</strong> everything you are about to see.</p>
+    </div>
+  </div>
+  <p class="notes">Reason from the root problem (starting) to the position (offer, not lock).</p>
+</section>
+
+<section class="slide">
+  <p class="eyebrow">Live demo · one workflow</p>
+  <h2>Open Instagram → answer → back in Instagram</h2>
+  <ol>
+    <li>Phone on screen. Open Instagram.</li>
+    <li>UnlockDrill appears: one question. Answer it. Read the why.</li>
+    <li>“Back to Instagram.” We are in the feed.</li>
+    <li>Open again: frequency says not now; straight through. Show skip and pause.</li>
+    <li>Landing page signup → thank-you → the <code>signup</code> event in GA Realtime.</li>
+  </ol>
+  <p class="notes">Backup: screen recording of the same flow if the phone or Wi-Fi fails. Demo link for anyone: /q?app=instagram&demo=1</p>
+</section>
+
+<section class="slide">
+  <p class="eyebrow">What we measure · what’s next</p>
+  <h2>Signups per page, answer rate, day-3 return</h2>
+  <div class="cols">
+    <div class="card"><p><strong>Decision rule to Nov 6:</strong> 30 signups, 10 completed setups, answer rate above 30%. Below that, the moment or the unit is wrong.</p></div>
+    <div class="card tint"><p><strong>Next:</strong> real-iPhone verification across iOS versions, 150 questions per exam, error journal, welcome email automated.</p></div>
+  </div>
+  <p class="notes">Optional sixth slide if time allows; otherwise fold into Q&A.</p>
+</section>
+
+<div class="foot" id="foot"></div>
+<script>
+  const slides = [...document.querySelectorAll('.slide')]; let i = 0;
+  const foot = document.getElementById('foot');
+  function show(n) { i = (n + slides.length) % slides.length; slides.forEach((s, k) => s.classList.toggle('active', k === i)); foot.textContent = `${i + 1} / ${slides.length}`; location.hash = i + 1; }
+  addEventListener('keydown', e => { if (['ArrowRight', ' ', 'PageDown'].includes(e.key)) show(i + 1); if (['ArrowLeft', 'PageUp'].includes(e.key)) show(i - 1); if (e.key === 'n') document.querySelectorAll('.notes').forEach(n => n.style.display = n.style.display === 'block' ? 'none' : 'block'); });
+  addEventListener('click', e => { if (!e.target.closest('a')) show(i + 1); });
+  show(parseInt(location.hash.slice(1) || '1', 10) - 1);
+</script>
+</body>
+</html>
