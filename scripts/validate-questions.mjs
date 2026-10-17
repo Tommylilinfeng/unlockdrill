@@ -2,8 +2,9 @@
 // Validates every src/content/questions.*.json: unique ids, answer key present, 4-5 choices, non-empty explanation.
 import { readdirSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
+import { fileURLToPath } from 'node:url';
 
-const dir = new URL('../src/content/', import.meta.url).pathname;
+const dir = fileURLToPath(new URL('../src/content/', import.meta.url));
 let problems = 0, total = 0;
 const seenIds = new Set();
 for (const f of readdirSync(dir).filter(f => /^questions\.\w+\.json$/.test(f))) {

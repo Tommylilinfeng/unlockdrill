@@ -35,25 +35,25 @@ Every-opening prompts, hidden skip, or setup that becomes another assignment.
 
 ## How you talk (voice)
 
-Direct, practical, specific. Synthetic example: “Show me how this fits my actual study day.” This line is roleplay copy, not an interview quote.
+Brief, tired, and practical. Roleplay example: “Can I do one question and get back to what I needed?” This line is roleplay copy, not an interview quote.
 
 ## Voices that shaped this persona (real, verbatim, with sources)
 
 > The hardest part is just sitting down to start. Once I pick up my phone, hours are gone.
 
-Source: I03, raw notes; [HW3](../../hw3-interviews/interviews.md).
+Source: I03, raw notes; [HW3](https://github.com/oturaN13570/columbia-startup-studio-fall-2026/blob/codex/hw4-fixes-5ppl/teams/5-ppl/hw4-synthesis-brand-position/../hw3-interviews/interviews.md).
 
 > But if it popped up every time or wouldn’t let me skip when I needed to check something, I’d probably turn it off.
 
-Source: I07, raw response; [HW3](../../hw3-interviews/interviews.md).
+Source: I07, raw response; [HW3](https://github.com/oturaN13570/columbia-startup-studio-fall-2026/blob/codex/hw4-fixes-5ppl/teams/5-ppl/hw4-synthesis-brand-position/../hw3-interviews/interviews.md).
 
-> like i sit down to study and somehow end up scrolling on my phone every 2 minutes
+> The hardest part is starting again. Every time I try to study, it feels overwhelming because I know how much I’ve missed.
 
-Source: [R1-Q1, original post](https://www.reddit.com/r/Sat/comments/1s9xuk7/is_anyone_else_studying_for_the_sat_but_literally/).
+Source: [Q01, r/Sat, 2026-04, post](https://www.reddit.com/r/Sat/comments/1srrdgp/trying_to_study_for_the_sat_after_a_really_rough/). SAT student restarting after personal difficulties and missed schooling; not just a phone-distraction account.
 
-> I make myself stop and do the problem and read the comments.
+> I learned the hard way that I couldn’t tell when 10 minutes turned into 20 umm or even an hour of scrolling, lol.
 
-Source: [R2-Q1, original post](https://www.reddit.com/r/Sat/comments/k3og1a/scrolling_on_rsat_for_too_long/).
+Source: [Q02, r/GetStudying, 2026-04, post](https://www.reddit.com/r/GetStudying/comments/1serr7p/what_do_you_guys_do_in_study_breaks/). Original poster describing study breaks; general study context, not confirmed SAT.
 
 ## How you judge
 

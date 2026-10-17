@@ -1,0 +1,16 @@
+schema: spec-driven
+
+context: |
+  UnlockDrill offers optional brief practice before a chosen app-opening moment.
+  Keep skip, pause, essential access, and frequency controls visible.
+  Do not equate practice counts with learning or make untested score claims.
+  Current signup/data collection is adults 18+; SAT research does not validate GRE demand.
+  Real-device Shortcuts behavior must be tested separately from browser builds.
+
+rules:
+  proposal:
+    - State the user problem, evidence, and what remains a hypothesis.
+  specs:
+    - Cover skip, pause, repeat opening, and failure exits when changing the practice flow.
+  tasks:
+    - Include relevant checks and distinguish tests run from tests still pending.

@@ -10,7 +10,7 @@ Read docs/brand_position.md, docs/style_guide.md, relevant research, and the cur
 Preserve interview IDs and exact quotations. Do not invent testimonials, score gains, persona facts, supported devices, or customer validation. Keep ErrorJournal and tutoring evidence separate from evidence for app-triggered practice.
 
 ## Feature workflow
-Use OpenSpec after installation. Write the proposal, behavior scenarios, design, and task list; resolve platform uncertainty; implement a small change; verify the scenarios; document what changed and what remains uncertain.
+Use the initialized OpenSpec workflow. Write the proposal, behavior scenarios, design, and task list; resolve platform uncertainty; implement a small change; verify the scenarios; document what changed and what remains uncertain.
 
 ## Product rules
 Users choose the apps and timing. Keep skip and pause visible. Respect frequency limits. Avoid repeated-trigger loops. Never require a correct answer in the proposed default flow. Provide a safe exit on errors.
@@ -25,7 +25,7 @@ Use the agreed tokens and logo assets. Maintain readable text, keyboard access, 
 Collect only data needed for the agreed feature and explain collection. Keep raw interview notes and participant identities out of public builds. Do not commit secrets.
 
 ## Run and verify
-No application stack or run commands are configured yet. After setup, document exact install, development, build, and test commands here. Do not invent commands or report unrun checks as passing.
+The app uses React, TypeScript, and Vite. Install with `npm ci`; start with `npm run dev`; type-check and build with `npm run build`; lint with `npm run lint`; validate question banks with `node scripts/validate-questions.mjs`. Optional services are configured through `.env.example`. Never commit `.env` or raw interview files. Report checks actually run and do not infer device behavior from a successful web build.
 
 ## Review and handoff
 Test prompt eligibility, skip, pause, repeated opening, answer feedback, and error exit. Summarize behavior changes, checks actually run, and remaining limits in the pull request. Team members own final product and release decisions.

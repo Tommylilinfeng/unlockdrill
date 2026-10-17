@@ -1,43 +1,41 @@
 # STYLE_GUIDE.md — UnlockDrill
 
 **Team:** 5 PPL
-**Status:** Provisional direction A, Calm momentum. Team keep/kill feedback, refinement rounds, and phone checks are pending.
+**Status:** The team approved the implemented answer-sheet direction and existing open-U logo on October 17 and reported checking the page and logo on a phone. Device/browser details were not supplied; this is a team-reported visual check, not an automation or accessibility test.
 
-**Reference implementation:** [Direction A HTML](design-exploration/direction-a.html), a static concept, not a working phone integration.
-
-> **v2 for the product site (October 17, 2026).** The site moved from direction A to an answer-sheet motif: choices are drawn as fillable bubbles, forest #21664C stays as the brand and "print" color, the page background is a cool near-white (#FCFCFA) instead of warm paper, ink is graphite (#262B2E), and the typeface is Atkinson Hyperlegible Next (Braille Institute, designed for legibility) instead of Arial. Removed: all-caps eyebrow labels, card grids, arrows in button text. Tokens live in `src/styles/tokens.css`. The logo is unchanged.
+**Reference implementation:** [Current product tokens](https://github.com/Tommylilinfeng/unlockdrill/blob/4597dd391ed123b949c890589c5bb37750d7bcab/src/styles/tokens.css) and [logo component](https://github.com/Tommylilinfeng/unlockdrill/blob/4597dd391ed123b949c890589c5bb37750d7bcab/src/components/Logo.tsx). Earlier [direction A](https://github.com/oturaN13570/columbia-startup-studio-fall-2026/blob/codex/hw4-fixes-5ppl/teams/5-ppl/hw4-synthesis-brand-position/design-exploration/direction-a.html) is an exploration, not the final visual specification.
 
 ## Color
 
 | Token | Hex | Job |
 | --- | --- | --- |
-| ink | #182E29 | Main text |
-| ink faint | #52645E | Metadata and supporting copy |
-| background | #F7F6F0 | Warm page background |
+| ink | #262B2E | Main text |
+| ink faint | #5A6367 | Metadata and supporting copy |
+| background | #FCFCFA | Cool near-white page background |
 | accent | #21664C | Main action, links, mark |
-| second color | #EFCB74 | Decorative accent only |
-| tint | #DDEEE4 | Supporting panels |
-| error | #A12D2D | Proposed error text/icon; verify in context |
+| print | #86B59B | Bubble outlines and decorative rules; not small text |
+| tint | #EDF4EF | Supporting panels |
+| error | #B3261E | Proposed error text/icon; verify in context |
 
-One saturated accent per control. Ink on paper; white on forest for primary buttons. Do not use gold as small text on white. Verify contrast in the rendered implementation.
+One saturated accent per control. Graphite on near-white paper; white on forest for primary buttons. Use the pale print color only for decoration, not essential low-contrast text. Verify contrast in the rendered implementation.
 
 ## Type
 
-- Headings: Arial Bold, sentence case; H1 40-48 px desktop, 32 px mobile.
-- Body: Arial or system sans-serif, 16-18 px, line height 1.5, approximately 60-75 characters per line.
-- Wordmark: UnlockDrill in Arial Bold; supplied SVGs retain live text. Outline before final production if font portability is needed.
+- Headings: Atkinson Hyperlegible Next with Atkinson Hyperlegible, Arial, Helvetica, and sans-serif fallbacks; H1 46 px at widths of 820 px and up, 34 px below.
+- Body: the same font stack, 17 px; text measure 64ch.
+- The product header pairs the mark with live text. Supplied SVG lockups retain their original font treatment; outline text before exporting fixed production artwork if portability is needed.
 
 ## Space and layout
 
-- Content width: maximum 1,080 px.
-- Section spacing: 64 px desktop; 40 px mobile.
-- Base spacing unit: 8 px; card padding 24 px; mobile margins at least 16 px.
-- Start with one column. Use two columns above 760 px only when comparison benefits.
+- Content width: maximum 1,120 px.
+- Section spacing: 112 px at 820 px and up; 72 px below.
+- Base spacing unit: 8 px; card padding 24 px; page gutters 20 px below 820 px and 40 px above.
+- Start with one column. Use additional columns only when comparison benefits.
 - Keep each practice interaction finite, with one primary action and a clear exit.
 
 ## Components
 
-- Buttons: 8 px radius, at least 44 px target height. Forest primary; outlined or underlined secondary actions.
+- Buttons: 8 px radius, at least 48 px target height. Forest primary; outlined or underlined secondary actions.
 - Icons: simple original SVG geometry, consistent stroke; label ambiguous controls.
 - Cards: paper/white or mint surfaces, light border, no decorative shadow.
 - Lists and tables: simple bullets; left-aligned text; tinted header and modest separators.
@@ -55,7 +53,7 @@ One saturated accent per control. Ink on paper; white on forest for primary butt
 
 ```text
 Simple flat vector-style line illustration with generous empty space.
-Palette: #182E29, #21664C, #DDEEE4, #F7F6F0.
+Palette: #262B2E, #21664C, #EDF4EF, #FCFCFA.
 Calm, practical mood. Avoid glossy rendering, stock-photo imitation, and decorative clutter.
 Scene: [one concrete practice action].
 Color emphasis: forest green with a warm paper background.
@@ -66,7 +64,7 @@ This is a reusable proposal; no generated raster illustration is claimed.
 
 ## Accessibility floors
 
-Target 4.5:1 normal-text contrast, visible keyboard focus, at least 44 px tap targets, semantic heading order, labeled controls, and reduced-motion support. These are requirements, not a claim of completed device testing.
+Target 4.5:1 normal-text contrast, visible keyboard focus, at least 48 px tap targets, semantic heading order, labeled controls, and reduced-motion support. These are requirements, not a claim of completed device testing.
 
 ## Never
 
@@ -75,15 +73,19 @@ No endless practice feed, guilt-based messages, forced celebration, hidden skip 
 ## Logo
 
 - Mark: an open U with an upward arrow; a small first step rather than a locked gate.
-- Directions considered: twelve rough marks appear on page 15 of the report, including question tile, doorway, open book, and monograms. The open U is an AI-recommended provisional lead. No team selection is claimed.
-- Files: [logo/](logo/), including light/dark marks, black/white versions, horizontal lockups, stacked mark, square avatar, PNG favicons at 16, 32, 48, 180, 192, and 512 px, and ICO.
+- Directions considered: twelve rough marks appear on page 15 of the report, including question tile, doorway, open book, and monograms. The team approved the open-U direction on October 17.
+- Files: [logo/](https://github.com/oturaN13570/columbia-startup-studio-fall-2026/blob/codex/hw4-fixes-5ppl/teams/5-ppl/hw4-synthesis-brand-position/logo), including light/dark marks, black/white versions, horizontal lockups, stacked mark, square avatar, PNG favicons at 16, 32, 48, 180, 192, and 512 px, and ICO.
 - Lockup: match the visible mark height to the capital-letter height, with approximately half a cap-height gap.
 - Clear space: at least one quarter of the mark height.
 - Colors: forest on light, white on dark, black/white one-color variants. No gradients, rotation, or stretched geometry.
-- Minimum: 16 px is a candidate minimum after PDF review; actual device confirmation remains pending.
+- Minimum: 16 px favicon supplied; the team reports a phone page/logo check, but separate 16 px legibility measurements were not recorded.
 
 ## Exploration and feedback record
 
-See [five HTML directions](design-exploration/README.md). Proposed references are Duolingo for approachability, Khan Academy for educational clarity, and Forest for a calm focus metaphor. They are not represented as team-selected preferences or a completed visual audit.
+See [five HTML directions](https://github.com/oturaN13570/columbia-startup-studio-fall-2026/blob/codex/hw4-fixes-5ppl/teams/5-ppl/hw4-synthesis-brand-position/design-exploration/README.md). Proposed references are Duolingo for approachability, Khan Academy for educational clarity, and Forest for a calm focus metaphor. These remain reference suggestions, not a reconstructed team feedback history. The approved product direction uses fillable answer bubbles, forest-green print, graphite text, and a cool near-white page. Keep/kill notes from intermediate rounds were not supplied.
 
 The original sample question is “If 3x + 4 = 19, what is x?” Answer: 5. It is not an official SAT item.
+
+## Approval record
+
+On October 17, the team confirmed: “Approve design and logo; we checked them on a phone.” This records approval of the current implemented direction, not completion of the separate Shortcuts integration test.

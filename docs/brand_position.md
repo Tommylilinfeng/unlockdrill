@@ -1,8 +1,8 @@
 # UnlockDrill brand position
 
 **Team Name:** 5 PPL
-**Date:** October 9, 2026
-**Status:** Research-grounded proposal; team consensus and real product validation remain pending.
+**Updated:** October 17, 2026
+**Status:** Research and quote selections reviewed by the team on October 17; product behavior and learning outcomes remain subject to testing.
 
 ## Brand Thesis
 
@@ -14,7 +14,7 @@ Students who intend to practice can lose the moment to fatigue and automatic scr
 
 > For SAT students who keep postponing practice and reflexively opening distracting apps, UnlockDrill is an opt-in practice shortcut that makes the first step smaller by offering one short SAT question at a chosen app-opening moment, with skip, pause, and frequency controls.
 
-This describes proposed behavior, not an implemented or validated device integration.
+The [product repository](https://github.com/Tommylilinfeng/unlockdrill) now contains a question flow, settings, and an iPhone Shortcuts setup guide. Real-device automation testing remains open in [issue #3](https://github.com/Tommylilinfeng/unlockdrill/issues/3); these files do not establish reliable app interception.
 
 ## Brand Values
 
@@ -26,7 +26,7 @@ This describes proposed behavior, not an implemented or validated device integra
 
 > UnlockDrill is for someone who wants to follow through on studying even when a full session feels too big.
 
-Identity copy is newly written, not a customer quote. The current evidence concerns SAT preparation. The earlier adult, multi-exam scope is documented in [the synthesis](synthesis_comparison.md); exact participant ages and the final launch audience remain unconfirmed.
+Identity copy is newly written, not a customer quote. The current evidence concerns SAT preparation. The earlier adult, multi-exam scope is documented in [the synthesis](https://github.com/oturaN13570/columbia-startup-studio-fall-2026/blob/codex/hw4-fixes-5ppl/teams/5-ppl/hw4-synthesis-brand-position/synthesis_comparison.md); exact interview ages are largely unreported. The product repo currently limits signup/data collection to adults 18+, and includes a GRE variant. These SAT interviews and the Reddit corpus do not validate adult-only demand or the GRE extension.
 
 ## Canonical Language
 
@@ -36,7 +36,9 @@ Identity copy is newly written, not a customer quote. The current evidence conce
 | “Doing a couple questions at a time feels easier” | I07, exact excerpt; keep the first task small |
 | “I just tap ignore and keep scrolling.” | I04, exact excerpt; acknowledge ignored limits |
 | “make it not feel like homework” | I10, exact excerpt; avoid turning a break into a long assignment |
-| “I make myself stop and do the problem” | R2, exact excerpt; inspire the mechanism |
+| “starting again” | Q01, exact excerpt; acknowledge the difficulty of restarting |
+| “an hour of scrolling” | Q02, exact excerpt; describe a break that expands |
+| “not by hours studied” | Q05, exact excerpt from commenter advice; focus on learning quality |
 | “One SAT question before you scroll.” | Original brand copy; proposed core message |
 
 ## Language to Avoid
@@ -45,7 +47,7 @@ Identity copy is newly written, not a customer quote. The current evidence conce
 - “Cure phone addiction” or “Stop being lazy”: unsupported diagnosis or judgment.
 - “You must earn your phone”: conflicts with the proposed autonomy-first default.
 - “Works with every app” or “Official SAT app”: compatibility and endorsement have not been established.
-- “The first app of its kind”: [StudyIn](https://studyin.app/) already advertises SAT/ACT quizzes that unlock selected apps.
+- “The first app of its kind”: no current exhaustive competitor review supports a novelty claim.
 
 ## Tone Guidelines
 
@@ -67,37 +69,61 @@ Identity copy is newly written, not a customer quote. The current evidence conce
 
 ### From interviews
 
-1. “The hardest part is just sitting down to start. Once I pick up my phone, hours are gone.” — I03, Mira; raw notes.
-2. “Screen Time doesn't do anything for me. I just tap ignore and keep scrolling.” — I04, Laya; raw notes.
-3. “But if it popped up every time or wouldn’t let me skip when I needed to check something, I’d probably turn it off.” — I07, Alicia; reaction to the concept.
+1. “The hardest part is just sitting down to start. Once I pick up my phone, hours are gone.” — I03; raw notes.
+2. “Screen Time doesn't do anything for me. I just tap ignore and keep scrolling.” — I04; raw notes.
+3. “But if it popped up every time or wouldn’t let me skip when I needed to check something, I’d probably turn it off.” — I07; reaction to the concept.
 
-Interview source: [HW3 notes](../hw3-interviews/interviews.md). No new testimonial permission is implied.
+Interview source: [HW3 notes](https://github.com/oturaN13570/columbia-startup-studio-fall-2026/blob/codex/hw4-fixes-5ppl/teams/5-ppl/hw4-synthesis-brand-position/../hw3-interviews/interviews.md). No new testimonial permission is implied.
 
-### From Reddit
+### From Reddit — approved selection
 
-1. “like i sit down to study and somehow end up scrolling on my phone every 2 minutes” — [R1, original post](https://www.reddit.com/r/Sat/comments/1s9xuk7/is_anyone_else_studying_for_the_sat_but_literally/). Use: Brand problem statement; Maya.
+These five excerpts replace the earlier five-link scan. All were checked against manually saved thread JSON. The corpus contains 30 distinct threads, of which 15 are r/Sat; broader contexts are not treated as direct SAT demand.
 
-2. “but also i feel like that might just make my attention span worse idk” — [R1, original post](https://www.reddit.com/r/Sat/comments/1s9xuk7/is_anyone_else_studying_for_the_sat_but_literally/). Use: Brand finite-experience guardrail; Casey.
+#### Q01
 
-3. “I make myself stop and do the problem and read the comments.” — [R2, original post](https://www.reddit.com/r/Sat/comments/k3og1a/scrolling_on_rsat_for_too_long/). Use: Brand mechanism; Maya and Casey.
+> The hardest part is starting again. Every time I try to study, it feels overwhelming because I know how much I’ve missed.
 
-4. “What usually kills it for me isn’t the block itself — it’s how easy it is to hit Ignore Limit, open Safari, or just turn the whole thing off at 11pm.” — [R3, original post](https://www.reddit.com/r/digitalminimalism/comments/1wmj8j7/when_soft_mode_fails_for_you_whats_the_escape/). Use: Brand friction/control tension; Jordan.
+Source: [Q01, r/Sat, 2026-04, post](https://www.reddit.com/r/Sat/comments/1srrdgp/trying_to_study_for_the_sat_after_a_really_rough/). SAT student restarting after personal difficulties and missed schooling; not just a phone-distraction account.
 
-5. “I only need to work on math but don’t know what to use to get started.” — [R4, original post](https://www.reddit.com/r/Sat/comments/1bfkrz9/how_to_start_studying/). Use: Brand scope boundary: resource discovery is separate.
+#### Q02
 
-## Scope and differentiation
+> I learned the hard way that I couldn’t tell when 10 minutes turned into 20 umm or even an hour of scrolling, lol.
 
-StudyIn's vendor page advertises study sessions and quizzes that gate app access. Our proposed emphasis is one brief question and transparent student control. This is a positioning hypothesis, not a superiority claim. Resource-discovery complaints (R4) remain distinct from phone distraction; concern about attention (R1-Q2) favors a finite experience.
+Source: [Q02, r/GetStudying, 2026-04, post](https://www.reddit.com/r/GetStudying/comments/1serr7p/what_do_you_guys_do_in_study_breaks/). Original poster describing study breaks; general study context, not confirmed SAT.
+
+#### Q03
+
+> Also, I have to be on call all day, so I can't turn off my phone completely.
+
+Source: [Q03, r/GetStudying, 2026-04, post](https://www.reddit.com/r/GetStudying/comments/1sjwdg0/any_tips_on_how_to_break_a_phone_addiction_its/). General study context; need to remain reachable.
+
+#### Q04
+
+> And I'd last maybe 3 days before I'd undo everything in frustration.
+
+Source: [Q04, r/digitalminimalism, 2026-02, post](https://www.reddit.com/r/digitalminimalism/comments/1r2qgd5/the_thing_that_finally_clicked_about_my_phone/). Immediately follows a description of strict blocker settings and deleting apps. General digital-use context.
+
+#### Q05
+
+> Measure progress by whether those same mistakes are disappearing, not by hours studied or the number of full tests completed.
+
+Source: [Q05, r/Sat, 2026-07, comment](https://www.reddit.com/r/Sat/comments/1v9yhkb/how_much_can_i_realistically_improve_a_1300_in_30/p0nc21u/). Advice from a commenter, not a measured result or a customer testimonial.
+
+## Research implications and scope
+
+Q01 informs the problem statement: restarting can feel overwhelming. Q02 adds the distinct risk that a break becomes extended scrolling. Q03 motivates preserving essential phone access; Q04 motivates adjustable interruption and the ability to pause. Q05 motivates concise explanations and checking whether similar mistakes recur rather than treating completed questions as proof of learning.
+
+The expanded corpus also contains counterexamples: removing devices or using short quizzes did not help everyone, and some people preferred putting the phone in another room. The proposed emphasis remains one useful question with transparent controls, not a claim of superiority or proven demand. See the [research summary](https://github.com/oturaN13570/columbia-startup-studio-fall-2026/blob/codex/hw4-fixes-5ppl/teams/5-ppl/hw4-synthesis-brand-position/reddit_research/summary.md) and [quote ledger](https://github.com/oturaN13570/columbia-startup-studio-fall-2026/blob/codex/hw4-fixes-5ppl/teams/5-ppl/hw4-synthesis-brand-position/reddit_research/selected_quotes.md).
 
 ## Persona feedback incorporated
 
-The [simulated reviews](personas/README.md) prompted explicit skip/frequency language, a concrete mechanism rather than a claim to stop scrolling, and topic-specific feedback. These are AI role simulations, not independent installed-agent runs or human validation.
+The [simulated reviews](https://github.com/oturaN13570/columbia-startup-studio-fall-2026/blob/codex/hw4-fixes-5ppl/teams/5-ppl/hw4-synthesis-brand-position/personas/README.md) prompted explicit skip/frequency language, a concrete mechanism rather than a claim to stop scrolling, and topic-specific feedback. These are role simulations, not human validation. The installed product-repo personas now need a fresh run against this revised version; the older notes remain dated records, not new test results.
 
 ## Suggested landing-page copy
 
 **Headline:** One SAT question before you scroll.
 
-**Subhead:** Choose an app. Try a short practice question at the moments you select. Keep control with skip and pause.
+**Subhead:** Choose an app. Try a short practice question at the moments you select. Keep control with skip, pause, and adjustable frequency. A short explanation follows each answer.
 
 **Primary action:** Try a sample question.
 
