@@ -1,0 +1,23 @@
+/* UnlockDrill design tokens. Source: docs/style_guide.md (direction A, "Calm momentum"). */
+:root {
+  --ink: #182e29;
+  --ink-faint: #52645e;
+  --paper: #f7f6f0;
+  --accent: #21664c;
+  --accent-ink: #ffffff;
+  --gold: #efcb74;
+  --tint: #ddeee4;
+  --error: #a12d2d;
+  --surface: #ffffff;
+  --border: #d6dcd8;
+
+  --font: Arial, Helvetica, system-ui, sans-serif;
+  --radius: 8px;
+  --space: 8px;
+  --content-max: 1080px;
+  --section-gap: 64px;
+  --tap-min: 44px;
+}
+@media (max-width: 760px) {
+  :root { --section-gap: 40px; }
+}
