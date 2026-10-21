@@ -14,6 +14,7 @@ export function initAnalytics(): void {
   captureUtm();
   if (!GA_ID || initialized) return;
   initialized = true;
+  if (window.gtag) return; // tag already in the HTML (vite.config.ts)
   window.dataLayer = window.dataLayer || [];
   window.gtag = function gtag(...args: unknown[]) { window.dataLayer.push(args); };
   window.gtag('js', new Date());
