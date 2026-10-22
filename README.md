@@ -4,7 +4,9 @@ One practice question before you scroll. Choose an app on your iPhone; the next 
 
 Built by team **5 PPL** (Linfeng Li, Yicheng Ying, Cody Wang, Arjun Joshi, Kushaan Vardhan) for Columbia's Startup Studio, Fall 2026. Product and brand documents: [`docs/`](docs/). Agent rules: [`AGENTS.md`](AGENTS.md).
 
-**Live:** https://tommylilinfeng.github.io/unlockdrill/ (GitHub Pages, deployed from `main` by [the workflow](.github/workflows/pages.yml)).
+**Live:** https://unlockdrill.com/ (GitHub Pages with a custom domain, deployed from `main` by [the workflow](.github/workflows/pages.yml)). The old `tommylilinfeng.github.io/unlockdrill/` address redirects there.
+
+**Deploying:** if a push to `main` doesn't start a run in the Actions tab, open Actions > Deploy to GitHub Pages > Run workflow.
 
 **Team tracker:** [Midterm tracker, issue #20](https://github.com/Tommylilinfeng/unlockdrill/issues/20). Every open task is an issue; check there before starting something.
 
@@ -43,7 +45,7 @@ Copy `.env.example` to `.env` to turn on the optional services. Everything works
 | `VITE_SITE_URL` | Public URL, used to build the Shortcuts link on `/setup` |
 | `VITE_GA_ID` | GA4 measurement id. Page views on every route change; `signup` on `/thanks`; `practice_*` events in the question flow |
 | `VITE_SUPABASE_URL`, `VITE_SUPABASE_ANON_KEY` | Email signups and practice events go to Supabase. Run [`supabase/schema.sql`](supabase/schema.sql) once; the anon key can only insert |
-| `VITE_BASE` | Build-time sub-path, `/unlockdrill/` on GitHub Pages, `/` on a custom domain |
+| `VITE_BASE` | Build-time sub-path. Ignored while `public/CNAME` exists: the build then serves from the domain root |
 
 On GitHub Pages the production values come from repository **Variables** (Settings → Secrets and variables → Actions → Variables) named exactly as above.
 
