@@ -40,7 +40,7 @@ The live page promises one launch email. Recurring newsletters or lifecycle emai
 
 ## Separate product / midterm follow-ups
 
-- Test the iPhone Shortcuts automation on a real device and record the demo backup.
+- iPhone Shortcuts testing is complete (team-confirmed October 22). Broader device/version testing can continue during the pilot.
 - Complete the deck and timed team rehearsal.
 - Confirm teammate access to Supabase and GA.
 - Revisit SAT audience eligibility with the instructor before changing the current adult-only signup restriction.

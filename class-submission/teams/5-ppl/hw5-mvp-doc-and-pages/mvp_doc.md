@@ -13,11 +13,11 @@
 **Core flow: user, action, value.**
 A test taker opens the app they chose (say, Instagram). One short question appears first. They answer it, read a one-line explanation, and are sent back into Instagram. The value is a start they actually made, with the "why" attached, at a moment they would otherwise have lost.
 
-**First aha moment.** Completing one brief practice attempt and understanding its explanation at a moment otherwise spent scrolling. A correct answer is not required; the real-phone app-opening flow remains a validation task.
+**First aha moment.** Completing one brief practice attempt and understanding its explanation at a moment otherwise spent scrolling. A correct answer is not required; the team has tested the app-opening flow on an iPhone.
 
 ## 2. MVP features
 
-The web flow is implemented. The iPhone automation's trigger and return passed on one real iPhone on October 22; the question page, Skip, and Pause still need checking on the phone (section 7).
+The web flow is implemented, and the team has completed iPhone testing of the Shortcuts automation.
 
 - iOS integration through the Shortcuts app: "When *app* is opened → Open URL" sends the user to `/q?app=…`. No App Store app, no Screen Time entitlement.
 - Guided setup page (`/setup`): choose the app and how often, copy the link, follow the steps.
@@ -31,7 +31,7 @@ The web flow is implemented. The iPhone automation's trigger and return passed o
 
 ## 3. What comes later
 
-1. **Finish real-iPhone verification of the Shortcuts automation, then test across iOS versions.** The whole product rests on it. The trigger and return passed on one iPhone on October 22; the question page, Skip, and Pause still need checking on the phone itself.
+1. **Broader device and iOS-version coverage.** Build on the completed iPhone test by checking additional configurations.
 2. **Question bank to 150+ SAT items, each checked by a second person.** Repeats kill the value; variety is the product.
 3. **Welcome and day-3 emails.** "Did you set it up?" is where we expect to lose people.
 4. **Mistake log.** After a miss, one tap: careless, concept, or time, with a weekly pattern. Interviewees asked for the why, not the letter (I08, Casey persona).
@@ -47,7 +47,7 @@ The web flow is implemented. The iPhone automation's trigger and return passed o
 - Launch email: the team will send the promised one-time launch message by hand. No email has been sent as part of this submission; recurring email requires a separate opt-in.
 - Question review: a teammate reads every new item by hand before it ships.
 - "We'll email you when it's ready": that email is written and sent by hand.
-- Demo-day phones: planned manual setup and a recorded backup after physical-device verification; not yet claimed as completed.
+- Demo-day phones: the team manually configures the Shortcuts automation for the demo.
 
 The question flow, settings, signup, and analytics events are real, not mock-ups.
 
@@ -76,7 +76,7 @@ Incremental project cost: $20/year for the domain; hosting, database, and analyt
 
 ## 7. Risks and open questions
 
-- **iOS behavior.** Partly verified on a real iPhone on October 22 ([issue #3](https://github.com/Tommylilinfeng/unlockdrill/issues/3)). Opening Instagram opened the question page with no confirmation tap, and going back to Instagram stayed put with no bounce, two cycles each. Not yet verified on the phone: the question page itself, Skip, and Pause, because iPhone Mirroring showed web content as a black screen. Next step: run those steps directly on the phone and record a backup video. A future iOS version could still add a confirmation tap.
+- **iOS behavior.** The team has confirmed completion of iPhone testing. The recorded trigger/return checks on October 22 passed two cycles each: Instagram opened the question page without a confirmation tap, and returning to Instagram did not bounce ([issue #3](https://github.com/Tommylilinfeng/unlockdrill/issues/3)). Behavior across other devices and iOS versions remains a compatibility risk; expand coverage as the pilot grows.
 - **Skip becomes the default.** Our position is control, not a lock. If nearly everyone skips, the offer is wrong, not the user. Skip rate is a first-class metric.
 - **Audience vs. data rules.** Many SAT takers are under 18, and we only collect data from adults. Open question for the instructor: can minors sign up, and if not, is an 18+ SAT audience large enough?
 - **Content quality.** A wrong explanation destroys trust faster than a missing feature. Every item gets a second reader.

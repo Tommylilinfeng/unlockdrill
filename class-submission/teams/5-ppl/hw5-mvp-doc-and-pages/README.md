@@ -26,4 +26,4 @@ The custom domain is hosted on GitHub Pages and deployed from `main` by GitHub A
 
 - [Public URL and GA-tag checks](evidence/public-page-checks.json): homepage, three landing pages, and thank-you page.
 - [Custom-domain signup confirmation](evidence/domain-signup.png) and [four stored Supabase test rows](evidence/domain-supabase.png). Test emails use `unlockdrill-test+domain-…-20261022@example.com` and are excluded from real acquisition metrics.
-- Physical iPhone automation testing remains a product-validation task; these web checks do not establish that integration works on a phone.
+- The team confirmed on October 22 that iPhone testing is complete. The screenshots above document the separate web signup and database checks.
