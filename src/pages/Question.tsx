@@ -75,7 +75,7 @@ export default function Question() {
   return (
     <div className="q-shell">
       <div className="q-bar">
-        <Link to="/" className="lockup" style={{ fontSize: 16 }}><img src={`${import.meta.env.BASE_URL}logo/mark-green.svg`} alt="" width={22} height={22} />UnlockDrill</Link>
+        <Link to="/" className="lockup" style={{ fontSize: 16 }}><img src={`${import.meta.env.BASE_URL}logo/mark-small.svg`} alt="" width={22} height={22} />UnlockDrill</Link>
         <button type="button" className="link-btn" onClick={skip}>Skip</button>
       </div>
       <div className="q-main">
