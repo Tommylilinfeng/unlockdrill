@@ -26,7 +26,7 @@ The web flow is implemented; iPhone automation is a proposed user setup that sti
 - How-often control: every open, every third open, at most hourly, once a day.
 - Original SAT question bank (17 items) with a validator that runs on every deploy.
 - Homepage and three landing pages, one per value prop, each with an email signup and a thank-you page.
-- Google Analytics page views, a `signup` event on the thank-you page (GA key-event setting still to verify), and practice events (`shown`, `answered`, `skipped`, `paused`, `returned`).
+- Google Analytics page views, a `signup` event on the thank-you page (key-event setting verified October 22), and practice events (`shown`, `answered`, `skipped`, `paused`, `returned`).
 - Settings stay on the device. Practice events carry a random device id, never an email.
 
 ## 3. What comes later
@@ -76,7 +76,7 @@ Incremental project cost: $20/year for the domain; hosting, database, and analyt
 
 ## 7. Risks and open questions
 
-- **iOS behavior.** Nobody on the team has run the automation on a real iPhone yet. If iOS asks for a confirmation tap, the friction may kill the habit. Next step: test on iOS 17+ before the midterm and record a backup video.
+- **iOS behavior.** Physical-device verification has not been documented in this submission. If iOS asks for a confirmation tap, the friction may kill the habit. Next step: test on iOS 17+ before the midterm and record a backup video.
 - **Skip becomes the default.** Our position is control, not a lock. If nearly everyone skips, the offer is wrong, not the user. Skip rate is a first-class metric.
 - **Audience vs. data rules.** Many SAT takers are under 18, and we only collect data from adults. Open question for the instructor: can minors sign up, and if not, is an 18+ SAT audience large enough?
 - **Content quality.** A wrong explanation destroys trust faster than a missing feature. Every item gets a second reader.

@@ -1,6 +1,6 @@
 # UnlockDrill — Demand strategy, October 19 to December 18, 2026
 
-**Team:** 5 PPL · **Goal:** 100 email signups by our December 18 planning target (December 18 planning target), and at least 20 people who complete the iPhone setup.
+**Team:** 5 PPL · **Goal:** 100 email signups by our December 18 planning target, and at least 20 people who complete the iPhone setup.
 **Pages:** homepage plus three landing pages, one per value prop (see the [live homepage](https://unlockdrill.com/)). Signups by page tell us which value prop pulls.
 **Status:** October 22 submission plan. Team roles and weekly rotation confirmed. No outreach posts have been published yet; entries below are planned, not claimed results. We update the post table every week and revise the math after the first two weeks of real numbers.
 
@@ -8,12 +8,12 @@
 
 | Week of | Class | Traffic owner | Backup | Focus that week |
 | --- | --- | --- | --- | --- |
-| Oct 19 | 7, midterm | Cody Wang | Arjun Joshi | First three Reddit posts, Columbia groups, class demo |
+| Oct 19 | 7, midterm | Cody Wang | Arjun Joshi | Initial social posts, Columbia groups, class demo |
 | Oct 26 | 8 | Arjun Joshi | Cody Wang | Blog post 1, Reddit follow-ups, replies in threads |
-| Nov 2 | 9 | Kushaan Vardhan | Linfeng Li | Emails 2 and 3 to the list, LinkedIn article |
+| Nov 2 | 9 | Kushaan Vardhan | Linfeng Li | Opt-in update-list setup, LinkedIn article |
 | Nov 9 | 10 | Yicheng Ying | Kushaan Vardhan | Blog post 2, SAT Discord servers |
 | Nov 16 | 11 | Linfeng Li | Yicheng Ying | AMA-style post: what we learned from our interviews |
-| Nov 23 | 12, Thanksgiving | Cody Wang | Arjun Joshi | Light week: one post, referral nudge email |
+| Nov 23 | 12, Thanksgiving | Cody Wang | Arjun Joshi | Light week: one post; newsletter only for opted-in subscribers |
 | Nov 30 | 13 | Arjun Joshi | Linfeng Li | Blog post 3, December SAT test-date angle |
 | Dec 7 | 14 | Kushaan Vardhan | Cody Wang | Blog post 4, "early access is open" email |
 | Dec 14 | Demo Day | Cody Wang | Linfeng Li | Final push, Demo Day live demo |
@@ -55,7 +55,7 @@ The owner adds a row for each new post and pastes the post's link in the last co
 
 ## 4. Blog posting schedule
 
-**Four posts** by our December 18 planning target, one every two weeks. Each one goes on our own site first (better for search, and we keep the traffic), then gets cross-posted to Medium and LinkedIn and shared in the communities above. Article types follow [class 6, slide 45](https://github.com/kenxle/columbia-startup-studio-fall-2026/blob/main/classes/20261016_c6w6_fri_build-kickoff/class-6-slides.pdf). Publishing on our own site requires adding a blog route; Medium is the initial fallback.
+**Four posts** by our December 18 planning target, on the dates below. Each one goes on our own site first (better for search, and we keep the traffic), then gets cross-posted to Medium and LinkedIn and shared in the communities above. Article types follow [class 6, slide 45](https://github.com/kenxle/columbia-startup-studio-fall-2026/blob/main/classes/20261016_c6w6_fri_build-kickoff/class-6-slides.pdf). Publishing on our own site requires adding a blog route; Medium is the initial fallback.
 
 | Type | Idea | Date |
 | --- | --- | --- |
