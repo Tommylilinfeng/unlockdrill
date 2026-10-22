@@ -2,18 +2,18 @@
 
 **Team:** 5 PPL · **Goal:** 100 email signups by our December 18 planning target, and at least 20 people who complete the iPhone setup.
 **Pages:** homepage plus three landing pages, one per value prop (see the [live homepage](https://unlockdrill.com/)). Signups by page tell us which value prop pulls.
-**Status:** October 22 submission plan. Team roles and weekly rotation confirmed. No outreach posts have been published yet; entries below are planned, not claimed results. We update the post table every week and revise the math after the first two weeks of real numbers.
+**Status:** October 22 submission plan. Team roles and weekly rotation confirmed. We have not started publishing outreach posts because we are preparing the midterm presentation, post drafts, and posting calendar. Daily publishing is planned to begin October 24, after the midterm; entries below are planned, not claimed results. No platform scheduler has been configured yet. We update the post table every week and revise the math after the first two weeks of real numbers.
 
 ## 1. Who owns traffic, by week
 
 | Week of | Class | Traffic owner | Backup | Focus that week |
 | --- | --- | --- | --- | --- |
-| Oct 19 | 7, midterm | Cody Wang | Arjun Joshi | Initial social posts, Columbia groups, class demo |
+| Oct 19 | 7, midterm | Cody Wang | Arjun Joshi | Midterm preparation, draft posts, check community rules; start daily posting Oct 24 |
 | Oct 26 | 8 | Arjun Joshi | Cody Wang | Blog post 1, Reddit follow-ups, replies in threads |
 | Nov 2 | 9 | Kushaan Vardhan | Linfeng Li | Opt-in update-list setup, LinkedIn article |
 | Nov 9 | 10 | Yicheng Ying | Kushaan Vardhan | Blog post 2, SAT Discord servers |
 | Nov 16 | 11 | Linfeng Li | Yicheng Ying | AMA-style post: what we learned from our interviews |
-| Nov 23 | 12, Thanksgiving | Cody Wang | Arjun Joshi | Light week: one post; newsletter only for opted-in subscribers |
+| Nov 23 | 12, Thanksgiving | Cody Wang | Arjun Joshi | Daily prepared posts with lighter Thanksgiving content; opted-in newsletter only |
 | Nov 30 | 13 | Arjun Joshi | Linfeng Li | Blog post 3, December SAT test-date angle |
 | Dec 7 | 14 | Kushaan Vardhan | Cody Wang | Blog post 4, "early access is open" email |
 | Dec 14 | Demo Day | Cody Wang | Linfeng Li | Final push, Demo Day live demo |
@@ -26,6 +26,7 @@ Rule: the owner publishes that week's posts, replies to every comment within a d
 
 | Community | Why it fits | Rules to respect | Likely to see a post |
 | --- | --- | --- | --- |
+| X | Public build updates and short practice examples | Use the team account; avoid unsolicited promotional replies | 100–1,000 initially, unvalidated |
 | r/Sat | Our interviews and Reddit research came from SAT takers; the "studying but scrolling" thread is the problem in their own words | Check current rules and obtain moderator permission where needed; a comment is not a workaround for a promotion ban | 1,000–3,000 |
 | r/digitalminimalism, r/nosurf | Our blocker-skeptic audience: people who tried app blockers and dropped them | Check current rules; disclose team affiliation and obtain permission before linking | 1,000–3,000 |
 | r/GetStudying, r/productivity | "How do I stop scrolling when I should study" comes up constantly | Lower fit, higher volume | 500–2,000 |
@@ -36,22 +37,39 @@ Rule: the owner publishes that week's posts, replies to every comment within a d
 
 ## 3. Social posting schedule
 
-**Cadence:** two primary social posts per week across approved channels (18 total across nine weeks), plus useful replies. Up to 15 additional community shares over the semester, only where permitted; each is logged separately. Thanksgiving can shift one post to the following week.
+**Start:** Saturday, October 24, 2026, after the October 23 midterm. We are currently preparing content and the calendar; nothing has been posted or queued in a platform scheduler yet.
 
-**UTMs:** every link we post is lowercase, built as
-`?utm_source=<community>&utm_medium=social&utm_campaign=5ppl_unlockdrill_oct2026&utm_content=<post-id>`.
-The campaign name moves to `_nov2026` and `_dec2026` in later months.
+**Cadence:** one post per day total across X, Reddit, or another eligible platform, through December 18 (56 planned daily posts). We are not planning to post in the same subreddit every day. The weekly traffic owner in section 1 owns all seven daily slots; the backup covers absences. Target publishing time is 6 PM America/New_York, adjustable after reviewing engagement.
 
-| # | When | Where | Post | Links to | Full link | Link to post |
-| --- | --- | --- | --- | --- | --- | --- |
-| 1 | Oct 22 | r/Sat | "I kept opening Instagram instead of studying, so I put one SAT question in front of it." The question, the explanation, one line on the setup | /for/scrollers | `https://unlockdrill.com/for/scrollers?utm_source=reddit_sat&utm_medium=social&utm_campaign=5ppl_unlockdrill_oct2026&utm_content=post1` | not posted yet |
-| 2 | Oct 22 | r/digitalminimalism | "Screen Time never stopped me. An experiment: one question before the app opens, skip always allowed. What's your escape hatch?" | /for/blocker-skeptics | `https://unlockdrill.com/for/blocker-skeptics?utm_source=reddit_digitalminimalism&utm_medium=social&utm_campaign=5ppl_unlockdrill_oct2026&utm_content=post2` | not posted yet |
-| 3 | Oct 23 | Columbia class Slack and GroupMe | "Built in Startup Studio, looking for 10 iPhone testers" | /setup | `https://unlockdrill.com/setup?utm_source=columbia&utm_medium=social&utm_campaign=5ppl_unlockdrill_oct2026&utm_content=post3` | not posted yet |
-| 4 | Oct 27 | r/GetStudying | "A one-line explanation beats the answer key: one SAT example and why" | /for/reviewers | `https://unlockdrill.com/for/reviewers?utm_source=reddit_getstudying&utm_medium=social&utm_campaign=5ppl_unlockdrill_oct2026&utm_content=post4` | not posted yet |
-| 5 | Oct 29 | SAT Discord servers | "Try this one question" with the explanation | /for/scrollers | `https://unlockdrill.com/for/scrollers?utm_source=discord&utm_medium=social&utm_campaign=5ppl_unlockdrill_oct2026&utm_content=post5` | not posted yet |
-| 6 | Nov 18 | r/Sat | AMA: "I interviewed SAT takers about why they scroll instead of study. Here's what I learned." | / | `https://unlockdrill.com/?utm_source=reddit_sat&utm_medium=social&utm_campaign=5ppl_unlockdrill_nov2026&utm_content=ama1` | not posted yet |
+| Day | Preferred platform | Content |
+| --- | --- | --- |
+| Monday | X | One interview finding and a small practice tip |
+| Tuesday | Reddit, where permitted | An original SAT example and useful explanation |
+| Wednesday | LinkedIn or another eligible community | Build progress, research insight, or blog excerpt |
+| Thursday | Reddit, where permitted | A discussion about starting practice, blockers, or reviewing mistakes |
+| Friday | Approved Columbia, Discord, or Facebook group | Invite adults to try a question and give feedback |
+| Saturday | X | One practice question with its explanation |
+| Sunday | X | Weekly learning, feedback request, or next-week preview |
 
-The owner adds a row for each new post and pastes the post's link in the last column the day it goes up.
+Before each community post, check its current rules, account eligibility, and any required moderator permission. Disclose that we are building UnlockDrill. If a planned community does not permit the post, use the team's X account or another permitted channel that day; do not use comments to evade restrictions or repeat promotional copy across groups. Confirmed product behavior and research findings determine what we claim in each post.
+
+**UTMs:** every posted site link uses lowercase values:
+`?utm_source=<platform-or-community>&utm_medium=social&utm_campaign=5ppl_unlockdrill_oct2026&utm_content=<post-id>`.
+Use distinct sources for individual communities and distinct content IDs for each publication. Change the campaign suffix to `_nov2026` and `_dec2026` in later months.
+
+### First seven days — planned publication log
+
+| When (6 PM ET) | Where | Topic | Full landing-page link | Published post URL / status |
+| --- | --- | --- | --- | --- |
+| Oct 24 | X | Introduce UnlockDrill: one small practice attempt before scrolling | `https://unlockdrill.com/for/scrollers?utm_source=x&utm_medium=social&utm_campaign=5ppl_unlockdrill_oct2026&utm_content=post01` | Planned; not published |
+| Oct 25 | X | Why skip and pause belong in the product | `https://unlockdrill.com/for/blocker-skeptics?utm_source=x&utm_medium=social&utm_campaign=5ppl_unlockdrill_oct2026&utm_content=post02` | Planned; not published |
+| Oct 26 | X | What interviews taught us about getting started | `https://unlockdrill.com/for/scrollers?utm_source=x&utm_medium=social&utm_campaign=5ppl_unlockdrill_oct2026&utm_content=post03` | Planned; not published |
+| Oct 27 | r/Sat, subject to permission | One original SAT question and its explanation | `https://unlockdrill.com/for/reviewers?utm_source=reddit_sat&utm_medium=social&utm_campaign=5ppl_unlockdrill_oct2026&utm_content=post04` | Planned; not published |
+| Oct 28 | LinkedIn | What we learned building the midterm MVP | `https://unlockdrill.com/?utm_source=linkedin&utm_medium=social&utm_campaign=5ppl_unlockdrill_oct2026&utm_content=post05` | Planned; not published |
+| Oct 29 | r/digitalminimalism, subject to permission | Optional friction versus app blocking: request feedback | `https://unlockdrill.com/for/blocker-skeptics?utm_source=reddit_digitalminimalism&utm_medium=social&utm_campaign=5ppl_unlockdrill_oct2026&utm_content=post06` | Planned; not published |
+| Oct 30 | Approved Columbia group | Invite adult testers to try the web question flow | `https://unlockdrill.com/for/scrollers?utm_source=columbia&utm_medium=social&utm_campaign=5ppl_unlockdrill_oct2026&utm_content=post07` | Planned; not published |
+
+Repeat the weekly rotation through December 18 using fresh examples, the weekly focus in section 1, and the blog topics below. The owner prepares the following week's seven drafts each Sunday. When a post is published, add its actual permalink and date here. If the platform changes, update its UTM source before publication. Track missed slots honestly rather than marking them posted. Review visitors and unique signups weekly; revise the cadence and channel mix after the first two weeks of real results.
 
 ## 4. Blog posting schedule
 
@@ -86,18 +104,19 @@ Practice events contain anonymous device IDs and cannot identify email subscribe
 
 ## 6. Back-of-napkin math
 
-Target: 100 unique, non-test signups in about 9 weeks. This is an aspirational scenario, not observed demand. Getting 350 visits from a post seen by 1,000–3,000 people implies a demanding 12–35% click-through rate; reach is the largest uncertainty. At only 50 visitors per primary post, the same model falls to 5,040 visitors and about 50 signups at 1%. Every signup rate below is 1% or less, as the course asks. "Visitors" means people who click through to a page, not people who see the post.
+Target: 100 unique, non-test signups during the 56-day October 24–December 18 publishing period. This is an aspirational scenario, not observed demand. Every signup rate is 1% or less. “Visitors” means visits to our site, not social impressions; do not count the same traffic in multiple channel rows.
 
-| Source | Touches | Visitors each | Visitors | Signup rate | Signups |
+| Source | Activity | Visitors each | Visitors | Signup rate | Expected signups |
 | --- | --- | --- | --- | --- | --- |
-| Primary social posts across approved channels | 18 | 350 | 6,300 | 1% | 63 |
-| Replies in existing Reddit threads | 40 | 30 | 1,200 | 1% | 12 |
-| Blog posts, cross-posted to Medium and LinkedIn | 4 posts × 3 places | 120 | 1,440 | 1% | 14.4 |
-| Columbia groups, Discord, Facebook groups | 15 | 80 | 1,200 | 1% | 12 |
-| Emails to the list, forwarded | 6 sends | 50 | 300 | 1% | 3 |
-| **Total** | | | **10,440** | | **104.4 expected** |
+| Daily posts across X, Reddit, LinkedIn, and eligible groups | 56 posts | 150 | 8,400 | 1% | 84 |
+| Useful replies in existing threads, where permitted | 40 replies | 30 | 1,200 | 1% | 12 |
+| Blog articles and cross-publications | 4 articles × 3 locations | 120 | 1,440 | 1% | 14.4 |
+| Opted-in emails forwarded to new visitors | Up to 6 sends | 50 | 300 | 1% | 3 |
+| **Total** | | | **11,340** | | **113.4** |
 
-At a 0.5% signup rate the same traffic brings about 52 signups. To still reach 100 we would need about 20,000 visitors: a major increase in qualified reach, which is not yet secured. After the first two weeks we compare real visitors and signups per community, then move effort to whatever converts best.
+The daily-post row includes community shares; they are not an additional traffic category. Blog traffic excludes clicks already attributed to daily social posts. Email traffic is conditional on obtaining separate update-list opt-ins; the current waitlist promises only one launch email.
+
+The assumption of 150 visitors per post is ambitious for new accounts and is not a forecast backed by results. At 50 visitors per daily post, the same scenario produces 5,740 visitors and about 57 signups at 1%. At a 0.5% signup rate, the original 11,340 visits produce about 57 signups; reaching 100 would require about 20,000 visitors. After two weeks, replace these assumptions with measured traffic and signup rates and prioritize channels producing qualified visitors.
 
 ## 7. Analytics on every page
 

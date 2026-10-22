@@ -30,7 +30,7 @@ The 24-hour message applied to the Recent events list, not Realtime. No extra UR
 
 ## Outreach execution
 
-No posts have been published yet. The demand strategy contains a schedule and full lowercase-UTM links, with each post correctly labeled planned. Traffic owners should publish where community rules allow and replace the planned status with actual post links. No messages or posts were sent during submission preparation.
+No posts have been published yet: the team is preparing the midterm, content drafts, and posting calendar. The demand strategy now plans one post per day total from October 24 through December 18 across X, Reddit, and other eligible platforms. It includes a weekly rotation and the first seven dated posts with lowercase-UTM links. This is a plan; no platform scheduler has been configured. Traffic owners should publish where community rules allow and replace the planned status with actual post links. No messages or posts were sent during submission preparation.
 
 ## Metrics and email
 
