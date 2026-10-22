@@ -6,7 +6,7 @@ Built by team **5 PPL** (Linfeng Li, Yicheng Ying, Cody Wang, Arjun Joshi, Kusha
 
 **Live:** https://unlockdrill.com/ (GitHub Pages with a custom domain, deployed from `main` by [the workflow](.github/workflows/pages.yml)). The old `tommylilinfeng.github.io/unlockdrill/` address redirects there.
 
-**Deploying:** if a push to `main` doesn't start a run in the Actions tab, open Actions > Deploy to GitHub Pages > Run workflow.
+**Deploying:** every push to `main` deploys. On October 22 the push-triggered runs showed up in the Actions tab only after a delay of several minutes; if you can't wait, open Actions > Deploy to GitHub Pages > Run workflow.
 
 **Team tracker:** [Midterm tracker, issue #20](https://github.com/Tommylilinfeng/unlockdrill/issues/20). Every open task is an issue; check there before starting something.
 
