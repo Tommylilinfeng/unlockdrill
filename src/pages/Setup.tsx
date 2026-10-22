@@ -67,18 +67,18 @@ export default function Setup() {
             <ol className="steps">
               <li><p>Open <strong>Shortcuts</strong>, tap <strong>Automation</strong> at the bottom, tap <kbd>+</kbd>, and choose <strong>App</strong>.</p></li>
               <li><p>Tap <strong>Choose</strong>, pick <strong>{appName}</strong>, and leave <strong>Is Opened</strong> checked. Choose <strong>Run Immediately</strong>, leave <strong>Notify When Run</strong> off, and tap <strong>Next</strong>.</p></li>
-              <li><p>Tap <strong>New Blank Automation</strong>. Add the actions shown in the box below, in that order. Search for each one by its name.</p></li>
-              <li><p>In <strong>Get File</strong>, type <kbd>{MARKER}</kbd> as the path. Tap the arrow on the action and turn off <strong>Error If Not Found</strong>.</p></li>
-              <li><p>In <strong>If</strong>, set the condition to <strong>has any value</strong>. Inside the If, add <strong>Delete Files</strong> (turn off <strong>Confirm Before Deleting</strong>) and then <strong>Stop This Shortcut</strong>. Leave <strong>Otherwise</strong> empty.</p></li>
+              <li><p>Tap <strong>New Blank Automation</strong> (on newer iPhones, <strong>Create New Shortcut</strong>). Add the actions shown in the box below, in that order. Search for each one by its name. New actions land at the bottom; press and hold one to drag it into place.</p></li>
+              <li><p>Add <strong>Get File from Folder</strong>. It reads “Get file from Shortcuts at path”. Type <kbd>{MARKER}</kbd> as the path, tap the arrow on the action, and turn off <strong>Error If Not Found</strong>.</p></li>
+              <li><p>Add <strong>If</strong>. If it says “File Size is … MB”, tap <strong>File Size</strong> and choose <strong>Anything</strong>, so it reads “If File has any value”. Inside the If, add <strong>Delete Files</strong> (tap its arrow and turn <strong>Delete Immediately</strong> on) and then <strong>Stop This Shortcut</strong>. Leave <strong>Otherwise</strong> empty.</p></li>
               <li><p>After <strong>End If</strong>, add <strong>Text</strong> and type <kbd>1</kbd>. Then add <strong>Save File</strong>: turn off <strong>Ask Where to Save</strong>, type <kbd>{MARKER}</kbd> as the path, and turn on <strong>Overwrite If File Exists</strong>.</p></li>
-              <li><p>Last, add <strong>Open URLs</strong>, paste your link, and tap <strong>Done</strong>.</p></li>
+              <li><p>Last, add <strong>Open URLs</strong>. If it fills in “Saved File”, tap it and choose <strong>Clear Variable</strong>. Paste your link and tap the checkmark to save.</p></li>
               <li><p>Test it: open {appName}. A question appears. Tap <strong>Back to {appName}</strong> and you should stay in {appName}.</p></li>
             </ol>
 
             <div className="ios" style={{ marginTop: 28 }} role="img" aria-label="The finished automation, action by action">
-              <div className="ios-row"><span className="ios-icon app" aria-hidden="true">1</span><div><div className="ios-title">Get File</div><div className="ios-sub">Shortcuts / {MARKER}, Error If Not Found off</div></div></div>
+              <div className="ios-row"><span className="ios-icon app" aria-hidden="true">1</span><div><div className="ios-title">Get File from Folder</div><div className="ios-sub">Shortcuts / {MARKER}, Error If Not Found off</div></div></div>
               <div className="ios-row"><span className="ios-icon app" aria-hidden="true">2</span><div><div className="ios-title">If File has any value</div><div className="ios-sub">You just came back from UnlockDrill</div></div></div>
-              <div className="ios-row" style={{ paddingLeft: 40 }}><span className="ios-icon app" aria-hidden="true">3</span><div><div className="ios-title">Delete Files</div><div className="ios-sub">File, Confirm Before Deleting off</div></div></div>
+              <div className="ios-row" style={{ paddingLeft: 40 }}><span className="ios-icon app" aria-hidden="true">3</span><div><div className="ios-title">Delete Files</div><div className="ios-sub">File, Delete Immediately on</div></div></div>
               <div className="ios-row" style={{ paddingLeft: 40 }}><span className="ios-icon app" aria-hidden="true">4</span><div><div className="ios-title">Stop This Shortcut</div><div className="ios-sub">Leaves you in {appName}</div></div></div>
               <div className="ios-row"><span className="ios-icon app" aria-hidden="true">5</span><div><div className="ios-title">End If</div></div></div>
               <div className="ios-row"><span className="ios-icon app" aria-hidden="true">6</span><div><div className="ios-title">Text</div><div className="ios-sub">1</div></div></div>
