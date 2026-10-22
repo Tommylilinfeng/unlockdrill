@@ -45,7 +45,7 @@ export default function Home() {
             <h2 id="how-title">How it gets in front of Instagram</h2>
             <ol className="steps">
               <li><div><h3>Pick the app you scroll</h3><p>Instagram, TikTok, YouTube, X, or Reddit, and how often you want a question.</p></div></li>
-              <li><div><h3>Add one automation in Shortcuts</h3><p>The Shortcuts app is already on your iPhone. You tell it: when this app opens, open UnlockDrill. It takes about two minutes, and there’s nothing to download.</p></div></li>
+              <li><div><h3>Add one automation in Shortcuts</h3><p>The Shortcuts app is already on your iPhone. You tell it: when this app opens, open UnlockDrill. It takes about five minutes, and there’s nothing to download.</p></div></li>
               <li><div><h3>Open the app like always</h3><p>A question appears. Answer it or skip it, and you’re sent straight back.</p></div></li>
             </ol>
             <p style={{ marginTop: 28 }}><Link to="/setup">See the setup steps</Link></p>
@@ -55,7 +55,7 @@ export default function Home() {
               <div className="ios-row"><span className="ios-icon app" aria-hidden="true">IG</span><div><div className="ios-title">When Instagram is opened</div><div className="ios-sub">Run immediately</div></div></div>
               <div className="ios-row"><span className="ios-icon url" aria-hidden="true">⌘</span><div><div className="ios-title">Open URLs</div><div className="ios-sub">{shortUrl}</div></div></div>
             </div>
-            <figcaption className="small quiet" style={{ marginTop: 14, maxWidth: 420 }}>This is the whole integration. It uses Apple’s own automation, so UnlockDrill never needs access to your other apps.</figcaption>
+            <figcaption className="small quiet" style={{ marginTop: 14, maxWidth: 420 }}>The heart of the automation. The full recipe adds a small check so coming back to Instagram doesn’t ask again. It uses Apple’s own automation, so UnlockDrill never needs access to your other apps.</figcaption>
           </figure>
         </div>
       </section>

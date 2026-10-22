@@ -10,7 +10,9 @@ import { useTitle } from '../lib/useTitle';
 
 /**
  * The interstitial. Opened by the iOS automation as /q?app=instagram.
- * - If paused or the frequency rule says "not now", we hand control straight back to the app.
+ * - If paused or the frequency rule says "not now", we show a short screen with a button back to the app.
+ *   We never redirect on our own: going back to the app fires the app-open automation again, and an
+ *   automatic redirect is what turns that into a loop. The Shortcuts recipe on /setup guards the other side.
  * - Otherwise: one question, explanation, then back. Skip and pause are always visible.
  * - ?demo=1 ignores frequency/pause so the flow can be shown on any device.
  */
@@ -22,7 +24,6 @@ export default function Question() {
   const app = appFromParam(params.get('app')) ?? settings.app;
   const appLabel = app ? APPS[app].label : 'your app';
   const bank = useMemo(() => loadBank(EXAM.key), []);
-  const [redirecting, setRedirecting] = useState(false);
   const [done, setDone] = useState(false);
 
   // Decide once on mount whether this open gets a question.
@@ -39,8 +40,7 @@ export default function Question() {
     const s = loadSettings();
     const opened = { ...s, opens: s.opens + 1, app: app ?? s.app };
     if (!question) {
-      saveSettings(opened);
-      if (!demo) { setRedirecting(true); logPractice('returned', { app }); returnToApp(app); }
+      saveSettings(opened); setSettings(opened);
       return;
     }
     const shown = { ...opened, lastPromptAt: demo ? s.lastPromptAt : Date.now(), seen: rememberSeen(s.seen, question.id) };
@@ -58,17 +58,27 @@ export default function Question() {
     returnToApp(app);
   }
 
-  if (redirecting) {
-    return <div className="q-shell"><div className="q-main"><p className="quiet">No question this time. Opening {appLabel}…</p><p style={{ marginTop: 16 }}><button className="link-btn" onClick={back}>Open {appLabel}</button></p></div></div>;
-  }
-
   if (!question) {
+    const paused = isPaused(settings);
+    const until = paused && settings.pausedUntil
+      ? new Date(settings.pausedUntil).toLocaleString('en-US', { weekday: 'short', hour: 'numeric', minute: '2-digit' })
+      : null;
     return (
-      <div className="q-shell"><div className="q-main">
-        <h1>{isPaused(settings) ? 'UnlockDrill is paused.' : 'No question this time.'}</h1>
-        <p className="quiet" style={{ marginTop: 10 }}>{isPaused(settings) ? 'Questions start again when the pause ends.' : 'Your how-often setting skipped this one.'}</p>
-        <div className="actions" style={{ marginTop: 22 }}><button className="btn" onClick={back}>Open {appLabel}</button><Link to="/settings">Settings</Link></div>
-      </div></div>
+      <div className="q-shell">
+        <div className="q-bar">
+          <Link to="/" className="lockup" style={{ fontSize: 16 }}><img src={`${import.meta.env.BASE_URL}logo/mark-small.svg`} alt="" width={22} height={22} />UnlockDrill</Link>
+        </div>
+        <div className="q-main">
+          <h1>{paused ? 'UnlockDrill is paused.' : 'No question this time.'}</h1>
+          <p className="quiet" style={{ marginTop: 10 }}>
+            {paused ? `Questions start again ${until ? `after ${until}` : 'when the pause ends'}.` : 'Your how-often setting skipped this one.'}
+          </p>
+          <div className="q-after">
+            <button type="button" className="btn" onClick={back}>Back to {appLabel}</button>
+            <Link className="link-btn" style={{ display: 'grid', placeItems: 'center' }} to="/settings">Change how often</Link>
+          </div>
+        </div>
+      </div>
     );
   }
 

@@ -11,6 +11,9 @@ import { useTitle } from '../lib/useTitle';
  * iOS Shortcuts automation guide. "When <app> is opened → Open URL" runs without a confirmation tap on iOS 17+,
  * which is what lets a web page sit in front of another app with no special entitlement.
  */
+/** Marker file in the Shortcuts iCloud folder. Present = the user is coming back from UnlockDrill. */
+const MARKER = 'unlockdrill-back.txt';
+
 export default function Setup() {
   useTitle('Set up UnlockDrill on iPhone');
   const [s, setS] = useState(loadSettings);
@@ -28,7 +31,7 @@ export default function Setup() {
     <Shell>
       <div className="wrap" style={{ paddingTop: 48 }}>
         <h1 style={{ maxWidth: '18ch' }}>Put one question in front of {appName}.</h1>
-        <p className="lead" style={{ marginTop: 16 }}>You’ll use the Shortcuts app that’s already on your iPhone. It takes about two minutes and needs iOS 17 or later.</p>
+        <p className="lead" style={{ marginTop: 16 }}>You’ll use the Shortcuts app that’s already on your iPhone. It takes about five minutes and needs iOS 17 or later.</p>
       </div>
 
       <section className="block" style={{ paddingTop: 48 }}>
@@ -62,15 +65,30 @@ export default function Setup() {
           <div>
             <h2>Then, in Shortcuts</h2>
             <ol className="steps">
-              <li><p>Open <strong>Shortcuts</strong> and tap <strong>Automation</strong> at the bottom.</p></li>
-              <li><p>Tap <kbd>+</kbd>, then choose <strong>App</strong>.</p></li>
-              <li><p>Tap <strong>Choose</strong>, pick <strong>{appName}</strong>, and leave <strong>Is Opened</strong> checked.</p></li>
-              <li><p>Choose <strong>Run Immediately</strong> and turn off <strong>Notify When Run</strong>. Tap <strong>Next</strong>.</p></li>
-              <li><p>Tap <strong>New Blank Automation</strong>, search for <strong>Open URLs</strong>, and add it.</p></li>
-              <li><p>Paste your link into the URL field and tap <strong>Done</strong>.</p></li>
-              <li><p>Open {appName}. You should see a question. Answer it or skip it to get back in.</p></li>
+              <li><p>Open <strong>Shortcuts</strong>, tap <strong>Automation</strong> at the bottom, tap <kbd>+</kbd>, and choose <strong>App</strong>.</p></li>
+              <li><p>Tap <strong>Choose</strong>, pick <strong>{appName}</strong>, and leave <strong>Is Opened</strong> checked. Choose <strong>Run Immediately</strong>, leave <strong>Notify When Run</strong> off, and tap <strong>Next</strong>.</p></li>
+              <li><p>Tap <strong>New Blank Automation</strong>. Add the actions shown in the box below, in that order. Search for each one by its name.</p></li>
+              <li><p>In <strong>Get File</strong>, type <kbd>{MARKER}</kbd> as the path. Tap the arrow on the action and turn off <strong>Error If Not Found</strong>.</p></li>
+              <li><p>In <strong>If</strong>, set the condition to <strong>has any value</strong>. Inside the If, add <strong>Delete Files</strong> (turn off <strong>Confirm Before Deleting</strong>) and then <strong>Stop This Shortcut</strong>. Leave <strong>Otherwise</strong> empty.</p></li>
+              <li><p>After <strong>End If</strong>, add <strong>Text</strong> and type <kbd>1</kbd>. Then add <strong>Save File</strong>: turn off <strong>Ask Where to Save</strong>, type <kbd>{MARKER}</kbd> as the path, and turn on <strong>Overwrite If File Exists</strong>.</p></li>
+              <li><p>Last, add <strong>Open URLs</strong>, paste your link, and tap <strong>Done</strong>.</p></li>
+              <li><p>Test it: open {appName}. A question appears. Tap <strong>Back to {appName}</strong> and you should stay in {appName}.</p></li>
             </ol>
-            <p className="small quiet" style={{ marginTop: 24 }}>To turn it off, delete the automation in Shortcuts, or pause it from <Link to="/settings">your settings</Link>.</p>
+
+            <div className="ios" style={{ marginTop: 28 }} role="img" aria-label="The finished automation, action by action">
+              <div className="ios-row"><span className="ios-icon app" aria-hidden="true">1</span><div><div className="ios-title">Get File</div><div className="ios-sub">Shortcuts / {MARKER}, Error If Not Found off</div></div></div>
+              <div className="ios-row"><span className="ios-icon app" aria-hidden="true">2</span><div><div className="ios-title">If File has any value</div><div className="ios-sub">You just came back from UnlockDrill</div></div></div>
+              <div className="ios-row" style={{ paddingLeft: 40 }}><span className="ios-icon app" aria-hidden="true">3</span><div><div className="ios-title">Delete Files</div><div className="ios-sub">File, Confirm Before Deleting off</div></div></div>
+              <div className="ios-row" style={{ paddingLeft: 40 }}><span className="ios-icon app" aria-hidden="true">4</span><div><div className="ios-title">Stop This Shortcut</div><div className="ios-sub">Leaves you in {appName}</div></div></div>
+              <div className="ios-row"><span className="ios-icon app" aria-hidden="true">5</span><div><div className="ios-title">End If</div></div></div>
+              <div className="ios-row"><span className="ios-icon app" aria-hidden="true">6</span><div><div className="ios-title">Text</div><div className="ios-sub">1</div></div></div>
+              <div className="ios-row"><span className="ios-icon app" aria-hidden="true">7</span><div><div className="ios-title">Save File</div><div className="ios-sub">Shortcuts / {MARKER}, Overwrite on</div></div></div>
+              <div className="ios-row"><span className="ios-icon url" aria-hidden="true">8</span><div><div className="ios-title">Open URLs</div><div className="ios-sub">{url}</div></div></div>
+            </div>
+
+            <h3 style={{ marginTop: 32 }}>Why the extra steps</h3>
+            <p style={{ marginTop: 8 }}>When you go back to {appName}, your iPhone counts that as opening {appName} again, so the automation runs a second time. The small file is how it tells the two apart: no file means you opened {appName} yourself, so it shows a question; a file means you just came back, so it deletes the file and lets you through.</p>
+            <p className="small quiet" style={{ marginTop: 12 }}>If you leave a question by going to the home screen instead of tapping Back, the next time you open {appName} goes straight through once. To turn UnlockDrill off, delete the automation in Shortcuts, or pause it from <Link to="/settings">your settings</Link>.</p>
           </div>
         </div>
       </section>

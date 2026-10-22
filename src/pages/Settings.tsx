@@ -32,7 +32,7 @@ export default function Settings() {
           <div className="field">
             <span className="label">Pause</span>
             {paused
-              ? <p>Paused until {new Date(s.pausedUntil!).toLocaleString([], { weekday: 'short', hour: 'numeric', minute: '2-digit' })}. <button className="link-btn" onClick={() => update({ pausedUntil: null })}>Resume now</button></p>
+              ? <p>Paused until {new Date(s.pausedUntil!).toLocaleString('en-US', { weekday: 'short', hour: 'numeric', minute: '2-digit' })}. <button className="link-btn" onClick={() => update({ pausedUntil: null })}>Resume now</button></p>
               : <div className="actions">
                   <button className="link-btn" onClick={() => update(pauseFor(s, 60))}>Pause for an hour</button>
                   <button className="link-btn" onClick={() => update(pauseFor(s, 24 * 60))}>Pause until tomorrow</button>
