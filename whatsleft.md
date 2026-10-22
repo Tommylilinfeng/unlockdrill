@@ -14,7 +14,7 @@ What's left: the accounts, the domain, merging, the posts, and opening the two c
 | Thing | Status |
 | --- | --- |
 | Homepage + 3 landing pages | Live at https://tommylilinfeng.github.io/unlockdrill/ |
-| Email signup | **Broken for the team.** Signups save only in the visitor's browser because Supabase isn't connected |
+| Email signup | **Connected and tested October 22.** Homepage + all three landing-page signups persist in Supabase with correct page/variant; four synthetic test rows verified |
 | Google Analytics | **Not on the site.** No `VITE_GA_ID` repo variable |
 | Domain | **Not bought** |
 | Drill Buddy logo | In [PR #21](https://github.com/Tommylilinfeng/unlockdrill/pull/21), not merged; the live site still shows the old logo |
@@ -27,6 +27,10 @@ What's left: the accounts, the domain, merging, the posts, and opening the two c
 ## HW5: MVP doc, homepage, landing pages
 
 ### 1. Make signups reach the team (Supabase)
+
+**Completed October 22:** Created `signups` and `practice_events`; enabled RLS with insert-only anonymous policies and no public read policy. Added both GitHub build variables and [redeployed successfully](https://github.com/Tommylilinfeng/unlockdrill/actions/runs/39835368852). Tested all four page forms in Chrome and verified their rows in Supabase. Synthetic addresses start with `unlockdrill-test+` and end with `-20261022@example.com`; exclude them from real signup counts and outreach. Teammate dashboard invitations remain to be done.
+
+Setup steps retained for reference:
 1. Go to supabase.com and create a project called `unlockdrill` (free tier).
 2. In the project, open **SQL Editor**, paste in all of [`supabase/schema.sql`](supabase/schema.sql), and run it.
 3. Go to **Project Settings → API** and copy the **Project URL** and the **anon public** key. Use the anon key, never the service_role key.
@@ -55,7 +59,7 @@ Do this on the domain once it works, or on the github.io URL until then.
 
 1. Open the homepage, `/for/scrollers`, `/for/blocker-skeptics`, and `/for/reviewers`. Each should load and show the new logo.
 2. Sign up on **each** of the four pages with a different email you can check (e.g. `you+home@…`, `you+scrollers@…`). Each should go to the thank-you page.
-3. In Supabase, open **Table Editor → signups**. There should be four new rows, each with the right `page`.
+3. In Supabase, open **Table Editor → signups**. There should be four new rows, each with the right `page`. This passed on the github.io site October 22; repeat after switching domains.
 4. Open the pages on a phone too.
 
 ### 5. Finish the HW5 docs
