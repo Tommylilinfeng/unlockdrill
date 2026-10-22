@@ -106,10 +106,12 @@ Google Analytics 4 is built into the site: the tag is in the HTML of the homepag
 - [x] Team reports GA account/property/Web stream created; property timezone/currency not independently inspected
 - [x] `VITE_GA_ID` set as a repository variable and the site redeployed
 - [x] Tag found in the page source of the homepage and all three landing pages
-- [ ] `signup` marked as a key event in GA
-- [ ] Realtime shows a visit from a UTM link and a `signup` event (screenshot saved)
+- [x] `signup` marked as a key event in GA; starred state verified October 22
+- [x] Realtime shows active visitors, `page_view`, and `signup` (screenshot saved). Lowercase test UTMs were separately verified in Supabase; GA source attribution is not claimed from this screenshot.
 
-**Verification boundary (October 22):** public page tags and HTTP status are checked. Team confirms Supabase and GA setup. Realtime has not yet been verified: the team reported a processing-delay message, and the browser account available for this review does not have the property. Standard-report delay does not establish a Realtime delay. The remaining tasks are to open the correct property, visit a lowercase-UTM test URL, submit a clearly labeled test signup, capture Realtime showing `page_view` and `signup`, and mark `signup` as a key event. Add that evidence to this PR before the deadline if possible; do not mark it passed without observing it.
+**Verified October 22, 2026:** the supplied GA property (`560263927`, account `413039069`) was opened directly. Realtime showed 10 active users in the preceding 30 minutes, 22 `page_view` events, and 6 `signup` events. These are observed diagnostic counts that include test activity, not customer acquisition results. [Realtime evidence](evidence/ga-realtime.png).
+
+The Recent events table had not yet populated and displayed its “within 24 hours” processing notice. Realtime was already receiving events. The existing coded event name `signup` was registered through “Create with code” and marked as a key event; the Key events table then showed its star enabled. No extra URL-based trigger was added. The default monetary value was disabled; counting remains once per event. [Key-event evidence](evidence/ga-signup-key-event.png). The configuration is verified; this does not claim earlier events were retroactively counted as key events.
 
 Use distinct normalized Supabase emails as the conversion source of truth. Exclude synthetic tests, deduplicate across variants, and do not count repeat thank-you-page visits as new people. No personal email addresses are sent to GA. GA events are diagnostic funnel data; anonymous practice events are not linked to the email list.
 

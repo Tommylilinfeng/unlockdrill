@@ -20,13 +20,13 @@ These PRs are the submissions. Nothing needs to be submitted on Courseworks for 
 - Team confirmed named roles and semester traffic rotation.
 - MVP brief, live-page directory, and semester demand strategy completed and copied to the class PRs.
 
-## Remaining HW6 verification
+## HW6 analytics verification completed October 22
 
-- [ ] Open the correct Google Analytics property and confirm `signup` appears in Realtime after a test signup.
-- [ ] Mark `signup` as a key event and verify the setting.
-- [ ] Save Realtime evidence and add it to PR #51.
+- [x] Realtime in property `560263927` showed `page_view` and `signup`; screenshot added to PR #51.
+- [x] Existing coded `signup` registered as a key event; starred state verified and screenshot added to PR #51.
+- [x] Evidence committed to the class submission and mirrored here.
 
-The team reported a processing-delay notice. Standard reports may take 24–48 hours, but that does not establish that Realtime is unavailable. The review browser account currently has no property access. Do not check off Realtime based only on a tag or a successful signup form.
+The 24-hour message applied to the Recent events list, not Realtime. No extra URL-based event trigger was added. Observed Realtime counts include synthetic activity and are not customer signup totals. GA source attribution was not established by that screenshot; lowercase test UTMs were verified separately in Supabase.
 
 ## Outreach execution
 
