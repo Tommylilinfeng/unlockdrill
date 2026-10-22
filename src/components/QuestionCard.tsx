@@ -11,9 +11,14 @@ interface Props {
   headingLevel?: 'h1' | 'h2' | 'p';
 }
 
-/** Keep short math expressions on one line: "3x + 4 = 19" should never break at an operator. */
+/**
+ * Typographic glue for prompts: math expressions never break at an operator ("3x + 4 = 19"),
+ * and one- or two-letter words ("If", "a", "of") stay with the next word instead of sitting alone on a line.
+ */
 function keepMathTogether(text: string): string {
-  return text.replace(/ ([+\-−×÷=<>≤≥]) /g, '\u00a0$1\u00a0');
+  return text
+    .replace(/ ([+\-−×÷=<>≤≥]) /g, '\u00a0$1\u00a0')
+    .replace(/(^|[\s(])([A-Za-z]{1,2}) (?=\S)/g, '$1$2\u00a0');
 }
 
 /** One question rendered as a row of answer-sheet bubbles. Picking a bubble fills it in. */
