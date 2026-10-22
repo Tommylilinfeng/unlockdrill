@@ -1,0 +1,41 @@
+{
+  "checked_at_utc": "2026-10-22T19:19:51.989761+00:00",
+  "checks": [
+    {
+      "url": "https://unlockdrill.com/",
+      "http_status": 200,
+      "measurement_ids": [
+        "G-46Q4TG01KP"
+      ]
+    },
+    {
+      "url": "https://unlockdrill.com/for/scrollers/",
+      "http_status": 200,
+      "measurement_ids": [
+        "G-46Q4TG01KP"
+      ]
+    },
+    {
+      "url": "https://unlockdrill.com/for/blocker-skeptics/",
+      "http_status": 200,
+      "measurement_ids": [
+        "G-46Q4TG01KP"
+      ]
+    },
+    {
+      "url": "https://unlockdrill.com/for/reviewers/",
+      "http_status": 200,
+      "measurement_ids": [
+        "G-46Q4TG01KP"
+      ]
+    },
+    {
+      "url": "https://unlockdrill.com/thanks/",
+      "http_status": 200,
+      "measurement_ids": [
+        "G-46Q4TG01KP"
+      ]
+    }
+  ],
+  "scope": "HTTP status and tag presence only; not GA receipt or key-event configuration."
+}
