@@ -8,16 +8,14 @@
 
 **Problem.** People who intend to study for the SAT lose the moment to reflexive scrolling. The barrier is starting, not ability: "The hardest part is just sitting down to start. Once I pick up my phone, hours are gone." (I03). Blockers do not survive contact with the user: "I just tap ignore and keep scrolling." (I04). Evidence: [brand position](../hw4-synthesis-brand-position/brand_position.md), [interview notes](../hw3-interviews/interviews.md), [Reddit research](../hw4-synthesis-brand-position/reddit_research/summary.md).
 
-**Who it's for.** SAT test takers who study in the gaps of a normal week and reach for Instagram, TikTok, or YouTube when they meant to practice. The team chose SAT as the launch audience on October 17 because our HW3 interviews and Reddit research came from SAT takers. The current product limits data collection to adults, so signups are limited to people 18 and over until the instructor confirms otherwise; the copy, privacy page, and signup form say so. A GRE question bank exists in the repo as an exploratory option, not validated demand.
+**Who it's for.** SAT test takers who study in the gaps of a normal week and reach for Instagram, TikTok, or YouTube when they meant to practice. The team chose SAT as the launch audience on October 17 because our HW3 interviews and Reddit research came from SAT takers. The course bars collecting data from minors, so signups are limited to people 18 and over until the instructor confirms otherwise; the copy, privacy page, and signup form say so. A GRE question bank exists in the repo as an exploratory option, not validated demand.
 
 **Core flow: user, action, value.**
 A test taker opens the app they chose (say, Instagram). One short question appears first. They answer it, read a one-line explanation, and are sent back into Instagram. The value is a start they actually made, with the "why" attached, at a moment they would otherwise have lost.
 
-**First aha moment.** Completing one brief practice attempt and understanding its explanation at a moment otherwise spent scrolling. A correct answer is not required; the real-phone app-opening flow remains a validation task.
+**First aha moment.** The first time a question appears in front of Instagram and they get it right in under a minute.
 
 ## 2. MVP features
-
-The web flow is implemented; iPhone automation is a proposed user setup that still needs physical-device verification.
 
 - iOS integration through the Shortcuts app: "When *app* is opened → Open URL" sends the user to `/q?app=…`. No App Store app, no Screen Time entitlement.
 - Guided setup page (`/setup`): choose the app and how often, copy the link, follow the steps.
@@ -26,12 +24,12 @@ The web flow is implemented; iPhone automation is a proposed user setup that sti
 - How-often control: every open, every third open, at most hourly, once a day.
 - Original SAT question bank (17 items) with a validator that runs on every deploy.
 - Homepage and three landing pages, one per value prop, each with an email signup and a thank-you page.
-- Google Analytics page views, a `signup` event on the thank-you page (key-event setting verified October 22), and practice events (`shown`, `answered`, `skipped`, `paused`, `returned`).
+- Google Analytics page views, a `signup` key event on the thank-you page, and practice events (`shown`, `answered`, `skipped`, `paused`, `returned`).
 - Settings stay on the device. Practice events carry a random device id, never an email.
 
 ## 3. What comes later
 
-1. **Real-iPhone verification of the Shortcuts automation across iOS versions.** The whole product rests on it; we claim compatibility only after testing.
+1. **Finish real-iPhone verification of the Shortcuts automation, then test across iOS versions.** The whole product rests on it. The trigger and return passed on one iPhone on October 22; the question page, Skip, and Pause still need checking on the phone itself.
 2. **Question bank to 150+ SAT items, each checked by a second person.** Repeats kill the value; variety is the product.
 3. **Welcome and day-3 emails.** "Did you set it up?" is where we expect to lose people.
 4. **Mistake log.** After a miss, one tap: careless, concept, or time, with a weekly pattern. Interviewees asked for the why, not the letter (I08, Casey persona).
@@ -44,10 +42,10 @@ The web flow is implemented; iPhone automation is a proposed user setup that sti
 **Cut from the MVP:** accounts and sign-in, streaks and badges, any feed, score prediction, tutoring or chat, a native app, Android, payments, topic selection, social features.
 
 **Faked (Wizard of Oz):**
-- Launch email: the team will send the promised one-time launch message by hand. No email has been sent as part of this submission; recurring email requires a separate opt-in.
+- Welcome email: sent by hand from the team inbox to each new signup. There is no automated email yet.
 - Question review: a teammate reads every new item by hand before it ships.
 - "We'll email you when it's ready": that email is written and sent by hand.
-- Demo-day phones: planned manual setup and a recorded backup after physical-device verification; not yet claimed as completed.
+- Demo-day phones: we set up the Shortcuts automation on team phones in advance. The audience sees the real flow, not the two-minute setup.
 
 The question flow, settings, signup, and analytics events are real, not mock-ups.
 
@@ -56,19 +54,19 @@ The question flow, settings, signup, and analytics events are real, not mock-ups
 | Layer | Choice | Cost |
 | --- | --- | --- |
 | Framework | Vite + React + TypeScript, client-side routing, one HTML file per page | $0 |
-| Coding agent | Claude Code and Codex, with `AGENTS.md` and three persona judges in `.claude/agents/` | Existing team subscriptions; no separate project charge, subscription allocation not tracked |
+| Coding agent | Claude Code, with `AGENTS.md` and three persona judges in `.claude/agents/` | covered by team plans |
 | Hosting | GitHub Pages, deployed by GitHub Actions on every push to `main` | $0 |
-| Domain | unlockdrill.com, registered at Squarespace Domains (team-reported) | $20/year (team-confirmed) |
+| Domain | [TBD: domain name], registered at [TBD: registrar] | about $12 a year |
 | Analytics | Google Analytics 4 | $0 |
-| Database | Supabase free tier: `signups` and `practice_events` tables, insert-only from the browser | $0 on the current free plan |
-| Email | Manual team inbox for the one-time launch message; Resend is a future option | $0 incremental currently; no paid email service enabled |
+| Database | Supabase free tier: `signups` and `practice_events` tables, insert-only from the browser | $0 up to 500 MB |
+| Email | Sent by hand from the team inbox for now; Resend free tier when we automate | $0 up to 3,000 a month |
 | Sign-in, payments, AI model at runtime | none | $0 |
 
-Incremental project cost: $20/year for the domain; hosting, database, and analytics are currently $0. Existing shared coding-agent subscriptions are not allocated to this project total.
+Total: about $12 a year, all of it the domain.
 
 ## 6. How you'll know it works
 
-**The action we measure.** The assignment's action is account creation. The MVP has no accounts by design (sign-in is cut, section 4), so the closest equivalent is an **email signup**: someone submits the form, the Supabase insert succeeds, and then the browser opens the thank-you page and emits `signup`. This is a waitlist conversion, not an authenticated account creation, consistent with the assignment’s allowed coming-soon form. Count unique normalized emails in Supabase overall and by landing-page variant; exclude synthetic tests. The database permits the same email on different variants, so total rows are not total people. GA thank-you visits can repeat on reload and are a funnel signal, not the canonical signup count.
+**The action we measure.** The assignment's action is account creation. The MVP has no accounts by design (sign-in is cut, section 4), so the closest equivalent is an **email signup**: someone submits the form and lands on the thank-you page, where the `signup` key event fires and a row is written to Supabase. We count signups per page, which also shows which value prop pulls hardest.
 
 **What we watch next.** Of the people who complete setup, how many questions they answer instead of skipping, and whether they are still answering on day 3.
 
@@ -76,7 +74,7 @@ Incremental project cost: $20/year for the domain; hosting, database, and analyt
 
 ## 7. Risks and open questions
 
-- **iOS behavior.** Physical-device verification has not been documented in this submission. If iOS asks for a confirmation tap, the friction may kill the habit. Next step: test on iOS 17+ before the midterm and record a backup video.
+- **iOS behavior.** Partly verified on a real iPhone on October 22 ([issue #3](https://github.com/Tommylilinfeng/unlockdrill/issues/3)). Opening Instagram opened the question page with no confirmation tap, and going back to Instagram stayed put with no bounce, two cycles each. Not yet verified on the phone: the question page itself, Skip, and Pause, because iPhone Mirroring showed web content as a black screen. Next step: run those steps directly on the phone and record a backup video. A future iOS version could still add a confirmation tap.
 - **Skip becomes the default.** Our position is control, not a lock. If nearly everyone skips, the offer is wrong, not the user. Skip rate is a first-class metric.
 - **Audience vs. data rules.** Many SAT takers are under 18, and we only collect data from adults. Open question for the instructor: can minors sign up, and if not, is an 18+ SAT audience large enough?
 - **Content quality.** A wrong explanation destroys trust faster than a missing feature. Every item gets a second reader.
@@ -84,8 +82,6 @@ Incremental project cost: $20/year for the domain; hosting, database, and analyt
 - **Return links.** `instagram://` and similar links back into apps aren't officially documented. If one breaks, we fall back to the web URL and the user loses a second, nothing more.
 
 ## 8. Roles
-
-The team confirmed these owners on October 22, 2026.
 
 | Area | Owner | Backup |
 | --- | --- | --- |
