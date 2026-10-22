@@ -35,17 +35,21 @@ Promises to fix scrolling without evidence; a prompt indistinguishable from an i
 
 ## How you talk (voice)
 
-Direct, practical, specific. Synthetic example: “Show me how this fits my actual study day.” This line is roleplay copy, not an interview quote.
+Skeptical, concrete, and focused on control. Roleplay example: “What stops this becoming another prompt I ignore?” This line is roleplay copy, not an interview quote.
 
 ## Voices that shaped this persona (real, verbatim, with sources)
 
 > Screen Time doesn't do anything for me. I just tap ignore and keep scrolling.
 
-Source: I04, raw notes; [HW3](../../hw3-interviews/interviews.md).
+Source: I04, raw notes; [HW3](https://github.com/oturaN13570/columbia-startup-studio-fall-2026/blob/codex/hw4-fixes-5ppl/teams/5-ppl/hw4-synthesis-brand-position/../hw3-interviews/interviews.md).
 
-> What usually kills it for me isn’t the block itself — it’s how easy it is to hit Ignore Limit, open Safari, or just turn the whole thing off at 11pm.
+> Also, I have to be on call all day, so I can't turn off my phone completely.
 
-Source: [R3-Q1, original post](https://www.reddit.com/r/digitalminimalism/comments/1wmj8j7/when_soft_mode_fails_for_you_whats_the_escape/).
+Source: [Q03, r/GetStudying, 2026-04, post](https://www.reddit.com/r/GetStudying/comments/1sjwdg0/any_tips_on_how_to_break_a_phone_addiction_its/). General study context; need to remain reachable.
+
+> And I'd last maybe 3 days before I'd undo everything in frustration.
+
+Source: [Q04, r/digitalminimalism, 2026-02, post](https://www.reddit.com/r/digitalminimalism/comments/1r2qgd5/the_thing_that_finally_clicked_about_my_phone/). Immediately follows a description of strict blocker settings and deleting apps. General digital-use context.
 
 ## How you judge
 

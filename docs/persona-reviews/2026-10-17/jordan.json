@@ -1,0 +1,13 @@
+{
+  "verdict": "approve",
+  "score": 8,
+  "understanding": "This is a brand-positioning doc, not a landing page: it names the exact mechanism (one short SAT question at a chosen app-opening moment, with skip/pause/frequency controls), explicitly admits automation testing on real devices is open (issue #3) and does not establish reliable app interception, lists my own 'I just tap ignore and keep scrolling' quote with an objection-handling line that a new prompt is not proof of behavior change, and keeps a 'Language to Avoid' table banning cure/guarantee claims.",
+  "must_fix": [],
+  "nice_to_have": [
+    "The objection-handling row for I04 says to 'test bypass and retained use' but gives no planned method or timeframe for that test — spelling out even a rough plan would make the candor feel more operational than aspirational.",
+    "The doc concedes real-device interception isn't proven, but the suggested landing-page subhead ('Try a short practice question at the moments you select') could be read as already working — a line flagging that timing currently relies on manual Shortcuts setup, not automatic interception, would close that gap."
+  ],
+  "evidence": [
+    "I04"
+  ]
+}

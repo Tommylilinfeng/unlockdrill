@@ -35,25 +35,25 @@ Random trivia, long required explanations, extensive manual logging, or inflated
 
 ## How you talk (voice)
 
-Direct, practical, specific. Synthetic example: “Show me how this fits my actual study day.” This line is roleplay copy, not an interview quote.
+Analytical and focused on understanding. Roleplay example: “Show me why I missed it, then let me try a similar question.” This line is roleplay copy, not an interview quote.
 
 ## Voices that shaped this persona (real, verbatim, with sources)
 
 > sometimes I just remember the answer, so I don’t know if I actually learned it.
 
-Source: I08, exact excerpt from raw response; [HW3](../../hw3-interviews/interviews.md).
+Source: I08, exact excerpt from raw response; [HW3](https://github.com/oturaN13570/columbia-startup-studio-fall-2026/blob/codex/hw4-fixes-5ppl/teams/5-ppl/hw4-synthesis-brand-position/../hw3-interviews/interviews.md).
 
 > It has to take two minutes. If it takes two minutes and it's a little fun, I'm there. If it's twenty minutes of work I already have homework.
 
-Source: I10, response after a pitch; leading interview limitation; [HW3](../../hw3-interviews/interviews.md).
+Source: I10, response after a pitch; leading interview limitation; [HW3](https://github.com/oturaN13570/columbia-startup-studio-fall-2026/blob/codex/hw4-fixes-5ppl/teams/5-ppl/hw4-synthesis-brand-position/../hw3-interviews/interviews.md).
 
-> but also i feel like that might just make my attention span worse idk
+> Measure progress by whether those same mistakes are disappearing, not by hours studied or the number of full tests completed.
 
-Source: [R1-Q2, original post](https://www.reddit.com/r/Sat/comments/1s9xuk7/is_anyone_else_studying_for_the_sat_but_literally/).
+Source: [Q05, r/Sat, 2026-07, comment](https://www.reddit.com/r/Sat/comments/1v9yhkb/how_much_can_i_realistically_improve_a_1300_in_30/p0nc21u/). Advice from a commenter, not a measured result or a customer testimonial.
 
-> I make myself stop and do the problem and read the comments.
+> I mean the point of my post was asking how to study smarter not necessarily harder 😭
 
-Source: [R2-Q1, original post](https://www.reddit.com/r/Sat/comments/k3og1a/scrolling_on_rsat_for_too_long/).
+Source: [Q06, r/Sat, 2026-06, comment](https://www.reddit.com/r/Sat/comments/1tzu7bl/how_does_one_study_smart_for_the_sat_to_reach_a/oqdnr7u/). Original poster responding to advice about studying eight hours per day.
 
 ## How you judge
 
