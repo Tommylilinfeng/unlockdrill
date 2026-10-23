@@ -8,6 +8,7 @@ import { loadBank, type Question } from '../lib/questions';
 import { loadProgress, recordAnswer, saveProgress } from '../lib/progress';
 import { track } from '../lib/analytics';
 import { useTitle } from '../lib/useTitle';
+import { currentAccount } from '../lib/account';
 
 const LENGTH = 10;
 
@@ -33,7 +34,10 @@ export default function Diagnostic() {
   const [answers, setAnswers] = useState<Answer[]>([]);
   const [current, setCurrent] = useState<boolean | null>(null);
 
-  function start() { setStep(0); setAnswers([]); setCurrent(null); track('diagnostic_started', {}); }
+  // The diagnostic needs an account: results and the topics to start with are saved to the profile.
+  const account = currentAccount();
+
+  function start() { if (!account) return; setStep(0); setAnswers([]); setCurrent(null); track('diagnostic_started', {}); }
 
   function next(skipped = false) {
     const q = set[step];
@@ -48,6 +52,24 @@ export default function Diagnostic() {
     setStep(set.length);
   }
 
+  if (step < 0 && !account) {
+    return (
+      <Shell>
+        <div className="wrap narrow page-head">
+          <h1>Make an account to take the diagnostic.</h1>
+          <p className="lead">Ten questions across {EXAM.sections.join(' and ')}, about ten minutes. Your results and the topics to practice first are saved to your profile.</p>
+        </div>
+        <div className="wrap narrow">
+          <div className="actions">
+            <Link className="btn btn-big" to="/signin?mode=create&next=/diagnostic">Create an account</Link>
+            <Link className="btn btn-quiet" to="/signin?next=/diagnostic">I have an account</Link>
+          </div>
+          <p className="small quiet" style={{ marginTop: 18 }}>Single practice questions don’t need an account. <Link to="/q?app=instagram&demo=1">Try one</Link></p>
+        </div>
+      </Shell>
+    );
+  }
+
   if (step < 0) {
     return (
       <Shell>
@@ -59,7 +81,7 @@ export default function Diagnostic() {
           <ul className="group checks">
             <li className="grow">Skip any question, or stop whenever you like</li>
             <li className="grow">It doesn’t predict a score</li>
-            <li className="grow">Results stay on this device</li>
+            <li className="grow">Results are saved to your profile</li>
           </ul>
           <div className="actions">
             <button type="button" className="btn btn-big" onClick={start}>Start the diagnostic</button>

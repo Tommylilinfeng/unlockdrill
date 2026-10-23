@@ -1,5 +1,5 @@
 import { useState, type FormEvent } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { Shell } from '../components/Shell';
 import { Buddy } from '../components/Logo';
 import { signIn, signUp } from '../lib/account';
@@ -12,7 +12,11 @@ type Mode = 'signin' | 'create';
 const MIN_PASSWORD = 8;
 
 export default function SignIn() {
-  const [mode, setMode] = useState<Mode>('signin');
+  const [params] = useSearchParams();
+  // Only same-site paths, so ?next= can't send someone to another site after signing in.
+  const rawNext = params.get('next');
+  const next = rawNext && rawNext.startsWith('/') && !rawNext.startsWith('//') ? rawNext : '/profile';
+  const [mode, setMode] = useState<Mode>(params.get('mode') === 'create' ? 'create' : 'signin');
   useTitle(`${mode === 'signin' ? 'Sign in' : 'Create an account'}: UnlockDrill`);
   const nav = useNavigate();
   const [name, setName] = useState('');
@@ -36,7 +40,7 @@ export default function SignIn() {
     if (!res.account) { setCheckInbox(true); return; }
     adoptGuestProgress(res.account.email);
     await syncProgress();
-    nav('/profile');
+    nav(next);
   }
 
   if (checkInbox) {

@@ -30,6 +30,7 @@ export function returnToApp(app: AppKey | null): void {
     // Fallback for browsers that ignore the scheme (desktop testing).
     window.setTimeout(() => { if (info.web && document.visibilityState === 'visible') window.location.href = info.web; }, 900);
   } else {
-    window.history.length > 1 ? window.history.back() : (window.location.href = import.meta.env.BASE_URL);
+    if (window.history.length > 1) window.history.back();
+    else window.location.href = import.meta.env.BASE_URL;
   }
 }

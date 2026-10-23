@@ -551,3 +551,17 @@ kbd { font: inherit; font-weight: 700; padding: 1px 7px; border-radius: 6px; bac
 .qc-prompt.long { font-size: 20px; line-height: 1.4; font-weight: 700; letter-spacing: 0; max-width: 40ch; }
 .qc.compact .qc-prompt.long { font-size: 16px; }
 .more-row { color: var(--ink-2); font-size: var(--t-small); }
+
+/* ================= Drill Buddy reactions (ported from direction B) =================
+ * Buddy reacts to the answer next to the verdict: "nice" for right, a knowing "trick" wink for wrong. Never sad.
+ */
+.qc-verdict { display: flex; align-items: center; gap: 12px; }
+.qc-verdict .buddy { flex: none; }
+@media (prefers-reduced-motion: no-preference) {
+  .buddy-face { animation: buddy-swap 180ms var(--ease-out) both; transform-box: fill-box; transform-origin: center; }
+  @keyframes buddy-swap { from { opacity: 0; transform: scale(.94); } to { opacity: 1; transform: none; } }
+  .buddy-bubbles.is-filling circle { animation: bubble-fill 220ms var(--ease-out) both; transform-box: fill-box; transform-origin: center; }
+  .buddy-bubbles.is-filling circle:nth-child(2) { animation-delay: 80ms; }
+  .buddy-bubbles.is-filling circle:nth-child(3) { animation-delay: 160ms; }
+  @keyframes bubble-fill { from { opacity: 0; transform: scale(.6); } to { opacity: 1; transform: none; } }
+}

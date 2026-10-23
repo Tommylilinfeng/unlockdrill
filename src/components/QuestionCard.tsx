@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState, type ReactNode } from 'react';
 import type { Question } from '../lib/questions';
+import { Buddy } from './BuddyMoods';
 
 interface Props {
   question: Question;
@@ -33,18 +34,20 @@ export function Mark({ kind }: { kind: 'right' | 'wrong' }) {
 
 /** One question: a prompt and four large answer rows. Picking a row answers it; there is no separate submit. */
 export function QuestionCard({ question, onAnswered, after, compact = false, headingLevel = 'p' }: Props) {
-  const [picked, setPicked] = useState<string | null>(null);
-  const start = useRef(Date.now());
+  // The pick is keyed to the question, so a new question starts unanswered without resetting state in an effect.
+  const [pick, setPick] = useState<{ id: string; key: string } | null>(null);
+  const picked = pick?.id === question.id ? pick.key : null;
+  const start = useRef(0);
   const answered = picked !== null;
   const correct = picked === question.answer;
   const Prompt = headingLevel;
 
-  useEffect(() => { setPicked(null); start.current = Date.now(); }, [question.id]);
+  useEffect(() => { start.current = performance.now(); }, [question.id]);
 
-  function choose(key: string) {
+  function choose(key: string, at: number) {
     if (answered) return;
-    setPicked(key);
-    onAnswered?.(key === question.answer, Date.now() - start.current);
+    setPick({ id: question.id, key });
+    onAnswered?.(key === question.answer, Math.round(at - start.current));
   }
 
   return (
@@ -61,7 +64,7 @@ export function QuestionCard({ question, onAnswered, after, compact = false, hea
           }
           return (
             <li key={c.key}>
-              <button type="button" className={`choice ${state}`} onClick={() => choose(c.key)}
+              <button type="button" className={`choice ${state}`} onClick={e => choose(c.key, e.timeStamp)}
                 disabled={answered} aria-pressed={picked === c.key}>
                 <span className="choice-key" aria-hidden="true">{c.key}</span>
                 <span className="choice-text">
@@ -79,10 +82,13 @@ export function QuestionCard({ question, onAnswered, after, compact = false, hea
       <div aria-live="polite">
         {answered && (
           <div className="qc-after">
-            <p className={`verdict ${correct ? 'right' : 'wrong'}`}>
-              <Mark kind={correct ? 'right' : 'wrong'} />
-              {correct ? 'Right.' : `It’s ${question.answer}.`}
-            </p>
+            <div className="qc-verdict">
+              <Buddy mood={correct ? 'nice' : 'trick'} size={compact ? 44 : 56} />
+              <p className={`verdict ${correct ? 'right' : 'wrong'}`}>
+                <Mark kind={correct ? 'right' : 'wrong'} />
+                {correct ? 'Right.' : `It’s ${question.answer}.`}
+              </p>
+            </div>
             <p className="qc-why">{question.explanation}</p>
             {after}
           </div>
