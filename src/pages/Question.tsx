@@ -4,18 +4,31 @@ import { QuestionCard } from '../components/QuestionCard';
 import { EXAM } from '../config/exam';
 import { APPS, appFromParam, returnToApp } from '../lib/apps';
 import { loadBank, nextQuestion, rememberSeen } from '../lib/questions';
-import { isPaused, loadSettings, pauseFor, saveSettings, shouldPrompt } from '../lib/settings';
+import { FREQUENCIES, isPaused, loadSettings, pauseFor, saveSettings, shouldPrompt } from '../lib/settings';
 import { logPractice } from '../lib/events';
 import { useTitle } from '../lib/useTitle';
 
 /**
  * The interstitial. Opened by the iOS automation as /q?app=instagram.
- * - If paused or the frequency rule says "not now", we show a short screen with a button back to the app.
- *   We never redirect on our own: going back to the app fires the app-open automation again, and an
- *   automatic redirect is what turns that into a loop. The Shortcuts recipe on /setup guards the other side.
+ * - If paused or the frequency rule says "not now", we show "Not this time" and send the user back to the app
+ *   after a moment. Going back fires the app-open automation again; the marker-file check in the Shortcuts
+ *   recipe on /setup (verified on a real iPhone, issue #3) makes that second run stop, so this cannot loop.
  * - Otherwise: one question, explanation, then back. Skip and pause are always visible.
  * - ?demo=1 ignores frequency/pause so the flow can be shown on any device.
  */
+/** How long "Not this time" stays on screen before we hand control back to the app. */
+const AUTO_RETURN_MS = 1200;
+
+/** Small status line: lets the user see which how-often rule this browser has, and how many opens it has counted. */
+function SettingsLine({ frequency, opens }: { frequency: string; opens: number }) {
+  const label = FREQUENCIES.find(f => f.key === frequency)?.label ?? frequency;
+  return (
+    <p className="small quiet" style={{ marginTop: 28 }}>
+      How often: {label}. Open {opens} on this phone. <Link to="/settings">Change</Link>
+    </p>
+  );
+}
+
 export default function Question() {
   useTitle(`One ${EXAM.itemNoun}: UnlockDrill`);
   const [params] = useSearchParams();
@@ -41,11 +54,20 @@ export default function Question() {
     const opened = { ...s, opens: s.opens + 1, app: app ?? s.app };
     if (!question) {
       saveSettings(opened); setSettings(opened);
+      if (!demo) logPractice('returned', { app });
       return;
     }
     const shown = { ...opened, lastPromptAt: demo ? s.lastPromptAt : Date.now(), seen: rememberSeen(s.seen, question.id) };
     saveSettings(shown); setSettings(shown);
     logPractice('shown', { app, questionId: question.id });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  // Not this time: hand control back to the app after a moment (kept separate from the once-only effect above).
+  useEffect(() => {
+    if (question || demo) return;
+    const t = window.setTimeout(() => returnToApp(app), AUTO_RETURN_MS);
+    return () => window.clearTimeout(t);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -72,11 +94,13 @@ export default function Question() {
           <h1>{paused ? 'UnlockDrill is paused.' : 'No question this time.'}</h1>
           <p className="quiet" style={{ marginTop: 10 }}>
             {paused ? `Questions start again ${until ? `after ${until}` : 'when the pause ends'}.` : 'Your how-often setting skipped this one.'}
+            {!demo && ` Taking you back to ${appLabel}…`}
           </p>
           <div className="q-after">
             <button type="button" className="btn" onClick={back}>Back to {appLabel}</button>
             <Link className="link-btn" style={{ display: 'grid', placeItems: 'center' }} to="/settings">Change how often</Link>
           </div>
+          <SettingsLine frequency={settings.frequency} opens={settings.opens} />
         </div>
       </div>
     );
@@ -106,6 +130,7 @@ export default function Question() {
             <button type="button" className="link-btn" onClick={() => pause(24 * 60)}>Pause until tomorrow</button>
           </div>
         )}
+        {!demo && <SettingsLine frequency={settings.frequency} opens={settings.opens} />}
       </div>
     </div>
   );
