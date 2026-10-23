@@ -12,7 +12,11 @@ import { currentAccount, initials, signOut } from '../lib/account';
 
 const day = (t: number) => new Date(t).toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' });
 
-/** Mock profile: no sign-in yet, so everything shown comes from this device. */
+function Chevron() {
+  return <svg className="chev" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7" /></svg>;
+}
+
+/** Profile: what this device (or your account, when signed in) has practiced. */
 export default function Profile() {
   useTitle('Your profile: UnlockDrill');
   const bank = useMemo(() => loadBank(EXAM.key), []);
@@ -25,7 +29,9 @@ export default function Profile() {
   const misses = p.answers.filter(a => !a.correct).slice(-8).reverse();
   const tagCounts = MISTAKE_TAGS.map(t => ({ ...t, n: p.answers.filter(a => a.tag === t.key).length }));
   const untagged = p.answers.filter(a => !a.correct && !a.tag).length;
-  const maxMiss = week.missesByTopic[0]?.[1] ?? 1;
+  const totalMiss = week.missesByTopic.reduce((n, [, c]) => n + c, 0) || 1;
+  // When the top topics are tied there is no "most missed" topic, so the copy says so instead of picking one.
+  const tied = week.missesByTopic.length > 1 && week.missesByTopic[1][1] === week.missesByTopic[0][1];
 
   function retag(questionId: string, current: MistakeTag | undefined, t: MistakeTag) {
     tagMistake(questionId, current === t ? null : t);
@@ -35,103 +41,117 @@ export default function Profile() {
   return (
     <Shell>
       <div className="wrap profile">
-        <header className="profile-head">
-          <span className="avatar" aria-hidden="true">{initials(account)}</span>
-          <div>
-            <h1>{account?.name ? `${account.name}’s profile` : 'Your profile'}</h1>
+        <aside className="id-card night" aria-labelledby="profile-title">
+          <div className="id-top">
+            <span className="avatar" aria-hidden="true">{initials(account)}</span>
+            <div className="id-name">
+              <h1 id="profile-title">{account?.name ? account.name : 'Your profile'}</h1>
+              <p>{account ? account.email : 'Saved on this device only'}</p>
+            </div>
+          </div>
+          {week.answered === 0 ? (
+            <div className="id-empty">
+              <p className="id-big">Nothing yet this week.</p>
+              <p>Your first question shows up here.</p>
+              <Link className="btn btn-light" to="/q?app=instagram&demo=1">Try a question</Link>
+            </div>
+          ) : (
+            <div className="id-week">
+              <p className="id-num"><span className="num">{week.answered}</span></p>
+              <p className="id-label">{week.answered === 1 ? 'question' : 'questions'} this week, <span className="num">{week.correct}</span> right</p>
+              <p className="id-note">{!week.topMissTopic ? <>No misses this week.</> : tied ? <>Misses spread across {week.missesByTopic.length} topics.</> : <>Most misses: {week.topMissTopic.toLowerCase()}.</>} No streaks, no feed.</p>
+            </div>
+          )}
+          <div className="id-foot">
             {account ? (
-              <p className="quiet" style={{ marginTop: 4 }}>
-                Signed in as {account.email}.{' '}
-                <button type="button" className="link-btn" onClick={async () => { await signOut(); nav('/signin'); }}>Sign out</button>
-              </p>
+              <button type="button" className="link-btn" onClick={async () => { await signOut(); nav('/signin'); }}>Sign out</button>
             ) : (
-              <p className="quiet" style={{ marginTop: 4 }}>You’re not signed in, so this is saved on this device only. <Link to="/signin">Sign in</Link> to keep it with your account.</p>
+              <p>Sign in to keep this with your account. <Link to="/signin">Sign in</Link></p>
             )}
           </div>
-        </header>
+        </aside>
 
-        <div className="profile-grid">
-          <section className="panel" aria-labelledby="week-title">
-            <h2 id="week-title" className="panel-title">This week</h2>
-            {week.answered === 0 ? (
-              <p style={{ marginTop: 6 }}>No questions this week yet. <Link to="/q?app=instagram&demo=1">Try one</Link></p>
-            ) : (
-              <>
-                <p className="week-line">
-                  You answered {week.answered} this week
-                  {week.topMissTopic ? <>; most misses were {week.topMissTopic.toLowerCase()}.</> : <>, with no misses.</>}
-                </p>
-                {week.missesByTopic.length > 0 && (
-                  <ul className="miss-bars" aria-label="Misses by topic">
-                    {week.missesByTopic.slice(0, 5).map(([topic, n]) => (
-                      <li key={topic}>
-                        <span className="miss-topic">{topic}</span>
-                        <span className="miss-bar" aria-hidden="true"><span style={{ width: `${(n / maxMiss) * 100}%` }} /></span>
-                        <span className="miss-n">{n}</span>
-                      </li>
-                    ))}
-                  </ul>
-                )}
-                <p className="small quiet" style={{ marginTop: 14 }}>{week.correct} of {week.answered} right. No streaks, no feed.</p>
-              </>
-            )}
-          </section>
-
-          <section className="panel" aria-labelledby="diag-title">
-            <h2 id="diag-title" className="panel-title">Diagnostic</h2>
-            {p.diagnostic ? (
-              <>
-                <p style={{ marginTop: 6 }}>{p.diagnostic.correct} of {p.diagnostic.total} right on {day(p.diagnostic.at)}.</p>
-                {p.diagnostic.missedTopics.length > 0 && (
-                  <p style={{ marginTop: 6 }}>Start with {p.diagnostic.missedTopics.slice(0, 3).join(', ').toLowerCase()}.</p>
-                )}
-                <p style={{ marginTop: 16 }}><Link to="/diagnostic">Take it again</Link></p>
-              </>
-            ) : (
-              <>
-                <p style={{ marginTop: 6 }}>Ten questions across {EXAM.sections.join(' and ')}, about ten minutes. It shows which topics to practice first. It doesn’t predict a score.</p>
-                <div className="actions" style={{ marginTop: 18 }}><Link className="btn" to="/diagnostic">Take the diagnostic</Link></div>
-              </>
-            )}
-          </section>
-
-          <section className="panel span-2" aria-labelledby="log-title">
-            <h2 id="log-title" className="panel-title">Mistake log</h2>
-            <p className="small quiet" style={{ marginTop: 4 }}>After a wrong answer you can tag why, with one tap. Tagging is optional.</p>
-            <ul className="tag-counts">
-              {tagCounts.map(t => <li key={t.key}><strong>{t.n}</strong> {t.label.toLowerCase()}</li>)}
-              <li><strong>{untagged}</strong> not tagged</li>
-            </ul>
-            {misses.length === 0 ? (
-              <p style={{ marginTop: 14 }}>No misses logged yet.</p>
-            ) : (
-              <ul className="log">
-                {misses.map(m => (
-                  <li key={`${m.questionId}-${m.at}`}>
-                    <div>
-                      <p className="log-topic">{m.topic}</p>
-                      <p className="small quiet">{m.section}, {day(m.at)}{m.source === 'diagnostic' ? ', diagnostic' : ''}</p>
-                    </div>
-                    <div className="tagger-row" role="group" aria-label={`Why you missed this ${m.topic.toLowerCase()} question`}>
-                      {MISTAKE_TAGS.map(t => (
-                        <button key={t.key} type="button" className="chip" aria-pressed={m.tag === t.key}
-                          onClick={() => retag(m.questionId, m.tag, t.key)}>{t.label}</button>
-                      ))}
-                    </div>
+        <div className="groups">
+          {week.missesByTopic.length > 0 && (
+            <section className="gsection" aria-labelledby="miss-title">
+              <h2 id="miss-title" className="gtitle">Misses this week, by topic</h2>
+              <ul className="group" aria-label="Misses by topic">
+                {week.missesByTopic.slice(0, 5).map(([topic, n]) => (
+                  <li key={topic} className="grow miss">
+                    <span className="miss-topic">{topic}</span>
+                    <span className="miss-bar" aria-hidden="true"><span style={{ transform: `scaleX(${n / totalMiss})` }} /></span>
+                    <span className="num miss-n">{n}</span>
                   </li>
                 ))}
+                {week.missesByTopic.length > 5 && (
+                  <li className="grow more-row">And {week.missesByTopic.length - 5} more {week.missesByTopic.length - 5 === 1 ? 'topic' : 'topics'}, not shown.</li>
+                )}
               </ul>
-            )}
+              <p className="gfoot">Bars show each topic’s share of this week’s <span className="num">{totalMiss}</span> misses.</p>
+            </section>
+          )}
+
+          <section className="gsection" aria-labelledby="diag-title">
+            <h2 id="diag-title" className="gtitle">Diagnostic</h2>
+            <div className="group">
+              {p.diagnostic ? (
+                <>
+                  <div className="grow">
+                    <div><p className="grow-title"><span className="num">{p.diagnostic.correct}</span> of <span className="num">{p.diagnostic.total}</span> right</p><p className="grow-sub">{day(p.diagnostic.at)}</p></div>
+                  </div>
+                  {p.diagnostic.missedTopics.length > 0 && (
+                    <div className="grow"><div><p className="grow-title">Start with</p><p className="grow-sub">{p.diagnostic.missedTopics.slice(0, 3).join(', ').toLowerCase()}</p></div></div>
+                  )}
+                  <Link className="grow grow-link" to="/diagnostic"><span className="grow-title">Take it again</span><Chevron /></Link>
+                </>
+              ) : (
+                <div className="grow stack">
+                  <p>Ten questions across {EXAM.sections.join(' and ')}, about ten minutes. It shows which topics to practice first. It doesn’t predict a score.</p>
+                  <Link className="btn" to="/diagnostic">Take the diagnostic</Link>
+                </div>
+              )}
+            </div>
           </section>
 
-          <div className="span-2"><ReferralCard /></div>
-        </div>
+          <section className="gsection" aria-labelledby="log-title">
+            <h2 id="log-title" className="gtitle">Mistake log</h2>
+            <div className="group">
+              <ul className="tally" aria-label="Mistakes by reason">
+                {tagCounts.map(t => <li key={t.key}><span className="num">{t.n}</span>{t.label}</li>)}
+                <li><span className="num">{untagged}</span>Not tagged</li>
+              </ul>
+              {misses.length === 0 ? (
+                <p className="grow">No misses logged yet. After a wrong answer you can tag why with one tap.</p>
+              ) : (
+                <ul className="log">
+                  {misses.map(m => (
+                    <li key={`${m.questionId}-${m.at}`} className="grow log-row">
+                      <div>
+                        <p className="grow-title">{m.topic}</p>
+                        <p className="grow-sub">{m.section}, {day(m.at)}{m.source === 'diagnostic' ? ', diagnostic' : ''}</p>
+                      </div>
+                      <div className="chips" role="group" aria-label={`Why you missed this ${m.topic.toLowerCase()} question`}>
+                        {MISTAKE_TAGS.map(t => (
+                          <button key={t.key} type="button" className="chip" aria-pressed={m.tag === t.key}
+                            onClick={() => retag(m.questionId, m.tag, t.key)}>{t.label}</button>
+                        ))}
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
+            <p className="gfoot">Tagging is optional. It helps you see whether the same mistakes keep coming back.</p>
+          </section>
 
-        <p className="small quiet" style={{ marginTop: 32 }}>
-          For the team preview:{' '}
-          <button type="button" className="link-btn small" onClick={() => { loadSampleData(bank); refresh(); }}>Fill with sample data</button>{' '}
-          <button type="button" className="link-btn small" onClick={() => { clearProgress(); refresh(); }}>Clear history</button>
-        </p>
+          <ReferralCard />
+
+          <p className="preview-tools">
+            For the team preview:{' '}
+            <button type="button" className="link-btn" onClick={() => { loadSampleData(bank); refresh(); }}>Fill with sample data</button>{' '}
+            <button type="button" className="link-btn" onClick={() => { clearProgress(); refresh(); }}>Clear history</button>
+          </p>
+        </div>
       </div>
     </Shell>
   );

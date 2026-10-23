@@ -6,8 +6,8 @@ interface Props {
   onAnswered?: (correct: boolean, msToAnswer: number) => void;
   /** Shown under the explanation once answered. */
   after?: ReactNode;
-  /** Large prompt, for the homepage hero. */
-  hero?: boolean;
+  /** Tighter sizes, for the phone on the homepage. */
+  compact?: boolean;
   headingLevel?: 'h1' | 'h2' | 'p';
 }
 
@@ -17,12 +17,22 @@ interface Props {
  */
 function keepMathTogether(text: string): string {
   return text
-    .replace(/ ([+\-−×÷=<>≤≥]) /g, '\u00a0$1\u00a0')
-    .replace(/(^|[\s(])([A-Za-z]{1,2}) (?=\S)/g, '$1$2\u00a0');
+    .replace(/ ([+\-−×÷=<>≤≥]) /g, ' $1 ')
+    .replace(/(^|[\s(])([A-Za-z]{1,2}) (?=\S)/g, '$1$2 ');
 }
 
-/** One question rendered as a row of answer-sheet bubbles. Picking a bubble fills it in. */
-export function QuestionCard({ question, onAnswered, after, hero = false, headingLevel = 'p' }: Props) {
+export function Mark({ kind }: { kind: 'right' | 'wrong' }) {
+  return (
+    <svg className={`mark ${kind}`} width="24" height="24" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+      {kind === 'right'
+        ? <><circle cx="12" cy="12" r="11" /><path d="M7 12.5l3.2 3.2L17 9" /></>
+        : <><circle cx="12" cy="12" r="10" /><path d="M8.5 8.5l7 7M15.5 8.5l-7 7" /></>}
+    </svg>
+  );
+}
+
+/** One question: a prompt and four large answer rows. Picking a row answers it; there is no separate submit. */
+export function QuestionCard({ question, onAnswered, after, compact = false, headingLevel = 'p' }: Props) {
   const [picked, setPicked] = useState<string | null>(null);
   const start = useRef(Date.now());
   const answered = picked !== null;
@@ -38,10 +48,10 @@ export function QuestionCard({ question, onAnswered, after, hero = false, headin
   }
 
   return (
-    <div>
-      <p className="sheet-topic">{question.section}: {question.topic.toLowerCase()}</p>
-      <Prompt className={`sheet-prompt${hero ? ' hero' : ''}`}>{keepMathTogether(question.prompt)}</Prompt>
-      <ul className="bubbles" aria-label="Answer choices">
+    <div className={`qc${compact ? ' compact' : ''}${answered ? ' is-answered' : ''}`}>
+      <p className="qc-topic">{question.section}: {question.topic.toLowerCase()}</p>
+      <Prompt className={`qc-prompt${question.prompt.length > 90 ? ' long' : ''}`}>{keepMathTogether(question.prompt)}</Prompt>
+      <ul className="qc-choices" aria-label="Answer choices">
         {question.choices.map(c => {
           let state = '';
           if (answered) {
@@ -51,26 +61,33 @@ export function QuestionCard({ question, onAnswered, after, hero = false, headin
           }
           return (
             <li key={c.key}>
-              <button type="button" className={`bubble-row ${state}`} onClick={() => choose(c.key)}
+              <button type="button" className={`choice ${state}`} onClick={() => choose(c.key)}
                 disabled={answered} aria-pressed={picked === c.key}>
-                <span className="bubble" aria-hidden="true">{c.key}</span>
-                <span className="text">
+                <span className="choice-key" aria-hidden="true">{c.key}</span>
+                <span className="choice-text">
                   {c.text}
                   {answered && c.key === question.answer && <span className="sr-only"> (correct answer)</span>}
                   {answered && c.key === picked && !correct && <span className="sr-only"> (your answer)</span>}
                 </span>
+                {state === 'right' && <Mark kind="right" />}
+                {state === 'wrong' && <Mark kind="wrong" />}
               </button>
             </li>
           );
         })}
       </ul>
-      {answered && (
-        <div className="verdict-wrap" aria-live="polite">
-          <p className={`verdict ${correct ? 'right' : 'wrong'}`}>{correct ? 'Right.' : `It's ${question.answer}.`}</p>
-          <p className="why">{question.explanation}</p>
-          {after}
-        </div>
-      )}
+      <div aria-live="polite">
+        {answered && (
+          <div className="qc-after">
+            <p className={`verdict ${correct ? 'right' : 'wrong'}`}>
+              <Mark kind={correct ? 'right' : 'wrong'} />
+              {correct ? 'Right.' : `It’s ${question.answer}.`}
+            </p>
+            <p className="qc-why">{question.explanation}</p>
+            {after}
+          </div>
+        )}
+      </div>
     </div>
   );
 }

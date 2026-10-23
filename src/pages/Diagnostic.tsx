@@ -51,18 +51,19 @@ export default function Diagnostic() {
   if (step < 0) {
     return (
       <Shell>
-        <div className="wrap diag">
-          <p className="for">Diagnostic</p>
+        <div className="wrap narrow page-head">
           <h1>Ten questions to find where to start.</h1>
-          <p className="lead" style={{ marginTop: 16 }}>One question per topic across {EXAM.sections.join(' and ')}. It takes about ten minutes. At the end you’ll see which topics to practice first.</p>
-          <ul className="plain" style={{ marginTop: 22 }}>
-            <li>Skip any question, or stop whenever you like</li>
-            <li>It doesn’t predict a score</li>
-            <li>Results stay on this device</li>
+          <p className="lead">One question per topic across {EXAM.sections.join(' and ')}. It takes about ten minutes. At the end you’ll see which topics to practice first.</p>
+        </div>
+        <div className="wrap narrow">
+          <ul className="group checks">
+            <li className="grow">Skip any question, or stop whenever you like</li>
+            <li className="grow">It doesn’t predict a score</li>
+            <li className="grow">Results stay on this device</li>
           </ul>
-          <div className="actions" style={{ marginTop: 28 }}>
-            <button type="button" className="btn" onClick={start}>Start the diagnostic</button>
-            <Link to="/profile">Back to your profile</Link>
+          <div className="actions">
+            <button type="button" className="btn btn-big" onClick={start}>Start the diagnostic</button>
+            <Link className="btn btn-quiet" to="/profile">Back to your profile</Link>
           </div>
         </div>
       </Shell>
@@ -78,22 +79,29 @@ export default function Diagnostic() {
     });
     return (
       <Shell>
-        <div className="wrap diag">
-          <p className="for">Diagnostic results</p>
-          <h1>{right} of {answers.length} right.</h1>
-          <ul className="tag-counts" style={{ marginTop: 18 }}>
-            {bySection.map(s => <li key={s.sec}><strong>{s.right}/{s.total}</strong> {s.sec}</li>)}
-          </ul>
-          <h2 style={{ marginTop: 40 }}>{missed.length ? 'Practice these first' : 'Nothing missed'}</h2>
-          {missed.length > 0 ? (
-            <ul className="plain">
-              {missed.map(a => <li key={a.q.id}>{a.q.topic} <span className="quiet">({a.q.section}{a.correct === null ? ', skipped' : ''})</span></li>)}
+        <div className="wrap narrow page-head">
+          <p className="lead">Diagnostic results</p>
+          <h1><span className="num">{right}</span> of <span className="num">{answers.length}</span> right.</h1>
+        </div>
+        <div className="wrap narrow groups">
+          <section className="gsection" aria-labelledby="sec-title">
+            <h2 id="sec-title" className="gtitle">By section</h2>
+            <ul className="group">
+              {bySection.map(s => <li key={s.sec} className="grow"><p className="grow-title">{s.sec}</p><span className="grow-value"><span className="num">{s.right}</span> of <span className="num">{s.total}</span></span></li>)}
             </ul>
-          ) : <p style={{ marginTop: 10 }}>Every topic in this set went right. Your everyday questions will mix all of them.</p>}
-          <p className="small quiet" style={{ marginTop: 24 }}>Ten questions is a rough guide, not a score prediction.</p>
-          <div className="actions" style={{ marginTop: 28 }}>
-            <Link className="btn" to="/profile">See your profile</Link>
-            <button type="button" className="link-btn" onClick={start}>Take it again</button>
+          </section>
+          <section className="gsection" aria-labelledby="first-title">
+            <h2 id="first-title" className="gtitle">{missed.length ? 'Practice these first' : 'Nothing missed'}</h2>
+            {missed.length > 0 ? (
+              <ul className="group">
+                {missed.map(a => <li key={a.q.id} className="grow"><div><p className="grow-title">{a.q.topic}</p><p className="grow-sub">{a.q.section}{a.correct === null ? ', skipped' : ''}</p></div></li>)}
+              </ul>
+            ) : <p>Every topic in this set went right. Your everyday questions will mix all of them.</p>}
+            <p className="gfoot">Ten questions is a rough guide, not a score prediction.</p>
+          </section>
+          <div className="actions">
+            <Link className="btn btn-big" to="/profile">See your profile</Link>
+            <button type="button" className="btn btn-quiet" onClick={start}>Take it again</button>
           </div>
         </div>
       </Shell>
@@ -104,29 +112,27 @@ export default function Diagnostic() {
   const answered = current !== null;
   return (
     <Shell>
-      <div className="wrap diag">
+      <div className="wrap narrow diag">
         <div className="diag-bar">
-          <p className="small quiet">Question {step + 1} of {set.length}</p>
-          <Link className="small" to="/profile">Stop</Link>
+          <p>Question <span className="num">{step + 1}</span> of <span className="num">{set.length}</span></p>
+          <Link to="/profile">Stop</Link>
         </div>
-        <div className="diag-track" aria-hidden="true"><span style={{ width: `${(step / set.length) * 100}%` }} /></div>
-        <div style={{ marginTop: 28 }} key={q.id}>
+        <div className="diag-track" aria-hidden="true"><span style={{ transform: `scaleX(${step / set.length})` }} /></div>
+        <div className="diag-card" key={q.id}>
           <QuestionCard question={q} headingLevel="h1"
             onAnswered={c => { setCurrent(c); recordAnswer(q, c, 'diagnostic'); }}
             after={
               <>
                 {current === false && <MistakeTagger questionId={q.id} />}
-                <div className="actions" style={{ marginTop: 22 }}>
-                  <button type="button" className="btn" onClick={() => next()}>{step + 1 < set.length ? 'Next question' : 'See results'}</button>
-                </div>
+                <button type="button" className="btn btn-block btn-big" onClick={() => next()}>{step + 1 < set.length ? 'Next question' : 'See results'}</button>
               </>
             } />
-          {!answered && (
-            <div className="actions" style={{ marginTop: 26 }}>
-              <button type="button" className="link-btn" onClick={() => next(true)}>Skip this one</button>
-            </div>
-          )}
         </div>
+        {!answered && (
+          <div className="actions">
+            <button type="button" className="btn btn-quiet" onClick={() => next(true)}>Skip this one</button>
+          </div>
+        )}
       </div>
     </Shell>
   );

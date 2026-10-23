@@ -15,16 +15,18 @@ export function ReferralCard() {
   }
 
   return (
-    <div className="panel">
-      <h2 className="panel-title">Invite a friend</h2>
-      <p style={{ marginTop: 6 }}>When they sign up with your link, both of you get early access.</p>
-      <div className="referral-row">
-        <input readOnly value={link} aria-label="Your invite link" onFocus={e => e.currentTarget.select()} />
-        <button type="button" className="btn" onClick={copy}>{copied ? 'Copied' : 'Copy link'}</button>
+    <section className="gsection" aria-labelledby="invite-title">
+      <h2 id="invite-title" className="gtitle">Invite a friend</h2>
+      <div className="group">
+        <div className="grow stack">
+          <p>When they sign up with your link, both of you get early access.</p>
+          <div className="copy-row">
+            <input readOnly value={link} aria-label="Your invite link" onFocus={e => e.currentTarget.select()} />
+            <button type="button" className="btn" onClick={copy}>{copied ? 'Copied' : 'Copy link'}</button>
+          </div>
+        </div>
       </div>
-      <p className="small quiet" style={{ marginTop: 10 }} aria-live="polite">
-        {copied ? 'Link copied. ' : ''}Preview: the link works, but referrals aren’t counted yet.
-      </p>
-    </div>
+      <p className="gfoot" aria-live="polite">{copied ? 'Link copied. ' : ''}Preview: the link works, but referrals aren’t counted yet.</p>
+    </section>
   );
 }

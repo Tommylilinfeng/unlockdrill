@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Shell } from '../components/Shell';
+import { ShortcutCard } from '../components/ShortcutCard';
 import { APP_LIST, type AppKey } from '../lib/apps';
 import { FREQUENCIES, loadSettings, saveSettings, type Frequency } from '../lib/settings';
 import { SITE_URL } from '../config/exam';
@@ -29,79 +30,82 @@ export default function Setup() {
 
   return (
     <Shell>
-      <div className="wrap" style={{ paddingTop: 48 }}>
-        <h1 style={{ maxWidth: '18ch' }}>Put one question in front of {appName}.</h1>
-        <p className="lead" style={{ marginTop: 16 }}>You’ll use the Shortcuts app that’s already on your iPhone. It takes about five minutes and needs iOS 17 or later.</p>
+      <div className="wrap page-head">
+        <h1>Put one question in front of {appName}.</h1>
+        <p className="lead">You’ll use the Shortcuts app that’s already on your iPhone. It takes about five minutes and needs iOS 17 or later.</p>
       </div>
 
-      <section className="block" style={{ paddingTop: 48 }}>
-        <div className="wrap two">
-          <div>
-            <h2>First, your settings</h2>
-            <div className="field" style={{ marginTop: 22 }}>
+      <div className="wrap setup">
+        <section className="gsection setup-settings" aria-labelledby="first-title">
+          <h2 id="first-title">First, your settings</h2>
+          <div className="group fields">
+            <div className="frow">
               <label htmlFor="app">Which app should ask first?</label>
               <select id="app" value={s.app ?? ''} onChange={e => update({ app: (e.target.value || null) as AppKey | null })}>
                 <option value="">Choose an app</option>
                 {APP_LIST.map(a => <option key={a.key} value={a.key}>{a.label}</option>)}
               </select>
             </div>
-            <div className="field">
+            <div className="frow">
               <label htmlFor="freq">How often?</label>
-              <select id="freq" value={s.frequency} onChange={e => update({ frequency: e.target.value as Frequency })}>
+              <select id="freq" value={s.frequency} aria-describedby="freq-help" onChange={e => update({ frequency: e.target.value as Frequency })}>
                 {FREQUENCIES.map(f => <option key={f.key} value={f.key}>{f.label}</option>)}
               </select>
-              <p className="small quiet">{FREQUENCIES.find(f => f.key === s.frequency)?.help}</p>
+              <p id="freq-help" className="frow-help">{FREQUENCIES.find(f => f.key === s.frequency)?.help}</p>
             </div>
-            <div className="field">
+            <div className="frow">
               <label htmlFor="url">Your link</label>
               <input id="url" type="text" readOnly value={url} onFocus={e => e.currentTarget.select()} />
-              <div className="actions">
-                <button type="button" className="btn" onClick={copy}>{copied ? 'Copied' : 'Copy link'}</button>
-                <Link to={`/q?app=${s.app ?? 'instagram'}&demo=1`}>Preview the question screen</Link>
-              </div>
             </div>
           </div>
-
-          <div>
-            <h2>Then, in Shortcuts</h2>
-            <ol className="steps">
-              <li><p>Open <strong>Shortcuts</strong>, tap <strong>Automation</strong> at the bottom, tap <kbd>+</kbd>, and choose <strong>App</strong>.</p></li>
-              <li><p>Tap <strong>Choose</strong>, pick <strong>{appName}</strong>, and leave <strong>Is Opened</strong> checked. Choose <strong>Run Immediately</strong>, leave <strong>Notify When Run</strong> off, and tap <strong>Next</strong>.</p></li>
-              <li><p>Tap <strong>New Blank Automation</strong> (on newer iPhones, <strong>Create New Shortcut</strong>). Add the actions shown in the box below, in that order. Search for each one by its name. New actions land at the bottom; press and hold one to drag it into place.</p></li>
-              <li><p>Add <strong>Get File from Folder</strong>. It reads “Get file from Shortcuts at path”. Type <kbd>{MARKER}</kbd> as the path, tap the arrow on the action, and turn off <strong>Error If Not Found</strong>.</p></li>
-              <li><p>Add <strong>If</strong>. If it says “File Size is … MB”, tap <strong>File Size</strong> and choose <strong>Anything</strong>, so it reads “If File has any value”. Inside the If, add <strong>Delete Files</strong> (tap its arrow and turn <strong>Delete Immediately</strong> on) and then <strong>Stop This Shortcut</strong>. Leave <strong>Otherwise</strong> empty.</p></li>
-              <li><p>After <strong>End If</strong>, add <strong>Text</strong> and type <kbd>1</kbd>. Then add <strong>Save File</strong>: turn off <strong>Ask Where to Save</strong>, type <kbd>{MARKER}</kbd> as the path, and turn on <strong>Overwrite If File Exists</strong>.</p></li>
-              <li><p>Last, add <strong>Open URLs</strong>. If it fills in “Saved File”, tap it and choose <strong>Clear Variable</strong>. Paste your link and tap the checkmark to save.</p></li>
-              <li><p>Test it: open {appName}. A question appears. Tap <strong>Back to {appName}</strong> and you should stay in {appName}.</p></li>
-            </ol>
-
-            <div className="ios" style={{ marginTop: 28 }} role="img" aria-label="The finished automation, action by action">
-              <div className="ios-row"><span className="ios-icon app" aria-hidden="true">1</span><div><div className="ios-title">Get File from Folder</div><div className="ios-sub">Shortcuts / {MARKER}, Error If Not Found off</div></div></div>
-              <div className="ios-row"><span className="ios-icon app" aria-hidden="true">2</span><div><div className="ios-title">If File has any value</div><div className="ios-sub">You just came back from UnlockDrill</div></div></div>
-              <div className="ios-row" style={{ paddingLeft: 40 }}><span className="ios-icon app" aria-hidden="true">3</span><div><div className="ios-title">Delete Files</div><div className="ios-sub">File, Delete Immediately on</div></div></div>
-              <div className="ios-row" style={{ paddingLeft: 40 }}><span className="ios-icon app" aria-hidden="true">4</span><div><div className="ios-title">Stop This Shortcut</div><div className="ios-sub">Leaves you in {appName}</div></div></div>
-              <div className="ios-row"><span className="ios-icon app" aria-hidden="true">5</span><div><div className="ios-title">End If</div></div></div>
-              <div className="ios-row"><span className="ios-icon app" aria-hidden="true">6</span><div><div className="ios-title">Text</div><div className="ios-sub">1</div></div></div>
-              <div className="ios-row"><span className="ios-icon app" aria-hidden="true">7</span><div><div className="ios-title">Save File</div><div className="ios-sub">Shortcuts / {MARKER}, Overwrite on</div></div></div>
-              <div className="ios-row"><span className="ios-icon url" aria-hidden="true">8</span><div><div className="ios-title">Open URLs</div><div className="ios-sub">{url}</div></div></div>
-            </div>
-
-            <h3 style={{ marginTop: 32 }}>Why the extra steps</h3>
-            <p style={{ marginTop: 8 }}>When you go back to {appName}, your iPhone counts that as opening {appName} again, so the automation runs a second time. The small file is how it tells the two apart: no file means you opened {appName} yourself, so it shows a question; a file means you just came back, so it deletes the file and lets you through.</p>
-            <p className="small quiet" style={{ marginTop: 12 }}>If you leave a question by going to the home screen instead of tapping Back, the next time you open {appName} goes straight through once. To turn UnlockDrill off, delete the automation in Shortcuts, or pause it from <Link to="/settings">your settings</Link>.</p>
+          <div className="actions">
+            <button type="button" className="btn" onClick={copy}>{copied ? 'Copied' : 'Copy link'}</button>
+            <Link className="btn btn-quiet" to={`/q?app=${s.app ?? 'instagram'}&demo=1`}>Preview the question screen</Link>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <section className="band">
-        <div className="wrap two">
+        <section className="setup-steps" aria-labelledby="then-title">
+          <h2 id="then-title">Then, in Shortcuts</h2>
+          <ol className="steps">
+            <li><p>Open <strong>Shortcuts</strong>, tap <strong>Automation</strong> at the bottom, tap <kbd>+</kbd>, and choose <strong>App</strong>.</p></li>
+            <li><p>Tap <strong>Choose</strong>, pick <strong>{appName}</strong>, and leave <strong>Is Opened</strong> checked. Choose <strong>Run Immediately</strong>, leave <strong>Notify When Run</strong> off, and tap <strong>Next</strong>.</p></li>
+            <li><p>Tap <strong>New Blank Automation</strong> (on newer iPhones, <strong>Create New Shortcut</strong>). Add the actions shown in the box below, in that order. Search for each one by its name. New actions land at the bottom; press and hold one to drag it into place.</p></li>
+            <li><p>Add <strong>Get File from Folder</strong>. It reads “Get file from Shortcuts at path”. Type <kbd>{MARKER}</kbd> as the path, tap the arrow on the action, and turn off <strong>Error If Not Found</strong>.</p></li>
+            <li><p>Add <strong>If</strong>. If it says “File Size is … MB”, tap <strong>File Size</strong> and choose <strong>Anything</strong>, so it reads “If File has any value”. Inside the If, add <strong>Delete Files</strong> (tap its arrow and turn <strong>Delete Immediately</strong> on) and then <strong>Stop This Shortcut</strong>. Leave <strong>Otherwise</strong> empty.</p></li>
+            <li><p>After <strong>End If</strong>, add <strong>Text</strong> and type <kbd>1</kbd>. Then add <strong>Save File</strong>: turn off <strong>Ask Where to Save</strong>, type <kbd>{MARKER}</kbd> as the path, and turn on <strong>Overwrite If File Exists</strong>.</p></li>
+            <li><p>Last, add <strong>Open URLs</strong>. If it fills in “Saved File”, tap it and choose <strong>Clear Variable</strong>. Paste your link and tap the checkmark to save.</p></li>
+            <li><p>Test it: open {appName}. A question appears. Tap <strong>Back to {appName}</strong> and you should stay in {appName}.</p></li>
+          </ol>
+
+          <figure className="shortcut-figure">
+            <ShortcutCard trigger={appName} label="The finished automation, action by action" actions={[
+              { icon: 'file', title: 'Get File from Folder', sub: `Shortcuts / ${MARKER}, Error If Not Found off` },
+              { icon: 'if', title: 'If File has any value', sub: 'You just came back from UnlockDrill' },
+              { icon: 'trash', title: 'Delete Files', sub: 'File, Delete Immediately on', indent: true },
+              { icon: 'stop', title: 'Stop This Shortcut', sub: `Leaves you in ${appName}`, indent: true },
+              { icon: 'if', title: 'End If' },
+              { icon: 'text', title: 'Text', token: '1' },
+              { icon: 'file', title: 'Save File', sub: `Shortcuts / ${MARKER}, Overwrite on` },
+              { icon: 'url', title: 'Open URLs', token: url },
+            ]} />
+            <figcaption>The finished automation, top to bottom.</figcaption>
+          </figure>
+
+          <h3>Why the extra steps</h3>
+          <p>When you go back to {appName}, your iPhone counts that as opening {appName} again, so the automation runs a second time. The small file is how it tells the two apart: no file means you opened {appName} yourself, so it shows a question; a file means you just came back, so it deletes the file and lets you through.</p>
+          <p className="quiet">If you leave a question by going to the home screen instead of tapping Back, the next time you open {appName} goes straight through once. To turn UnlockDrill off, delete the automation in Shortcuts, or pause it from <Link to="/settings">your settings</Link>.</p>
+        </section>
+      </div>
+
+      <section className="night section faq">
+        <div className="wrap split">
           <div>
-            <h3>Is this an app blocker?</h3>
-            <p style={{ marginTop: 8 }}>No. Nothing gets locked, and Skip always works. It’s Apple’s own automation feature, so UnlockDrill can’t see or control your other apps.</p>
+            <h2>Is this an app blocker?</h2>
+            <p>No. Nothing gets locked, and Skip always works. It’s Apple’s own automation feature, so UnlockDrill can’t see or control your other apps.</p>
           </div>
           <div>
-            <h3>What about Android?</h3>
-            <p style={{ marginTop: 8 }}>Not yet. It’s iPhone only for now.</p>
+            <h2>What about Android?</h2>
+            <p>Not yet. It’s iPhone only for now.</p>
           </div>
         </div>
       </section>
