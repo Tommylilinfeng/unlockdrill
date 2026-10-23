@@ -8,16 +8,19 @@ import { EXAM, SITE_URL } from '../config/exam';
 import { loadBank } from '../lib/questions';
 import { track } from '../lib/analytics';
 import { useTitle } from '../lib/useTitle';
+import { useReveal } from '../lib/reveal';
 
 export default function Home() {
   useTitle(`UnlockDrill: one ${EXAM.itemNoun} before you scroll`);
   const sample = loadBank(EXAM.key)[0];
   const [answered, setAnswered] = useState(false);
+  const page = useReveal<HTMLDivElement>();
   const shortUrl = `${(SITE_URL || window.location.origin + import.meta.env.BASE_URL).replace(/^https?:\/\//, '').replace(/\/$/, '')}/q?app=instagram`;
 
   return (
     <Shell>
-      <div className="wrap hero">
+      <div ref={page}>
+      <div className="wrap hero load-in">
         <section aria-labelledby="sample">
           <p className="hero-context"><span className="dot" aria-hidden="true" />You just opened Instagram. One question first.</p>
           {sample && (
@@ -41,7 +44,7 @@ export default function Home() {
 
       <section className="band" id="how" aria-labelledby="how-title">
         <div className="wrap two">
-          <div>
+          <div className="reveal">
             <h2 id="how-title">How it gets in front of Instagram</h2>
             <ol className="steps">
               <li><div><h3>Pick the app you scroll</h3><p>Instagram, TikTok, YouTube, X, or Reddit, and how often you want a question.</p></div></li>
@@ -50,7 +53,7 @@ export default function Home() {
             </ol>
             <p style={{ marginTop: 28 }}><Link to="/setup">See the setup steps</Link></p>
           </div>
-          <figure style={{ margin: 0 }}>
+          <figure className="reveal" style={{ margin: 0 }}>
             <div className="ios" role="img" aria-label="The Shortcuts automation: when Instagram is opened, open the UnlockDrill link">
               <div className="ios-row"><span className="ios-icon app" aria-hidden="true">IG</span><div><div className="ios-title">When Instagram is opened</div><div className="ios-sub">Run immediately</div></div></div>
               <div className="ios-row"><span className="ios-icon url" aria-hidden="true">⌘</span><div><div className="ios-title">Open URLs</div><div className="ios-sub">{shortUrl}</div></div></div>
@@ -62,13 +65,13 @@ export default function Home() {
 
       <section className="block" aria-labelledby="lock-title">
         <div className="wrap two">
-          <div>
+          <div className="reveal">
             <h2 id="lock-title">Why it isn’t a blocker</h2>
             <p className="pullquote">“Screen Time doesn’t do anything for me. I just tap ignore and keep scrolling.”</p>
             <p className="attrib small">One of twelve test takers we interviewed</p>
             <p style={{ marginTop: 22 }}>We started out wanting to lock the phone until you answered. Interviews talked us out of it. People ignore locks, so UnlockDrill asks instead, and the choice stays yours.</p>
           </div>
-          <div className="two" style={{ gap: 32 }}>
+          <div className="two reveal" style={{ gap: 32 }}>
             <div>
               <h3>What it does</h3>
               <ul className="plain">
@@ -90,7 +93,7 @@ export default function Home() {
       </section>
 
       <section className="block" aria-labelledby="you-title">
-        <div className="wrap">
+        <div className="wrap reveal">
           <h2 id="you-title">Which one sounds like you?</h2>
           <ul className="choose">
             {LANDINGS.map(l => (
@@ -103,7 +106,7 @@ export default function Home() {
       </section>
 
       <section className="block" id="waitlist" aria-labelledby="wait-title">
-        <div className="wrap two">
+        <div className="wrap two reveal">
           <div>
             <h2 id="wait-title">Join the waitlist</h2>
             <p style={{ marginTop: 12 }}>The iPhone version works today and we’re adding questions every week. Leave your email and we’ll write once, when the full question set is ready.</p>
@@ -111,6 +114,7 @@ export default function Home() {
           <SignupForm variant="home" />
         </div>
       </section>
+      </div>
     </Shell>
   );
 }

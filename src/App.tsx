@@ -8,6 +8,10 @@ import Settings from './pages/Settings';
 import Thanks from './pages/Thanks';
 import Privacy from './pages/Privacy';
 import NotFound from './pages/NotFound';
+import Profile from './pages/Profile';
+import Diagnostic from './pages/Diagnostic';
+import SignIn from './pages/SignIn';
+import { PREVIEW } from './lib/progress';
 import { pageview } from './lib/analytics';
 
 function PageViews() {
@@ -28,6 +32,9 @@ export default function App() {
         <Route path="/settings" element={<Settings />} />
         <Route path="/thanks" element={<Thanks />} />
         <Route path="/privacy" element={<Privacy />} />
+        {PREVIEW && <Route path="/profile" element={<Profile />} />}
+        {PREVIEW && <Route path="/diagnostic" element={<Diagnostic />} />}
+        {PREVIEW && <Route path="/signin" element={<SignIn />} />}
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>

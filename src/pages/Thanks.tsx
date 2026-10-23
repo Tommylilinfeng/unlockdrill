@@ -3,6 +3,8 @@ import { Link, useSearchParams } from 'react-router-dom';
 import { Shell } from '../components/Shell';
 import { track } from '../lib/analytics';
 import { useTitle } from '../lib/useTitle';
+import { PREVIEW } from '../lib/progress';
+import { ReferralCard } from '../components/ReferralCard';
 
 /** Fires the `signup` event that is marked as a key event in GA4. */
 export default function Thanks() {
@@ -19,6 +21,7 @@ export default function Thanks() {
           <Link className="btn" to="/setup">Set it up on iPhone</Link>
           <Link to="/q?app=instagram&demo=1">Try a question</Link>
         </div>
+        {PREVIEW && <div style={{ marginTop: 40 }}><ReferralCard /></div>}
         <p className="small quiet" style={{ marginTop: 40 }}>If you reply to our email with the app you’d use it on and the test you’re taking, it helps us pick the next questions.</p>
       </div>
     </Shell>

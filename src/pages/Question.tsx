@@ -7,6 +7,8 @@ import { loadBank, nextQuestion, rememberSeen } from '../lib/questions';
 import { FREQUENCIES, isPaused, loadSettings, pauseFor, saveSettings, shouldPrompt } from '../lib/settings';
 import { logPractice } from '../lib/events';
 import { useTitle } from '../lib/useTitle';
+import { PREVIEW, recordAnswer } from '../lib/progress';
+import { MistakeTagger } from '../components/MistakeTagger';
 
 /**
  * The interstitial. Opened by the iOS automation as /q?app=instagram.
@@ -38,6 +40,7 @@ export default function Question() {
   const appLabel = app ? APPS[app].label : 'your app';
   const bank = useMemo(() => loadBank(EXAM.key), []);
   const [done, setDone] = useState(false);
+  const [missed, setMissed] = useState(false);
 
   // Decide once on mount whether this open gets a question.
   const [question] = useState(() => {
@@ -116,12 +119,15 @@ export default function Question() {
         {demo && <p className="small quiet" style={{ marginBottom: 18 }}>Preview. On your phone this opens when you open {appLabel}.</p>}
         <QuestionCard
           question={question}
-          onAnswered={(correct, ms) => { setDone(true); logPractice('answered', { app, questionId: question.id, correct, msToAnswer: ms }); }}
+          onAnswered={(correct, ms) => { setDone(true); setMissed(!correct); recordAnswer(question, correct); logPractice('answered', { app, questionId: question.id, correct, msToAnswer: ms }); }}
           after={
+            <>
+            {PREVIEW && missed && <MistakeTagger questionId={question.id} />}
             <div className="q-after">
               <button type="button" className="btn" onClick={back}>Back to {appLabel}</button>
               <Link className="link-btn" style={{ textAlign: 'center', display: 'grid', placeItems: 'center' }} to={`/q?app=${app ?? ''}&demo=1`} reloadDocument>Do another one</Link>
             </div>
+            </>
           }
         />
         {!done && (
