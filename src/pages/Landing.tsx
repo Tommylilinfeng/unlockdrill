@@ -1,6 +1,5 @@
 import { Link, useParams } from 'react-router-dom';
 import { Shell } from '../components/Shell';
-import { SignupForm } from '../components/SignupForm';
 import { findLanding } from '../content/landings';
 import { useTitle } from '../lib/useTitle';
 import NotFound from './NotFound';
@@ -18,7 +17,7 @@ export default function Landing() {
           <h1>{l.headline}</h1>
           <p className="lead">{l.lead}</p>
           <div className="actions" style={{ marginTop: 24 }}>
-            <a className="btn" href="#waitlist">Join the waitlist</a>
+            <Link className="btn" to="/setup">Set it up on iPhone</Link>
             <Link to="/q?app=instagram&demo=1">Try a question</Link>
           </div>
         </section>
@@ -37,14 +36,9 @@ export default function Landing() {
       </section>
 
       <section className="block">
-        <div className="wrap two">
-          <div>
-            <h2>“{l.objection.q}”</h2>
-            <p style={{ marginTop: 14 }}>{l.objection.a}</p>
-          </div>
-          <div id="waitlist">
-            <SignupForm variant={l.slug} />
-          </div>
+        <div className="wrap">
+          <h2>“{l.objection.q}”</h2>
+          <p style={{ marginTop: 14 }}>{l.objection.a}</p>
         </div>
       </section>
     </Shell>

@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Shell } from '../components/Shell';
-import { SignupForm } from '../components/SignupForm';
 import { QuestionCard } from '../components/QuestionCard';
 import { LANDINGS } from '../content/landings';
 import { EXAM, SITE_URL } from '../config/exam';
@@ -36,8 +35,8 @@ export default function Home() {
           <h1 id="pitch-title">UnlockDrill puts one {EXAM.itemNoun} in front of the app you scroll.</h1>
           <p>Answer it or skip it, then you’re back in the app. It’s for adults studying for the {EXAM.label} who keep losing study time to their phone.</p>
           <div className="actions">
-            <a className="btn" href="#waitlist">Join the waitlist</a>
-            <Link to="/setup">Set it up on iPhone</Link>
+            <Link className="btn" to="/setup">Set it up on iPhone</Link>
+            <Link to="/q?app=instagram&demo=1">Try a question</Link>
           </div>
         </section>
       </div>
@@ -102,16 +101,6 @@ export default function Home() {
               </li>
             ))}
           </ul>
-        </div>
-      </section>
-
-      <section className="block" id="waitlist" aria-labelledby="wait-title">
-        <div className="wrap two reveal">
-          <div>
-            <h2 id="wait-title">Join the waitlist</h2>
-            <p style={{ marginTop: 12 }}>The iPhone version works today and we’re adding questions every week. Leave your email and we’ll write once, when the full question set is ready.</p>
-          </div>
-          <SignupForm variant="home" />
         </div>
       </section>
       </div>

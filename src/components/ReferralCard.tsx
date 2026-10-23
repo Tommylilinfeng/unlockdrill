@@ -3,7 +3,7 @@ import { SITE_URL } from '../config/exam';
 import { referralCode } from '../lib/progress';
 import { track } from '../lib/analytics';
 
-/** Invite link for the waitlist. Preview only: the link carries ?ref=, but nothing counts referrals yet. */
+/** Invite link. Preview only: the link carries ?ref=, but nothing counts referrals yet. */
 export function ReferralCard() {
   const [code] = useState(referralCode);
   const [copied, setCopied] = useState(false);
@@ -17,7 +17,7 @@ export function ReferralCard() {
   return (
     <div className="panel">
       <h2 className="panel-title">Invite a friend</h2>
-      <p style={{ marginTop: 6 }}>When they join the waitlist with your link, both of you get early access.</p>
+      <p style={{ marginTop: 6 }}>When they sign up with your link, both of you get early access.</p>
       <div className="referral-row">
         <input readOnly value={link} aria-label="Your invite link" onFocus={e => e.currentTarget.select()} />
         <button type="button" className="btn" onClick={copy}>{copied ? 'Copied' : 'Copy link'}</button>

@@ -101,7 +101,7 @@ export default function Setup() {
           </div>
           <div>
             <h3>What about Android?</h3>
-            <p style={{ marginTop: 8 }}>Not yet. <a href={`${import.meta.env.BASE_URL}#waitlist`}>Join the waitlist</a> and tell us which phone you use.</p>
+            <p style={{ marginTop: 8 }}>Not yet. It’s iPhone only for now.</p>
           </div>
         </div>
       </section>

@@ -13,7 +13,6 @@ export function Shell({ children }: { children: ReactNode }) {
           <Lockup />
           <nav aria-label="Main">
             <Link to="/setup">Set it up</Link>
-            <a href={`${import.meta.env.BASE_URL}#waitlist`}>Waitlist</a>
             {PREVIEW && <Link to="/diagnostic">Diagnostic</Link>}
             {PREVIEW && !account && <Link to="/signin">Sign in</Link>}
             {PREVIEW && <Link to="/profile" className="nav-profile" aria-label={account ? `Your profile (${account.name || account.email})` : 'Your profile'}><span aria-hidden="true">{initials(account)}</span></Link>}
