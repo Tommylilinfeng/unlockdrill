@@ -4,7 +4,7 @@ import { Shell } from '../components/Shell';
 import { Buddy } from '../components/Logo';
 import { track } from '../lib/analytics';
 import { useTitle } from '../lib/useTitle';
-import { PREVIEW } from '../lib/progress';
+import { ACCOUNTS } from '../lib/progress';
 import { ReferralCard } from '../components/ReferralCard';
 
 /** Fires the `signup` event that is marked as a key event in GA4. */
@@ -25,7 +25,7 @@ export default function Thanks() {
         </div>
       </div>
       <div className="wrap narrow groups">
-        {PREVIEW && <ReferralCard />}
+        {ACCOUNTS && <ReferralCard />}
         <p className="quiet">If you reply to our email with the app you’d use it on and the test you’re taking, it helps us pick the next questions.</p>
       </div>
     </Shell>

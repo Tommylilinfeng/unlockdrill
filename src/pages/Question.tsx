@@ -2,13 +2,14 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import { QuestionCard } from '../components/QuestionCard';
 import { Buddy, Lockup } from '../components/Logo';
+import { ProfileLink } from '../components/Shell';
 import { EXAM } from '../config/exam';
 import { APPS, appFromParam, returnToApp } from '../lib/apps';
 import { loadBank, nextQuestion, rememberSeen } from '../lib/questions';
 import { FREQUENCIES, isPaused, loadSettings, pauseFor, saveSettings, shouldPrompt } from '../lib/settings';
 import { logPractice } from '../lib/events';
 import { useTitle } from '../lib/useTitle';
-import { PREVIEW, recordAnswer } from '../lib/progress';
+import { ACCOUNTS, recordAnswer } from '../lib/progress';
 import { MistakeTagger } from '../components/MistakeTagger';
 
 /**
@@ -93,6 +94,7 @@ export default function Question() {
       <div className="q-shell night">
         <div className="q-top">
           <span className="app-chip">{appLabel} is opening</span>
+          <ProfileLink />
         </div>
         <main className="q-main q-rest">
           <Buddy size={88} tone="white" mood={paused ? 'rest' : 'smile'} />
@@ -114,8 +116,11 @@ export default function Question() {
   return (
     <div className="q-shell night">
       <div className="q-top">
-        <span className="app-chip">{appLabel} is one tap away</span>
-        <button type="button" className="skip-btn" onClick={skip}>Skip</button>
+        <span className="app-chip">{appLabel} is next</span>
+        <div className="q-top-actions">
+          <ProfileLink />
+          <button type="button" className="skip-btn" onClick={skip}>Skip</button>
+        </div>
       </div>
       <main className="q-main">
         {demo && <p className="q-demo">Preview. On your phone this opens when you open {appLabel}.</p>}
@@ -126,7 +131,7 @@ export default function Question() {
             onAnswered={(correct, ms) => { setDone(true); setMissed(!correct); recordAnswer(question, correct); logPractice('answered', { app, questionId: question.id, correct, msToAnswer: ms }); }}
             after={
               <>
-                {PREVIEW && missed && <MistakeTagger questionId={question.id} />}
+                {ACCOUNTS && missed && <MistakeTagger questionId={question.id} />}
                 <div className="q-after">
                   <button type="button" className="btn btn-block btn-big" onClick={back}>Back to {appLabel}</button>
                   <Link className="btn btn-quiet btn-block" to={`/q?app=${app ?? ''}&demo=1`} reloadDocument>Do another one</Link>

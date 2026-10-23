@@ -1,7 +1,7 @@
 import { createClient, type SupabaseClient, type User } from '@supabase/supabase-js';
 
 /**
- * Email and password accounts through Supabase Auth (dev builds only for now, see PREVIEW in progress.ts).
+ * Email and password accounts through Supabase Auth (on when Supabase is configured, see ACCOUNTS in progress.ts).
  * The signed-in account is also cached in localStorage so the header can read it synchronously.
  */
 export interface Account { id: string; name: string; email: string }

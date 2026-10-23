@@ -35,6 +35,9 @@ const routes = [
   ['settings', 'Settings: UnlockDrill'],
   ['thanks', 'You’re on the waitlist: UnlockDrill'],
   ['privacy', 'Privacy: UnlockDrill'],
+  ['signin', 'Sign in: UnlockDrill'],
+  ['profile', 'Your profile: UnlockDrill'],
+  ['diagnostic', 'Diagnostic: UnlockDrill'],
 ];
 
 for (const [path, title, description] of routes) {

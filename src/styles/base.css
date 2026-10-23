@@ -583,3 +583,15 @@ kbd { font: inherit; font-weight: 700; padding: 1px 7px; border-radius: 6px; bac
 .week-strip .dot.miss { border: 2px solid var(--on-night-2); }
 .week-strip .more { font-size: 12px; font-weight: 700; color: var(--on-night-2); }
 .week-strip .day { font-size: 13px; font-weight: 700; color: var(--on-night-2); }
+
+/* Profile avatar on the question screen: one tap to the profile without leaving through Skip. */
+.q-top-actions { display: flex; align-items: center; gap: 8px; flex: none; }
+.profile-link {
+  position: relative; flex: none; display: grid; place-items: center; width: 44px; height: 44px; border-radius: 50%;
+  background: var(--night-2); color: var(--on-night); box-shadow: inset 0 0 0 2px var(--night-3);
+  font-size: 13px; font-weight: 800; text-decoration: none; touch-action: manipulation;
+}
+.profile-link::before { content: ''; position: absolute; inset: -2px; }
+.profile-link:active { transform: scale(0.96); }
+@media (hover: hover) and (pointer: fine) { .profile-link:hover { box-shadow: inset 0 0 0 2px var(--on-night-2); } }
+.q-top .app-chip { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }

@@ -73,7 +73,7 @@ export function PhoneDemo({ question, appLabel, onAnswered }: {
           </div>
           <div className={`ix${asking ? ' on' : ''}`} inert={!asking} aria-hidden={!asking}>
             <div className="ix-top">
-              <span className="app-chip">{appLabel} is one tap away</span>
+              <span className="app-chip">{appLabel} is next</span>
               <button type="button" className="skip-btn" onClick={back}>Skip</button>
             </div>
             <div className="ix-card">

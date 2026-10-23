@@ -6,8 +6,11 @@ import { currentAccount, supabase } from './account';
  * Kept in localStorage; when signed in it is also synced to the user's row in public.user_progress.
  */
 
-/** Local dev builds only until sign-in exists; production keeps today's behavior. */
-export const PREVIEW = import.meta.env.DEV;
+/**
+ * Accounts, the profile, the diagnostic and mistake tags are on wherever sign-in can work: any build with
+ * Supabase configured (production gets the keys from the deploy workflow), plus local dev for layout work.
+ */
+export const ACCOUNTS = import.meta.env.DEV || Boolean(import.meta.env.VITE_SUPABASE_URL && import.meta.env.VITE_SUPABASE_ANON_KEY);
 
 export type MistakeTag = 'careless' | 'concept' | 'time';
 export const MISTAKE_TAGS: { key: MistakeTag; label: string }[] = [
@@ -82,7 +85,7 @@ export async function syncProgress(): Promise<void> {
 }
 
 export function recordAnswer(q: Question, correct: boolean, source: AnswerRecord['source'] = 'practice'): void {
-  if (!PREVIEW) return;
+  if (!ACCOUNTS) return;
   const p = loadProgress();
   const rec: AnswerRecord = { questionId: q.id, section: q.section, topic: q.topic, correct, at: Date.now(), source };
   saveProgress({ ...p, answers: [...p.answers, rec].slice(-500) });

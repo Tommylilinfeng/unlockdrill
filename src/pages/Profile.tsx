@@ -172,11 +172,11 @@ export default function Profile() {
 
           <ReferralCard />
 
-          <p className="preview-tools">
+          {import.meta.env.DEV && <p className="preview-tools">
             For the team preview:{' '}
             <button type="button" className="link-btn" onClick={() => { loadSampleData(bank); refresh(); }}>Fill with sample data</button>{' '}
             <button type="button" className="link-btn" onClick={() => { clearProgress(); refresh(); }}>Clear history</button>
-          </p>
+          </p>}
         </div>
       </div>
     </Shell>
