@@ -1,12 +1,15 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import { QuestionCard } from '../components/QuestionCard';
+import { Buddy, Lockup } from '../components/Logo';
 import { EXAM } from '../config/exam';
 import { APPS, appFromParam, returnToApp } from '../lib/apps';
 import { loadBank, nextQuestion, rememberSeen } from '../lib/questions';
 import { FREQUENCIES, isPaused, loadSettings, pauseFor, saveSettings, shouldPrompt } from '../lib/settings';
 import { logPractice } from '../lib/events';
 import { useTitle } from '../lib/useTitle';
+import { PREVIEW, recordAnswer } from '../lib/progress';
+import { MistakeTagger } from '../components/MistakeTagger';
 
 /**
  * The interstitial. Opened by the iOS automation as /q?app=instagram.
@@ -23,8 +26,8 @@ const AUTO_RETURN_MS = 1200;
 function SettingsLine({ frequency, opens }: { frequency: string; opens: number }) {
   const label = FREQUENCIES.find(f => f.key === frequency)?.label ?? frequency;
   return (
-    <p className="small quiet" style={{ marginTop: 28 }}>
-      How often: {label}. Open {opens} on this phone. <Link to="/settings">Change</Link>
+    <p className="q-rule">
+      How often: {label}. Open <span className="num">{opens}</span> on this phone. <Link to="/settings">Change</Link>
     </p>
   );
 }
@@ -38,6 +41,7 @@ export default function Question() {
   const appLabel = app ? APPS[app].label : 'your app';
   const bank = useMemo(() => loadBank(EXAM.key), []);
   const [done, setDone] = useState(false);
+  const [missed, setMissed] = useState(false);
 
   // Decide once on mount whether this open gets a question.
   const [question] = useState(() => {
@@ -86,52 +90,62 @@ export default function Question() {
       ? new Date(settings.pausedUntil).toLocaleString('en-US', { weekday: 'short', hour: 'numeric', minute: '2-digit' })
       : null;
     return (
-      <div className="q-shell">
-        <div className="q-bar">
-          <Link to="/" className="lockup" style={{ fontSize: 16 }}><img src={`${import.meta.env.BASE_URL}logo/mark-small.svg`} alt="" width={22} height={22} />UnlockDrill</Link>
+      <div className="q-shell night">
+        <div className="q-top">
+          <span className="app-chip">{appLabel} is opening</span>
         </div>
-        <div className="q-main">
+        <main className="q-main q-rest">
+          <Buddy size={88} tone="white" mood={paused ? 'rest' : 'smile'} />
           <h1>{paused ? 'UnlockDrill is paused.' : 'No question this time.'}</h1>
-          <p className="quiet" style={{ marginTop: 10 }}>
+          <p className="q-rest-text">
             {paused ? `Questions start again ${until ? `after ${until}` : 'when the pause ends'}.` : 'Your how-often setting skipped this one.'}
             {!demo && ` Taking you back to ${appLabel}…`}
           </p>
-          <div className="q-after">
-            <button type="button" className="btn" onClick={back}>Back to {appLabel}</button>
-            <Link className="link-btn" style={{ display: 'grid', placeItems: 'center' }} to="/settings">Change how often</Link>
+          <div className="q-rest-actions">
+            <button type="button" className="btn btn-light btn-block" onClick={back}>Back to {appLabel}</button>
+            <Link className="btn btn-ghost btn-block" to="/settings">Change how often</Link>
           </div>
           <SettingsLine frequency={settings.frequency} opens={settings.opens} />
-        </div>
+        </main>
       </div>
     );
   }
 
   return (
-    <div className="q-shell">
-      <div className="q-bar">
-        <Link to="/" className="lockup" style={{ fontSize: 16 }}><img src={`${import.meta.env.BASE_URL}logo/mark-small.svg`} alt="" width={22} height={22} />UnlockDrill</Link>
-        <button type="button" className="link-btn" onClick={skip}>Skip</button>
+    <div className="q-shell night">
+      <div className="q-top">
+        <span className="app-chip">{appLabel} is one tap away</span>
+        <button type="button" className="skip-btn" onClick={skip}>Skip</button>
       </div>
-      <div className="q-main">
-        {demo && <p className="small quiet" style={{ marginBottom: 18 }}>Preview. On your phone this opens when you open {appLabel}.</p>}
-        <QuestionCard
-          question={question}
-          onAnswered={(correct, ms) => { setDone(true); logPractice('answered', { app, questionId: question.id, correct, msToAnswer: ms }); }}
-          after={
-            <div className="q-after">
-              <button type="button" className="btn" onClick={back}>Back to {appLabel}</button>
-              <Link className="link-btn" style={{ textAlign: 'center', display: 'grid', placeItems: 'center' }} to={`/q?app=${app ?? ''}&demo=1`} reloadDocument>Do another one</Link>
+      <main className="q-main">
+        {demo && <p className="q-demo">Preview. On your phone this opens when you open {appLabel}.</p>}
+        <div className="q-card">
+          <QuestionCard
+            question={question}
+            headingLevel="h1"
+            onAnswered={(correct, ms) => { setDone(true); setMissed(!correct); recordAnswer(question, correct); logPractice('answered', { app, questionId: question.id, correct, msToAnswer: ms }); }}
+            after={
+              <>
+                {PREVIEW && missed && <MistakeTagger questionId={question.id} />}
+                <div className="q-after">
+                  <button type="button" className="btn btn-block btn-big" onClick={back}>Back to {appLabel}</button>
+                  <Link className="btn btn-quiet btn-block" to={`/q?app=${app ?? ''}&demo=1`} reloadDocument>Do another one</Link>
+                </div>
+              </>
+            }
+          />
+        </div>
+        <div className="q-foot">
+          {!done && (
+            <div className="q-pause" role="group" aria-label="Pause questions">
+              <button type="button" className="pause-btn" onClick={() => pause(60)}>Pause for an hour</button>
+              <button type="button" className="pause-btn" onClick={() => pause(24 * 60)}>Pause until tomorrow</button>
             </div>
-          }
-        />
-        {!done && (
-          <div className="q-pause" aria-label="Pause">
-            <button type="button" className="link-btn" onClick={() => pause(60)}>Pause for an hour</button>
-            <button type="button" className="link-btn" onClick={() => pause(24 * 60)}>Pause until tomorrow</button>
-          </div>
-        )}
-        {!demo && <SettingsLine frequency={settings.frequency} opens={settings.opens} />}
-      </div>
+          )}
+          {!demo && <SettingsLine frequency={settings.frequency} opens={settings.opens} />}
+          <Lockup tone="white" />
+        </div>
+      </main>
     </div>
   );
 }

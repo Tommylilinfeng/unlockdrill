@@ -1,34 +1,81 @@
 /*
- * UnlockDrill tokens, v2. The motif is the answer sheet: forest-green print on white paper,
- * graphite pencil for ink and filled bubbles. Forest #21664c is unchanged so the HW4 logo still fits.
+ * UnlockDrill tokens, direction C: "The moment".
+ *
+ * Plan
+ * - Subject: the half-second between tapping Instagram and Instagram opening. Design that screen first;
+ *   the site sells it. Audience: SAT students on a phone, often at night. Job: answer or skip, then go back.
+ * - Color: night #14211C (graphite pulled toward forest, never black) is the interstitial and the marketing
+ *   "night" bands; paper #FCFCFA is the question card and every page where you do a task. Forest is the one
+ *   action color on paper; on night the action is a paper button. Gold is a signal only: the app chip, the
+ *   focus ring on night, Buddy's rays. Mint is decoration on paper and readable secondary text on night.
+ * - Type: Bricolage Grotesque (semi-condensed, 800) for headlines only, because its ink-trapped, slightly
+ *   pencil-like forms read as a confident consumer brand and the narrow width keeps a phone headline to two
+ *   lines. Atkinson Hyperlegible Next for everything you read or tap, including the question itself: math
+ *   prompts need unambiguous glyphs more than a serif's voice, so Newsreader did not earn a place.
+ * - Layout: left-aligned. Night and paper alternate on the homepage with a reason: night = the moment on
+ *   your phone, paper = the choices you control. App screens (profile, sign-in, settings) are grouped rows.
+ * - The one bold thing: the paper card rising onto the night screen, on /q and inside the homepage phone.
+ *   That is the only choreographed motion; everything else answers a tap.
  */
 :root {
+  /* brand */
+  --forest: #21664c;
+  --forest-700: #1a5440;
+  --forest-800: #174a37;
+  --mint: #86b59b;
+  --gold: #f5c451;
+  --graphite: #262b2e;
+
+  /* paper side */
   --paper: #fcfcfa;
   --sheet: #ffffff;
-  --graphite: #262b2e;
-  --graphite-2: #5a6367;
-  --forest: #21664c;
-  --print: #86b59b;        /* answer-sheet print: bubble outlines, rules */
-  --wash: #edf4ef;          /* pale green band, like the tinted rows on a form */
-  --red: #b3261e;
+  --paper-2: #f2f5f3;       /* grouped-list canvas, one tone step below paper */
+  --wash: #edf4ef;
+  --hair: #dfe6e2;          /* hairlines between rows */
+  --ink: #262b2e;
+  --ink-2: #5a6367;         /* 5.99:1 on paper */
+  --red: #b3261e;           /* 6.54:1 on white */
+  --red-wash: #fbeeed;
+
+  /* night side */
+  --night: #14211c;
+  --night-2: #1c2d26;       /* raised, never darker than the canvas */
+  --night-3: #2a3f36;       /* hairlines on night */
+  --on-night: #f2f5f3;      /* 15.1:1 */
+  --on-night-2: #a9bcb2;    /* 8.3:1 */
 
   --font: 'Atkinson Hyperlegible Next', 'Atkinson Hyperlegible', Arial, Helvetica, sans-serif;
+  --display: 'Bricolage Grotesque', 'Atkinson Hyperlegible Next', Arial, sans-serif;
+  --ios: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Atkinson Hyperlegible Next', Arial, sans-serif;
 
-  /* modular scale, ratio ~1.25 from 17px */
-  --t-small: 14px;
+  /* type: five sizes do the work */
+  --t-small: 15px;
   --t-body: 17px;
-  --t-lead: 21px;
-  --t-h3: 21px;
-  --t-h2: 28px;
-  --t-h1: 34px;
-  --t-hero: 34px;
+  --t-lead: 20px;
+  --t-h2: 30px;
+  --t-h1: 42px;
+  --t-mega: 46px;
 
-  --measure: 64ch;
-  --wide: 1120px;
+  --measure: 62ch;
+  --wide: 1160px;
   --gutter: 20px;
-  --gap: 72px;
+  --section: 72px;
   --tap: 48px;
+
+  /* radius language: big for surfaces that hold things, small for controls */
+  --r-sheet: 28px;
+  --r-group: 16px;
+  --r-control: 12px;
+
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
+  --dur-press: 140ms;
+  --dur-short: 220ms;
+  --dur-rise: 520ms;
+
+  --lift: 0 1px 2px rgba(20, 33, 28, 0.06), 0 24px 48px -28px rgba(20, 33, 28, 0.45);
+  --lift-night: 0 2px 4px rgba(0, 0, 0, 0.25), 0 40px 80px -40px rgba(0, 0, 0, 0.7);
 }
 @media (min-width: 820px) {
-  :root { --t-h1: 46px; --t-hero: 46px; --t-h2: 32px; --gutter: 40px; --gap: 112px; }
+  :root { --t-h2: 40px; --t-h1: 64px; --t-mega: 88px; --gutter: 40px; --section: 128px; }
 }

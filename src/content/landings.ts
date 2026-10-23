@@ -64,7 +64,7 @@ export const LANDINGS: Landing[] = [
     points: [
       { title: 'The method, not just the letter', body: 'Explanations show the step you’d use on test day, in a sentence or two.' },
       { title: 'You can see the topic', body: 'Each question is labeled with its section and topic, so you can tell what keeps tripping you up.' },
-      { title: 'Next: a mistake log', body: 'We’re considering a one-tap note on why you missed it: careless, concept, or time. Join the waitlist if you’d use that.' },
+      { title: 'Next: a mistake log', body: 'We’re adding a one-tap note on why you missed it: careless, concept, or time. It’s optional.' },
     ],
     objection: { q: 'Sometimes I remember the answer without understanding it.', a: 'Same here. That’s why the explanation shows the method, and why we plan to bring back similar questions rather than the same one.' },
   },
