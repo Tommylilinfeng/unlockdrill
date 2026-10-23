@@ -5,10 +5,21 @@ import { ReferralCard } from '../components/ReferralCard';
 import { EXAM } from '../config/exam';
 import { loadBank } from '../lib/questions';
 import {
-  MISTAKE_TAGS, clearProgress, loadProgress, loadSampleData, syncProgress, tagMistake, weekSummary, type MistakeTag,
+  MISTAKE_TAGS, clearProgress, loadProgress, loadSampleData, syncProgress, tagMistake, weekSummary, type AnswerRecord, type MistakeTag,
 } from '../lib/progress';
 import { useTitle } from '../lib/useTitle';
 import { currentAccount, initials, signOut } from '../lib/account';
+
+const MAX_DOTS = 5;
+
+/** The last seven days, oldest first, each with that day's answers: one bubble per answer, like a row on an answer sheet. */
+function lastSevenDays(answers: AnswerRecord[], now = Date.now()) {
+  return Array.from({ length: 7 }, (_, k) => {
+    const d = new Date(now); d.setHours(0, 0, 0, 0); d.setDate(d.getDate() - (6 - k));
+    const start = d.getTime(); const end = start + 24 * 60 * 60 * 1000;
+    return { label: d.toLocaleDateString('en-US', { weekday: 'narrow' }), name: d.toLocaleDateString('en-US', { weekday: 'long' }), today: k === 6, answers: answers.filter(a => a.at >= start && a.at < end) };
+  });
+}
 
 const day = (t: number) => new Date(t).toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' });
 
@@ -59,6 +70,21 @@ export default function Profile() {
             <div className="id-week">
               <p className="id-num"><span className="num">{week.answered}</span></p>
               <p className="id-label">{week.answered === 1 ? 'question' : 'questions'} this week, <span className="num">{week.correct}</span> right</p>
+              <ul className="week-strip" aria-label="Answers per day, last seven days">
+                {lastSevenDays(p.answers).map(d => {
+                  const right = d.answers.filter(a => a.correct).length;
+                  return (
+                    <li key={d.name} className={d.today ? 'today' : undefined}
+                      aria-label={`${d.name}${d.today ? ' (today)' : ''}: ${d.answers.length} answered, ${right} right`}>
+                      <span className="dots" aria-hidden="true">
+                        {d.answers.slice(0, MAX_DOTS).map(a => <span key={a.at} className={`dot ${a.correct ? 'right' : 'miss'}`} />)}
+                        {d.answers.length > MAX_DOTS && <span className="more">+{d.answers.length - MAX_DOTS}</span>}
+                      </span>
+                      <span className="day" aria-hidden="true">{d.label}</span>
+                    </li>
+                  );
+                })}
+              </ul>
               <p className="id-note">{!week.topMissTopic ? <>No misses this week.</> : tied ? <>Misses spread across {week.missesByTopic.length} topics.</> : <>Most misses: {week.topMissTopic.toLowerCase()}.</>} No streaks, no feed.</p>
             </div>
           )}
